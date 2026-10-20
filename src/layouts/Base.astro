@@ -1,0 +1,79 @@
+---
+// The frame around every page: <head>, header with menu, footer.
+import '../styles/global.css';
+import { site } from '../site.config';
+import { url } from '../lib/helpers';
+
+interface Props {
+  title?: string;
+  description?: string;
+  onWall?: boolean; // the home page header sits on the green wall
+}
+
+const { title, description = site.description, onWall = false } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+
+const nav = [
+  { href: url('catalogue/'), label: 'Catalogue' },
+  { href: url('journal/'), label: 'Journal' },
+  { href: url('articles/'), label: 'Articles' },
+  { href: url('about/'), label: 'About' },
+  { href: url('contact/'), label: 'Contact' },
+];
+
+const here = Astro.url.pathname;
+const isCurrent = (href: string) => here === href || here.startsWith(href);
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500&display=swap"
+    />
+  </head>
+  <body class={onWall ? 'on-wall' : undefined}>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="site-name" href={url()}>{site.name}</a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {
+              nav.map((item) => (
+                <li>
+                  <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>&copy; {year} {site.owner}{site.location && `, ${site.location}`}</p>
+        <p><a href={url('contact/')}>Get in touch</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+Keep this file. It stops GitHub removing this folder when it has no posts in it.
+
+Each journal post is one .md file in this folder.
+See "Write a journal post" in README.md. Photos go in public/images/journal/

@@ -1,0 +1,96 @@
+---
+// The full catalogue, with category filters and a search box.
+import Base from '../../layouts/Base.astro';
+import ObjectCard from '../../components/ObjectCard.astro';
+import { getObjects } from '../../lib/content';
+
+const objects = await getObjects();
+const categories = [...new Set(objects.map((o) => o.data.category))].sort();
+---
+
+<Base title="Catalogue" description="Every object in the collection, with photographs and descriptions.">
+  <div class="wrap">
+    <header class="page-head">
+      <h1>Catalogue</h1>
+      <p>Every object in the collection, numbered in the order it was acquired.</p>
+    </header>
+
+    {objects.length === 0 && (
+      <p class="no-results">The catalogue is being prepared. Objects will appear here soon.</p>
+    )}
+
+    <div class="filters" hidden={objects.length === 0}>
+      <ul class="filter-list" aria-label="Show category">
+        <li><button type="button" data-filter="" aria-pressed="true">All</button></li>
+        {
+          categories.map((c) => (
+            <li>
+              <button type="button" data-filter={c} aria-pressed="false">
+                {c}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="search">
+        <label for="search">Search by name, maker or date</label>
+        <input id="search" type="search" autocomplete="off" />
+      </div>
+    </div>
+
+    <p class="small result-count" aria-live="polite" hidden={objects.length === 0}>
+      {objects.length} objects
+    </p>
+
+    <ul class="object-grid" id="objects">
+      {objects.map((item) => <ObjectCard item={item} />)}
+    </ul>
+
+    <p class="no-results" id="no-matches" hidden>Nothing matches that search. Try a shorter word, or choose All.</p>
+  </div>
+</Base>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('#objects .object-card')];
+  const search = document.querySelector<HTMLInputElement>('#search')!;
+  const count = document.querySelector<HTMLElement>('.result-count')!;
+  const empty = document.querySelector<HTMLElement>('#no-matches')!;
+  const total = cards.length;
+
+  let category = new URLSearchParams(location.search).get('category') ?? '';
+  if (!buttons.some((b) => b.dataset.filter === category)) category = '';
+
+  function update() {
+    const words = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let shown = 0;
+
+    for (const card of cards) {
+      const inCategory = !category || card.dataset.category === category;
+      const text = card.dataset.search ?? '';
+      const matches = words.every((w) => text.includes(w));
+      const visible = inCategory && matches;
+      card.hidden = !visible;
+      if (visible) shown++;
+    }
+
+    for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.filter === category));
+    count.textContent = shown === total ? `${total} objects` : `Showing ${shown} of ${total} objects`;
+    empty.hidden = shown > 0 || total === 0;
+  }
+
+  for (const b of buttons) {
+    b.addEventListener('click', () => {
+      category = b.dataset.filter ?? '';
+      const params = new URLSearchParams(location.search);
+      if (category) params.set('category', category);
+      else params.delete('category');
+      const query = params.toString();
+      history.replaceState(null, '', query ? `?${query}` : location.pathname);
+      update();
+    });
+  }
+
+  search.addEventListener('input', update);
+  update();
+</script>

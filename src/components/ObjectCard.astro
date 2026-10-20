@@ -1,0 +1,32 @@
+---
+// One object in a grid: photo on its mount, with a museum-style label.
+import type { CollectionEntry } from 'astro:content';
+import { img, url } from '../lib/helpers';
+
+interface Props {
+  item: CollectionEntry<'catalogue'>;
+}
+
+const { item } = Astro.props;
+const { title, number, date, maker, category, images } = item.data;
+const photo = images[0];
+
+// Text the catalogue search looks through
+const searchText = [title, number, date, maker, category, item.data.origin, item.data.materials]
+  .filter(Boolean)
+  .join(' ')
+  .toLowerCase();
+---
+
+<li class="object-card" data-category={category} data-search={searchText}>
+  <a href={url(`catalogue/${item.id}/`)}>
+    <div class:list={['mat', { empty: !photo }]}>
+      {photo && <img src={img('catalogue', photo)} alt={title} loading="lazy" decoding="async" />}
+    </div>
+    <div class="label">
+      <span class="no">No. {number}</span>
+      <span class="title">{title}</span>
+      <span class="meta">{maker ? `${maker}, ${date}` : date}</span>
+    </div>
+  </a>
+</li>

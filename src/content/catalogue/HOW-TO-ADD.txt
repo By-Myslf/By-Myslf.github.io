@@ -1,0 +1,5 @@
+Keep this file. It stops GitHub removing this folder when it has no objects in it.
+
+Each object in the catalogue is one .md file in this folder.
+Copy an existing one, or see "Add an object to the catalogue" in README.md.
+Photos go in public/images/catalogue/

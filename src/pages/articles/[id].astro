@@ -1,0 +1,33 @@
+---
+// One article. Made automatically for every file in src/content/articles/.
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getArticles } from '../../lib/content';
+import { url, formatDate } from '../../lib/helpers';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return articles.map((article) => ({ params: { id: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const d = article.data;
+---
+
+<Base title={d.title} description={d.summary}>
+  <div class="wrap">
+    <article class="reading">
+      <h1>{d.title}</h1>
+      <p class="lead">{d.summary}</p>
+      <p class="byline">
+        By <strong>{d.author}</strong>{d.authorRole && `, ${d.authorRole}`}. Published{' '}
+        <time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>
+      </p>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+    <p class="back"><a href={url('articles/')}>All articles</a></p>
+  </div>
+</Base>

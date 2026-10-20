@@ -1,0 +1,32 @@
+---
+// The About page. Replace the text below with your own story.
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import { url } from '../lib/helpers';
+---
+
+<Base title="About" description={`About ${site.owner} and the collection.`}>
+  <div class="wrap">
+    <article class="reading">
+      <h1>About the collection</h1>
+      <div class="prose">
+        <p class="lead">
+          This is where you tell visitors who you are and how the collection began. Write it the way
+          you would explain it to a guest standing in your living room.
+        </p>
+        <p>
+          A few things people usually want to know: what first drew you to antiques, what ties the
+          collection together, and how you choose a piece. Mention a favourite object or two, and
+          link to it in the catalogue.
+        </p>
+        <p>
+          You might also say whether you welcome questions from other collectors, researchers or
+          dealers, and whether you ever lend pieces to exhibitions.
+        </p>
+        <p>
+          If you would like to know more about any piece, <a href={url('contact/')}>write to me</a>.
+        </p>
+      </div>
+    </article>
+  </div>
+</Base>
