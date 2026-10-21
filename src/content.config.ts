@@ -43,7 +43,7 @@ const journal = defineCollection({
   }),
 });
 
-// Longer pieces by you or invited specialists — in src/content/articles/
+// The Collector's guide: longer pieces by you or invited specialists — in src/content/articles/
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
   schema: z.object({

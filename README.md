@@ -1,6 +1,6 @@
 # Champagne Club Budapest website
 
-A website for a private collection of antiques and art: a catalogue with photos, a journal, expert articles, an about page and a contact page. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
+A website for a private collection of antiques and art: a catalogue with photos, a journal, a collector's guide, an "I buy" page, an about page and a contact page. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
 
 You never need to write code to add content. Each object, post and article is one small text file.
 
@@ -105,25 +105,25 @@ More text. **Bold**, *italic*, and [a link](https://example.com) all work.
 - `image` is optional. Upload it to `public/images/journal/`.
 - Add `draft: true` to hide a post until it's ready.
 
-## 5. Publish an expert article
+## 5. Publish a Collector's guide article
 
-Same as a journal post, but in `src/content/articles/`, with the author's details:
+The Collector's guide (at `/guide/` on the website) is made from the files in `src/content/articles/`. Same as a journal post, but with the author's details:
 
 ```markdown
 ---
-title: Reading the marks on old silver
+title: Dating a champagne coupe
 date: 2026-08-20
 summary: One or two sentences about the article.
 author: Dr Anna Kovács
-authorRole: Silver specialist
+authorRole: Glass specialist
 ---
 
 The article text.
 ```
 
-## 6. Edit the About and Contact pages
+## 6. Edit the About, I buy and Contact pages
 
-The text is in `src/pages/about.astro` and `src/pages/contact.astro`. Edit the sentences between the `<p>` and `</p>` tags and leave the tags themselves alone.
+The text is in `src/pages/about.astro`, `src/pages/buying.astro` and `src/pages/contact.astro`. On the I buy page, the lists of wanted items and steps are near the top of the file. Edit the sentences between the `<p>` and `</p>` tags and leave the tags themselves alone.
 
 ---
 
@@ -131,7 +131,7 @@ The text is in `src/pages/about.astro` and `src/pages/contact.astro`. Edit the s
 
 The sample objects, posts and articles are there to show how things look. Delete their files from `src/content/...` and `public/images/...` once you've added your own. (Open a file, click **⋯ → Delete file**, then commit.) Keep the `HOW-TO-ADD.txt` file in each folder: GitHub removes folders that have no files in them.
 
-With no content at all, the site still works: the catalogue says it is being prepared, and the Journal and Articles pages say there is nothing yet.
+With no content at all, the site still works: the catalogue says it is being prepared, and the Journal and Collector's guide pages say there is nothing yet.
 
 ## Where things are
 
@@ -140,9 +140,9 @@ With no content at all, the site still works: the catalogue says it is being pre
 | Name, email, site description | `src/site.config.ts` |
 | Catalogue objects | `src/content/catalogue/` |
 | Journal posts | `src/content/journal/` |
-| Articles | `src/content/articles/` |
+| Collector's guide articles | `src/content/articles/` |
 | Photos | `public/images/catalogue/` and `public/images/journal/` |
-| About and Contact text | `src/pages/about.astro`, `src/pages/contact.astro` |
+| About, I buy and Contact text | `src/pages/about.astro`, `src/pages/buying.astro`, `src/pages/contact.astro` |
 | Colours and fonts | top of `src/styles/global.css` |
 | Home page wording | `src/pages/index.astro` |
 | Publishing settings | `.github/workflows/deploy.yml` (no need to touch) |

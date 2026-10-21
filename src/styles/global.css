@@ -857,9 +857,169 @@ button.button {
   min-height: 1.4em;
 }
 
+/* ── "I buy" page ────────────────────────────────────────── */
+
+.buy-hero {
+  background: var(--wall);
+  color: var(--wall-ink);
+  padding: clamp(48px, 8vw, 112px) 0 clamp(52px, 8vw, 112px);
+}
+
+.buy-hero h1 {
+  max-width: 18em;
+  font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3.6rem);
+  margin-bottom: 0.45em;
+}
+
+.buy-kicker {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c9b483;
+  margin-bottom: 18px;
+}
+
+.buy-intro {
+  max-width: 34em;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgb(238 240 234 / 0.82);
+  margin-bottom: 32px;
+}
+
+.wanted-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.wanted-grid li {
+  padding: 26px 24px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.wanted-grid h3 {
+  margin-bottom: 8px;
+}
+
+.wanted-grid h3::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--gilt);
+  margin-bottom: 16px;
+}
+
+.wanted-grid p,
+.steps p {
+  margin: 0;
+  color: var(--pewter);
+}
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px clamp(24px, 4vw, 56px);
+}
+
+.steps li {
+  counter-increment: step;
+  border-top: 1px solid var(--ink);
+  padding-top: 18px;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--serif-display);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--gilt);
+  margin-bottom: 14px;
+}
+
+.steps h3 {
+  margin-bottom: 8px;
+}
+
+.buy-collections {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.buy-collections .contact-box {
+  margin-top: 8px;
+}
+
+/* Home page invitation to the "I buy" page */
+.buy-callout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px 28px;
+  background: var(--wall);
+  color: var(--wall-ink);
+  padding: clamp(24px, 3.5vw, 40px) clamp(22px, 4vw, 48px);
+  text-decoration: none;
+}
+
+.buy-callout-kicker {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c9b483;
+}
+
+.buy-callout-text {
+  font-family: var(--serif-display);
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+  line-height: 1.25;
+}
+
+.buy-callout-link {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  border-bottom: 1px solid rgb(238 240 234 / 0.5);
+  padding-bottom: 2px;
+}
+
+.buy-callout:hover .buy-callout-link {
+  border-bottom-color: var(--wall-ink);
+}
+
 /* ── Small screens ──────────────────────────────────────── */
 
 @media (max-width: 860px) {
+  .wanted-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps,
+  .buy-collections {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .buy-callout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .filters {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -886,6 +1046,10 @@ button.button {
 }
 
 @media (max-width: 600px) {
+  .wanted-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .site-nav ul {
     gap: 4px 18px;
   }

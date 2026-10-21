@@ -98,14 +98,14 @@ const articles = (await getArticles()).slice(0, 3);
       {articles.length > 0 && (
       <section aria-labelledby="latest-articles">
         <div class="section-head">
-          <h2 id="latest-articles">Articles</h2>
-          <a href={url('articles/')}>All articles</a>
+          <h2 id="latest-articles">Collector's guide</h2>
+          <a href={url('guide/')}>All guides</a>
         </div>
         <ul class="entry-list">
           {
             articles.map((article) => (
               <li>
-                <a href={url(`articles/${article.id}/`)}>
+                <a href={url(`guide/${article.id}/`)}>
                   <span class="small">{article.data.author}</span>
                   <h3>{article.data.title}</h3>
                   <p>{article.data.summary}</p>
@@ -118,5 +118,13 @@ const articles = (await getArticles()).slice(0, 3);
       )}
     </div>
     )}
+
+    <section class="section">
+      <a class="buy-callout" href={url('buying/')}>
+        <span class="buy-callout-kicker">I buy</span>
+        <span class="buy-callout-text">Vintage champagne-related items and complete collections.</span>
+        <span class="buy-callout-link">How selling to me works</span>
+      </a>
+    </section>
   </div>
 </Base>

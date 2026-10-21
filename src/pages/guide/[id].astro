@@ -1,5 +1,5 @@
 ---
-// One article. Made automatically for every file in src/content/articles/.
+// One guide article. Made automatically for every file in src/content/articles/.
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { getArticles } from '../../lib/content';
@@ -28,6 +28,6 @@ const d = article.data;
         <Content />
       </div>
     </article>
-    <p class="back"><a href={url('articles/')}>All articles</a></p>
+    <p class="back"><a href={url('guide/')}>Back to the Collector's guide</a></p>
   </div>
 </Base>
