@@ -1086,6 +1086,11 @@ button.button {
 
 /* Header: site name and HU / EN on the first line, the menu below */
 @media (max-width: 1080px) {
+  .site-name {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
   .lang-switch {
     order: 1;
     border-left: 0;

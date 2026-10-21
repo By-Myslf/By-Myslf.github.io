@@ -145,8 +145,8 @@ const hu: Words = {
     from: 'Ettől',
     to: 'Eddig',
     and: 'és',
-    after: 'között',
-    decade: (d: number) => `${d}-${huDecadeEnding(d)} évek`,
+    after: 'évek között',
+    decade: (d: number) => `${d}-${huDecadeEnding(d)}`,
     count: '{total} tárgy',
     countFiltered: '{total} tárgyból {shown} látható',
     clear: 'Szűrők törlése',
@@ -188,7 +188,7 @@ const hu: Words = {
   },
 };
 
-/** "1920" → "as", "1950" → "es", so the decade reads "1920-as évek", "1950-es évek" */
+/** "1920" → "as", "1950" → "es": "1920-as", "1950-es" (followed by "évek között") */
 function huDecadeEnding(decade: number): string {
   const tens = decade % 100;
   if (tens === 0) return decade % 1000 === 0 ? 'es' : 'as'; // kétezres, kilencszázas
