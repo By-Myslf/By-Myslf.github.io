@@ -1,15 +1,15 @@
 # Test-builds work in progress on any branch other than main, WITHOUT publishing it.
-# The built site is kept for a few days under "Artifacts" on the run's page,
-# so changes can be previewed before they go live. You don't need to edit this file.
+# The built files are saved to the "draft-preview" branch (replaced each time),
+# so changes can be checked before they go live. You don't need to edit this file.
 
 name: Check draft
 
 on:
   push:
-    branches-ignore: [main]
+    branches-ignore: [main, draft-preview]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -32,9 +32,11 @@ jobs:
           SITE: https://by-myslf.github.io
           BASE: /
 
-      - name: Keep the built site for previewing
-        uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: ./dist
-          retention-days: 5
+      - name: Save the built site to the draft-preview branch
+        working-directory: dist
+        run: |
+          git init -q -b draft-preview
+          git add -A
+          git -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" \
+            commit -q -m "Preview of $GITHUB_REF_NAME at ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" draft-preview
