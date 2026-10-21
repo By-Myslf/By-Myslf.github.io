@@ -11,6 +11,7 @@ dimensions: Height 21 cm
 images:
   - 003-engraved-flute.jpg
 featured: true
+highlight: true
 ---
 
 *Sample text: replace this with your own description.*

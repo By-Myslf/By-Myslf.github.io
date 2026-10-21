@@ -12,6 +12,7 @@ images:
   - 002-silver-ice-bucket.jpg
   - 002-silver-ice-bucket-with-bottle.jpg
 featured: true
+highlight: true
 ---
 
 *Sample text: replace this with your own description.*

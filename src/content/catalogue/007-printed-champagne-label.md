@@ -10,6 +10,7 @@ materials: Lithograph on paper
 dimensions: 11 × 15 cm
 images:
   - 007-champagne-label.jpg
+highlight: true
 ---
 
 *Sample text: replace this with your own description.*

@@ -59,6 +59,7 @@ images:
   - 009-bucket.jpg
   - 009-bucket-back.jpg
 featured: false
+highlight: false
 ---
 
 Write the description here. Several paragraphs are fine.
@@ -76,7 +77,8 @@ Notes:
   - `brand` is the champagne house or brand. Use `Unbranded` for pieces without one.
   - `year` is an approximate year it was made, written as a plain number (`1880`, no quotes, no "c."). It is only used by the "Made between" filter; visitors see the `date` text instead.
 - Leave out any line you don't need (for example `maker` or `dimensions`).
-- `featured: true` shows the object on the home page. The first featured object hangs on the green wall at the top.
+- `highlight: true` puts the object on the green wall at the top of the home page. All highlighted objects take turns there, changing every 7 seconds with a slow fade (the number of seconds is `SECONDS_PER_OBJECT` near the top of `src/views/HomePage.astro`).
+- `featured: true` shows the object under "From the catalogue" on the home page (objects already on the wall are left out there).
 - No photos yet? Write `images: []`. The object shows a "Photo to follow" mount.
 
 ---

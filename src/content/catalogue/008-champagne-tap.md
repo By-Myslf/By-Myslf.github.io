@@ -10,6 +10,7 @@ materials: Silver plate, steel
 dimensions: Length 9 cm
 images:
   - 008-champagne-tap.jpg
+highlight: true
 ---
 
 *Sample text: replace this with your own description.*

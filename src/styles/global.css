@@ -468,11 +468,171 @@ button.button {
   max-width: 28em;
 }
 
-.wall .label {
+.wall-caption {
   margin-top: 36px;
   padding-top: 18px;
   border-top: 1px solid rgb(238 240 234 / 0.25);
   max-width: 24em;
+}
+
+/* The objects on the wall take turns: all are stacked in one place, and the
+   active one fades in while the previous one fades out */
+.wall .hung .mat {
+  position: relative;
+}
+
+.wall .hung .slide {
+  position: absolute;
+  inset: 0;
+  padding: 9%;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(1.03);
+  filter: blur(3px);
+  visibility: hidden;
+  transition:
+    opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 2.4s cubic-bezier(0.2, 0.6, 0.2, 1),
+    filter 1.8s ease,
+    visibility 0s linear 1.8s;
+}
+
+.wall .hung .slide.active {
+  opacity: 1;
+  transform: scale(1);
+  filter: none;
+  visibility: visible;
+  transition-delay: 0.35s, 0.35s, 0.35s, 0s;
+}
+
+.wall .hung .slide.leaving:not(.active) {
+  transform: scale(0.985);
+}
+
+.wall .hung .slide img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.wall .hung .slide.empty::after {
+  content: 'Photo to follow';
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--pewter);
+}
+
+/* The labels change along with the object */
+.wall-labels {
+  display: grid;
+}
+
+.wall-labels .label {
+  grid-area: 1 / 1;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  visibility: hidden;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease,
+    visibility 0s linear 0.9s;
+}
+
+.wall-labels .label.active {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition-delay: 0.9s, 0.9s, 0s;
+}
+
+/* Thin lines to pick an object, the current one filling slowly with gilt */
+.wall-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 22px;
+}
+
+.wall-controls[hidden] {
+  display: none;
+}
+
+.wall-dots {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wall-dots button {
+  display: block;
+  width: 28px;
+  padding: 10px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.wall-dots button::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: rgb(238 240 234 / 0.28);
+}
+
+.wall-dots button:hover::before {
+  background: rgb(238 240 234 / 0.55);
+}
+
+.wall-dots .dot-fill {
+  display: block;
+  height: 2px;
+  margin-top: -2px;
+  width: 0;
+  background: #cdb27a;
+}
+
+.wall-dots button[aria-current='true'] .dot-fill {
+  width: 100%;
+}
+
+.wall-running .wall-dots button[aria-current='true'] .dot-fill {
+  animation: wall-progress var(--wall-seconds, 7s) linear;
+}
+
+@keyframes wall-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.wall-pause {
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(238 240 234 / 0.6);
+  cursor: pointer;
+}
+
+.wall-pause:hover {
+  color: var(--wall-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wall .hung .slide,
+  .wall-labels .label {
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 .wall .label .title {
@@ -1138,7 +1298,7 @@ button.button {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .wall .label {
+  .wall-caption {
     margin-top: 24px;
   }
 

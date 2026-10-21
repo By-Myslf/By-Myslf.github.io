@@ -33,8 +33,10 @@ const catalogue = defineCollection({
     dimensions: z.string().optional(),
     // Photo file names inside public/images/catalogue/ — the first one is the main photo
     images: z.array(z.string()).default([]),
-    // true = shown on the home page
+    // true = shown under "From the catalogue" on the home page
     featured: z.boolean().default(false),
+    // true = one of the objects that take turns on the green wall at the top of the home page
+    highlight: z.boolean().default(false),
   }),
 });
 

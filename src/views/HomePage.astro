@@ -17,6 +17,10 @@ const text = {
     buyKicker: 'I buy',
     buyText: 'Vintage champagne-related items and complete collections.',
     buyLink: 'How selling to me works',
+    wallLabel: 'Highlights from the collection',
+    show: (n: number) => `Show object ${n}`,
+    pause: 'Pause',
+    play: 'Play',
   },
   hu: {
     heading: 'Lassan, hosszú évek alatt gyűjtött tárgyak',
@@ -28,6 +32,10 @@ const text = {
     buyKicker: 'Felvásárlás',
     buyText: 'Régi, pezsgőhöz kapcsolódó tárgyakat és teljes gyűjteményeket vásárolok.',
     buyLink: 'Így működik az eladás',
+    wallLabel: 'Kiemelt tárgyak a gyűjteményből',
+    show: (n: number) => `${n}. tárgy mutatása`,
+    pause: 'Megállítás',
+    play: 'Lejátszás',
   },
 };
 
@@ -42,9 +50,19 @@ const say = text[lang];
 const objects = await getObjects(lang);
 const featured = objects.filter((o) => o.data.featured);
 
-// The first featured object hangs on the green wall at the top
-const hero = featured[0] ?? objects[0];
-const highlights = (featured.length > 1 ? featured : objects).filter((o) => o !== hero).slice(0, 6);
+// The objects marked "highlight: true" take turns on the green wall at the top.
+// (If none are marked, the featured objects do; if none of those, the first object.)
+const marked = objects.filter((o) => o.data.highlight);
+const onWall = marked.length > 0 ? marked : featured.length > 0 ? featured : objects.slice(0, 1);
+
+// "From the catalogue" shows the featured objects that aren't already on the wall
+const notOnWall = featured.filter((o) => !onWall.includes(o));
+const highlights = (notOnWall.length > 0 ? notOnWall : featured.length > 0 ? featured : objects).slice(0, 6);
+
+// Seconds each object stays on the wall before the next one appears
+const SECONDS_PER_OBJECT = 7;
+const caption = (o: (typeof objects)[number]) =>
+  [o.data.maker, o.data.date, o.data.materials].filter(Boolean).join(', ');
 
 const posts = (await getPosts(lang)).slice(0, 3);
 const articles = (await getArticles(lang)).slice(0, 3);
@@ -54,14 +72,23 @@ const articles = (await getArticles(lang)).slice(0, 3);
   <section class="wall">
     <div class="wrap wall-grid">
       {
-        hero && (
-          <a class="hung" href={url(`catalogue/${hero.id}/`, lang)}>
-            <div class:list={['mat', { empty: !hero.data.images[0] }]}>
-              {hero.data.images[0] && (
-                <img src={img('catalogue', hero.data.images[0])} alt={hero.data.title} />
-              )}
+        onWall.length > 0 && (
+          <div class="hung" data-rotator data-seconds={SECONDS_PER_OBJECT} aria-label={say.wallLabel} role="region">
+            <div class="mat">
+              {onWall.map((o, i) => (
+                <a
+                  class:list={['slide', { empty: !o.data.images[0], active: i === 0 }]}
+                  href={url(`catalogue/${o.id}/`, lang)}
+                  aria-hidden={i === 0 ? undefined : 'true'}
+                  tabindex={i === 0 ? undefined : -1}
+                >
+                  {o.data.images[0] && (
+                    <img src={img('catalogue', o.data.images[0])} alt={o.data.title} decoding="async" />
+                  )}
+                </a>
+              ))}
             </div>
-          </a>
+          </div>
         )
       }
 
@@ -71,14 +98,44 @@ const articles = (await getArticles(lang)).slice(0, 3);
         <a class="button on-wall-button" href={url('catalogue/', lang)}>{say.browse}</a>
 
         {
-          hero && (
-            <p class="label">
-              <span class="no">{t.no} {hero.data.number}</span>
-              <a class="title" href={url(`catalogue/${hero.id}/`, lang)}>{hero.data.title}</a>
-              <span class="meta">
-                {[hero.data.maker, hero.data.date, hero.data.materials].filter(Boolean).join(', ')}
-              </span>
-            </p>
+          onWall.length > 0 && (
+            <div class="wall-caption">
+              <div class="wall-labels">
+                {onWall.map((o, i) => (
+                  <p
+                    class:list={['label', { active: i === 0 }]}
+                    aria-hidden={i === 0 ? undefined : 'true'}
+                  >
+                    <span class="no">{t.no} {o.data.number}</span>
+                    <a class="title" href={url(`catalogue/${o.id}/`, lang)} tabindex={i === 0 ? undefined : -1}>
+                      {o.data.title}
+                    </a>
+                    <span class="meta">{caption(o)}</span>
+                  </p>
+                ))}
+              </div>
+
+              {onWall.length > 1 && (
+                <div class="wall-controls" hidden>
+                  <ol class="wall-dots">
+                    {onWall.map((o, i) => (
+                      <li>
+                        <button
+                          type="button"
+                          aria-label={say.show(i + 1)}
+                          aria-current={i === 0 ? 'true' : undefined}
+                        >
+                          <span class="dot-fill" />
+                        </button>
+                      </li>
+                    ))}
+                  </ol>
+                  <button type="button" class="wall-pause" data-pause={say.pause} data-play={say.play}>
+                    {say.pause}
+                  </button>
+                </div>
+              )}
+            </div>
           )
         }
       </div>
@@ -159,3 +216,111 @@ const articles = (await getArticles(lang)).slice(0, 3);
     </section>
   </div>
 </Base>
+
+<script>
+  // The objects on the green wall take turns, with a slow cross-fade.
+  // Hovering over the wall, or pressing Pause, stops it; it also waits while
+  // the browser tab is hidden. With "reduce motion" switched on in the
+  // visitor's settings, it doesn't move by itself at all.
+  const wall = document.querySelector<HTMLElement>('[data-rotator]');
+  const slides = [...document.querySelectorAll<HTMLElement>('.hung .slide')];
+  const labels = [...document.querySelectorAll<HTMLElement>('.wall-labels .label')];
+  const controls = document.querySelector<HTMLElement>('.wall-controls');
+  const dots = [...document.querySelectorAll<HTMLButtonElement>('.wall-dots button')];
+  const pauseButton = document.querySelector<HTMLButtonElement>('.wall-pause');
+
+  if (wall && slides.length > 1 && controls) {
+    const seconds = Number(wall.dataset.seconds) || 7;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const root = document.querySelector<HTMLElement>('.wall')!;
+    root.style.setProperty('--wall-seconds', `${seconds}s`);
+    controls.hidden = false;
+
+    let current = 0;
+    let timer: number | undefined;
+    let pausedByVisitor = calm.matches;
+    let hovering = false;
+
+    function show(next: number) {
+      if (next === current) return;
+      const before = current;
+      current = (next + slides.length) % slides.length;
+
+      slides[before].classList.remove('active');
+      slides[before].classList.add('leaving');
+      window.setTimeout(() => slides[before].classList.remove('leaving'), 2000);
+
+      slides.forEach((slide, i) => {
+        const on = i === current;
+        const label = labels[i];
+        const link = label.querySelector('a')!;
+        slide.classList.toggle('active', on);
+        label.classList.toggle('active', on);
+        for (const el of [slide, label]) {
+          if (on) el.removeAttribute('aria-hidden');
+          else el.setAttribute('aria-hidden', 'true');
+        }
+        for (const el of [slide, link]) {
+          if (on) el.removeAttribute('tabindex');
+          else el.setAttribute('tabindex', '-1');
+        }
+      });
+
+      dots.forEach((d, i) => (i === current ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')));
+      restart();
+    }
+
+    function running() {
+      return !pausedByVisitor && !hovering && !document.hidden;
+    }
+
+    function restart() {
+      window.clearTimeout(timer);
+      // restart the thin progress line under the current dot
+      root.classList.remove('wall-running');
+      void root.offsetWidth;
+      if (running()) {
+        root.classList.add('wall-running');
+        timer = window.setTimeout(() => show(current + 1), seconds * 1000);
+      }
+    }
+
+    function updatePauseButton() {
+      if (!pauseButton) return;
+      pauseButton.textContent = pausedByVisitor ? pauseButton.dataset.play! : pauseButton.dataset.pause!;
+      pauseButton.setAttribute('aria-pressed', String(pausedByVisitor));
+    }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+    pauseButton?.addEventListener('click', () => {
+      pausedByVisitor = !pausedByVisitor;
+      updatePauseButton();
+      restart();
+    });
+    for (const el of [wall, document.querySelector<HTMLElement>('.wall-caption')!]) {
+      el.addEventListener('mouseenter', () => {
+        hovering = true;
+        restart();
+      });
+      el.addEventListener('mouseleave', () => {
+        hovering = false;
+        restart();
+      });
+      // Wait while a visitor has tabbed to one of the object links
+      el.addEventListener('focusin', (e) => {
+        if (!(e.target instanceof HTMLAnchorElement)) return;
+        hovering = true;
+        restart();
+      });
+      el.addEventListener('focusout', (e) => {
+        if (!(e.target instanceof HTMLAnchorElement)) return;
+        hovering = false;
+        restart();
+      });
+    }
+    document.addEventListener('visibilitychange', restart);
+
+    updatePauseButton();
+    restart();
+  }
+</script>

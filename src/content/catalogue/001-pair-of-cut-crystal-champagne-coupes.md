@@ -11,6 +11,7 @@ dimensions: Height 15 cm, rim diameter 12 cm
 images:
   - 001-crystal-coupes.jpg
 featured: true
+highlight: true
 ---
 
 *Sample text: replace this with your own description.*
