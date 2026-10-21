@@ -578,7 +578,7 @@ button.button {
 
 .filters {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) auto;
   align-items: end;
   gap: 20px 28px;
   padding-bottom: 22px;
@@ -640,6 +640,12 @@ button.button {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.range select {
+  width: auto;
+  flex: 0 0 auto;
+  min-width: 6em;
 }
 
 .range span {
