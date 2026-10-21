@@ -1,0 +1,83 @@
+---
+// The Contact page, in both languages. The email address comes from src/site.config.ts.
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import { mailto } from '../lib/helpers';
+import type { Lang } from '../i18n';
+
+const text = {
+  en: {
+    title: 'Contact',
+    description: `Write to ${site.owner.en}.`,
+    lead: 'Questions about a piece, its history, or the collection are always welcome. I reply to every message, usually within a few days.',
+    body: "If you are writing about a particular object, please mention its number from the catalogue. The button on each object's page fills that in for you.",
+    write: 'Write to me',
+    subject: 'Message from the website',
+    copy: 'Copy email address',
+    copied: 'Email address copied.',
+    copyBlocked: 'Copying is blocked here. Select the address above instead.',
+  },
+  hu: {
+    title: 'Kapcsolat',
+    description: `Írjon ${site.owner.hu} gyűjtőnek.`,
+    lead: 'Egy-egy darabbal, annak történetével vagy a gyűjteménnyel kapcsolatos kérdéseket mindig szívesen fogadok. Minden üzenetre válaszolok, általában néhány napon belül.',
+    body: 'Ha egy konkrét tárgyról ír, kérem, adja meg a katalógusszámát. Az egyes tárgyak oldalán lévő gomb ezt automatikusan kitölti.',
+    write: 'Írjon nekem',
+    subject: 'Üzenet a weboldalról',
+    copy: 'E-mail-cím másolása',
+    copied: 'Az e-mail-cím a vágólapra került.',
+    copyBlocked: 'Itt nem lehet másolni. Jelölje ki a fenti címet.',
+  },
+};
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const say = text[lang];
+---
+
+<Base lang={lang} title={say.title} description={say.description}>
+  <div class="wrap">
+    <article class="reading">
+      <h1>{say.title}</h1>
+      <div class="prose">
+        <p class="lead">{say.lead}</p>
+        <p>{say.body}</p>
+      </div>
+
+      <div class="contact-box">
+        <p class="address">{site.email}</p>
+        <div class="actions">
+          <a class="button" href={mailto(site.email, say.subject)}>{say.write}</a>
+          <button
+            type="button"
+            class="button quiet"
+            id="copy"
+            data-email={site.email}
+            data-copied={say.copied}
+            data-blocked={say.copyBlocked}
+          >
+            {say.copy}
+          </button>
+          <span class="copy-status" aria-live="polite"></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</Base>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('#copy');
+  const status = document.querySelector<HTMLElement>('.copy-status');
+
+  btn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.email ?? '');
+      if (status) status.textContent = btn.dataset.copied ?? '';
+    } catch {
+      if (status) status.textContent = btn.dataset.blocked ?? '';
+    }
+  });
+</script>

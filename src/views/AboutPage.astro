@@ -1,0 +1,78 @@
+---
+// The About page. Replace the sample text below with your own story, in both languages.
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import { url } from '../lib/helpers';
+import type { Lang } from '../i18n';
+
+const text = {
+  en: {
+    title: 'About',
+    description: `About ${site.owner.en} and the collection.`,
+    roles: ['Collector', 'Researcher', 'Champagne Objects & Culture'],
+    heading: 'About the collection',
+    lead: 'This is where you tell visitors who you are and how the collection began. Write it the way you would explain it to a guest standing in your living room.',
+    paragraphs: [
+      'A few things people usually want to know: what first drew you to antiques, what ties the collection together, and how you choose a piece. Mention a favourite object or two, and link to it in the catalogue.',
+      'You might also say whether you welcome questions from other collectors, researchers or dealers, and whether you ever lend pieces to exhibitions.',
+    ],
+    closingBefore: 'If you would like to know more about any piece, ',
+    closingLink: 'write to me',
+    closingAfter: '.',
+  },
+  hu: {
+    title: 'Rólam',
+    description: `${site.owner.hu} és a gyűjtemény bemutatása.`,
+    roles: ['Gyűjtő', 'Kutató', 'A pezsgő tárgyai és kultúrája'],
+    heading: 'A gyűjteményről',
+    lead: 'Itt mutatkozhat be a látogatóknak, és mesélheti el, hogyan indult a gyűjtemény. Írja meg úgy, ahogy egy vendégnek mondaná el a nappalijában.',
+    paragraphs: [
+      'Néhány dolog, amire az emberek általában kíváncsiak: mi vonzotta először a régi tárgyakhoz, mi köti össze a gyűjteményt, és hogyan választ ki egy darabot. Említsen meg egy-két kedvenc tárgyat, és linkelje be őket a katalógusból.',
+      'Azt is leírhatja, szívesen fogad-e kérdéseket más gyűjtőktől, kutatóktól vagy kereskedőktől, és kölcsönöz-e darabokat kiállításokra.',
+    ],
+    closingBefore: 'Ha bármelyik darabról többet szeretne tudni, ',
+    closingLink: 'írjon nekem',
+    closingAfter: '.',
+  },
+};
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const say = text[lang];
+---
+
+<Base lang={lang} title={say.title} description={say.description}>
+  <div class="wrap">
+    <article class="reading">
+      <header class="about-head">
+        <h1>
+          <span class="about-name">{site.owner[lang]}</span>
+          <span class="about-sep" aria-hidden="true">|</span>
+          <span class="about-club">{site.name}</span>
+        </h1>
+        <p class="about-roles">
+          {
+            say.roles.map((role, i) => (
+              <>
+                {i > 0 && <span aria-hidden="true"> · </span>}
+                {role}
+              </>
+            ))
+          }
+        </p>
+      </header>
+
+      <h2>{say.heading}</h2>
+      <div class="prose">
+        <p class="lead">{say.lead}</p>
+        {say.paragraphs.map((p) => <p>{p}</p>)}
+        <p>
+          {say.closingBefore}<a href={url('contact/', lang)}>{say.closingLink}</a>{say.closingAfter}
+        </p>
+      </div>
+    </article>
+  </div>
+</Base>

@@ -1,0 +1,12 @@
+---
+// The Hungarian page. Its content and wording live in src/views/ArticlePage.astro,
+// shared with the English page.
+import ArticlePage from '../../../views/ArticlePage.astro';
+import { articlePaths } from '../../../lib/content';
+
+export function getStaticPaths() {
+  return articlePaths('hu');
+}
+---
+
+<ArticlePage lang="hu" {...Astro.props} />

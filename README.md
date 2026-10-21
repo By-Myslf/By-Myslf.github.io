@@ -1,6 +1,6 @@
 # Champagne Club Budapest website
 
-A website for a private collection of antiques and art: a catalogue with photos, a journal, a collector's guide, an "I buy" page, an about page and a contact page. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
+A website for a private collection of antiques and art: a catalogue with photos, a journal, a collector's guide, an "I buy" page, an about page and a contact page, in English and Hungarian. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
 
 You never need to write code to add content. Each object, post and article is one small text file.
 
@@ -121,15 +121,49 @@ authorRole: Glass specialist
 The article text.
 ```
 
-## 6. Edit the About, I buy and Contact pages
+## 6. Edit the home, About, I buy and Contact pages
 
-The text is in `src/pages/about.astro`, `src/pages/buying.astro` and `src/pages/contact.astro`. On the I buy page, the lists of wanted items and steps are near the top of the file. Edit the sentences between the `<p>` and `</p>` tags and leave the tags themselves alone.
+The text of these pages is at the top of `src/views/HomePage.astro`, `src/views/AboutPage.astro`, `src/views/BuyingPage.astro` and `src/views/ContactPage.astro`, first in English (`en:`) and then in Hungarian (`hu:`). Change the sentences between the quotes and leave the quotes, commas and brackets alone.
+
+---
+
+## 7. The Hungarian version
+
+Every page also exists in Hungarian under `/hu/` (for example `/hu/catalogue/`). The **HU / EN** switch in the top corner leads to the same page in the other language.
+
+**Menu, buttons and labels** for both languages are in `src/i18n.ts`. The Hungarian names of item types and brands are at the bottom of that file: when you start using a new item type or brand, add a line for it there.
+
+**Objects, posts and articles** each get a Hungarian twin file with **the same file name**, in a `hu` folder:
+
+| English file | Hungarian file |
+| --- | --- |
+| `src/content/catalogue/009-lion-mask-bucket.md` | `src/content/catalogue/hu/009-lion-mask-bucket.md` |
+| `src/content/journal/2026-11-autumn-auction.md` | `src/content/journal/hu/2026-11-autumn-auction.md` |
+| `src/content/articles/dating-a-coupe.md` | `src/content/articles/hu/dating-a-coupe.md` |
+
+The Hungarian file only holds the words. Numbers, dates, photos and so on come from the English file, so you enter them once. For an object:
+
+```markdown
+---
+title: Pezsgőhűtő oroszlánfejes fülekkel
+date: 1880 körül
+origin: Párizs, Franciaország
+materials: Ezüstözött fém
+dimensions: Magasság 24 cm
+---
+
+Ide jön a magyar leírás.
+```
+
+For a journal post, the details are just `title` and `summary`; for a guide article, `title`, `summary`, `author` and `authorRole`.
+
+Leave out any line you haven't translated: the English one is shown instead. If there's no Hungarian file at all, the Hungarian page shows the English text with a short note saying it's only available in English for now.
 
 ---
 
 ## Removing the sample content
 
-The sample objects, posts and articles are there to show how things look. Delete their files from `src/content/...` and `public/images/...` once you've added your own. (Open a file, click **⋯ → Delete file**, then commit.) Keep the `HOW-TO-ADD.txt` file in each folder: GitHub removes folders that have no files in them.
+The sample objects, posts and articles are there to show how things look. Delete their files from `src/content/...` (and their Hungarian twins in the `hu` folders) and `public/images/...` once you've added your own. (Open a file, click **⋯ → Delete file**, then commit.) Keep the `HOW-TO-ADD.txt` file in each folder: GitHub removes folders that have no files in them.
 
 With no content at all, the site still works: the catalogue says it is being prepared, and the Journal and Collector's guide pages say there is nothing yet.
 
@@ -138,13 +172,13 @@ With no content at all, the site still works: the catalogue says it is being pre
 | What | Where |
 | --- | --- |
 | Name, email, site description | `src/site.config.ts` |
-| Catalogue objects | `src/content/catalogue/` |
-| Journal posts | `src/content/journal/` |
-| Collector's guide articles | `src/content/articles/` |
+| Menu, buttons and labels (both languages) | `src/i18n.ts` |
+| Catalogue objects | `src/content/catalogue/` (Hungarian: `src/content/catalogue/hu/`) |
+| Journal posts | `src/content/journal/` (Hungarian: `src/content/journal/hu/`) |
+| Collector's guide articles | `src/content/articles/` (Hungarian: `src/content/articles/hu/`) |
 | Photos | `public/images/catalogue/` and `public/images/journal/` |
-| About, I buy and Contact text | `src/pages/about.astro`, `src/pages/buying.astro`, `src/pages/contact.astro` |
+| Home, About, I buy and Contact text | `src/views/HomePage.astro`, `AboutPage.astro`, `BuyingPage.astro`, `ContactPage.astro` |
 | Colours and fonts | top of `src/styles/global.css` |
-| Home page wording | `src/pages/index.astro` |
 | Publishing settings | `.github/workflows/deploy.yml` (no need to touch) |
 
 ## Working on your own computer (optional)

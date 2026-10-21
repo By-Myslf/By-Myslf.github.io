@@ -1,0 +1,46 @@
+---
+// The list of Collector's guide articles. The wording is in src/i18n.ts (look for "guide").
+import Base from '../layouts/Base.astro';
+import { getArticles } from '../lib/content';
+import { ui, type Lang } from '../i18n';
+import { url, formatDate } from '../lib/helpers';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang].guide;
+const articles = await getArticles(lang);
+---
+
+<Base lang={lang} title={t.title} description={t.description}>
+  <div class="wrap">
+    <header class="page-head">
+      <h1>{t.title}</h1>
+      <p>{t.intro}</p>
+    </header>
+
+    {
+      articles.length === 0 ? (
+        <p class="small">{t.empty}</p>
+      ) : (
+        <ul class="entry-list wide">
+          {articles.map((article) => (
+            <li>
+              <a href={url(`guide/${article.id}/`, lang)}>
+                <span class="small">
+                  {article.data.author}
+                  {article.data.authorRole && `, ${article.data.authorRole}`}
+                </span>
+                <h3>{article.data.title}</h3>
+                <p>{article.data.summary}</p>
+                <span class="small">{formatDate(article.data.date, lang)}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Base>

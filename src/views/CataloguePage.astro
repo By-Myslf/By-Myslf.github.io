@@ -1,0 +1,206 @@
+---
+// The full catalogue, with filters (item type, brand, date) and a search box.
+// The filter choices are built from the objects themselves, so a new type
+// or brand appears in the list as soon as you use it.
+// The wording is in src/i18n.ts (look for "catalogue").
+import Base from '../layouts/Base.astro';
+import ObjectCard from '../components/ObjectCard.astro';
+import { getObjects } from '../lib/content';
+import { ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const c = t.catalogue;
+
+const objects = await getObjects(lang);
+const byName = (a: { label: string }, b: { label: string }) => a.label.localeCompare(b.label, lang);
+
+// Filter choices: the value is the English name (so filtered links work in both
+// languages), the label is in the page's language
+function choices(pick: (o: (typeof objects)[number]) => [string | undefined, string | undefined]) {
+  const seen = new Map<string, string>();
+  for (const o of objects) {
+    const [value, label] = pick(o);
+    if (value && !seen.has(value)) seen.set(value, label ?? value);
+  }
+  return [...seen].map(([value, label]) => ({ value, label })).sort(byName);
+}
+const types = choices((o) => [o.en.category, o.data.category]);
+const brands = choices((o) => [o.en.brand, o.data.brand]);
+
+// Decades from the oldest to the newest object, for "Made between"
+const years = objects.map((o) => o.data.year).filter((y): y is number => typeof y === 'number');
+const decades: number[] = [];
+if (years.length > 0) {
+  const first = Math.floor(Math.min(...years) / 10) * 10;
+  const last = Math.floor(Math.max(...years) / 10) * 10;
+  for (let d = first; d <= last; d += 10) decades.push(d);
+}
+---
+
+<Base lang={lang} title={c.title} description={c.description}>
+  <div class="wrap">
+    <header class="page-head">
+      <h1>{c.title}</h1>
+      <p>{c.intro}</p>
+    </header>
+
+    {objects.length === 0 && <p class="no-results">{c.empty}</p>}
+
+    <form class="filters" role="search" aria-label={c.filterLabel} hidden={objects.length === 0}>
+      <div class="field field-search">
+        <label for="search">{c.search}</label>
+        <input id="search" type="search" autocomplete="off" placeholder={c.searchPlaceholder} />
+      </div>
+
+      <div class="field">
+        <label for="f-type">{t.facts.category}</label>
+        <select id="f-type">
+          <option value="">{c.allTypes}</option>
+          {types.map((o) => <option value={o.value}>{o.label}</option>)}
+        </select>
+      </div>
+
+      {
+        brands.length > 0 && (
+          <div class="field">
+            <label for="f-brand">{t.facts.brand}</label>
+            <select id="f-brand">
+              <option value="">{c.allBrands}</option>
+              {brands.map((o) => <option value={o.value}>{o.label}</option>)}
+            </select>
+          </div>
+        )
+      }
+
+      {
+        decades.length > 1 && (
+          <div class="field field-period" role="group" aria-labelledby="period-label">
+            <span class="field-label" id="period-label">{c.madeBetween}</span>
+            <div class="range">
+              <select id="f-from" aria-label={c.from}>
+                {decades.map((d, i) => <option value={d} selected={i === 0}>{c.decade(d)}</option>)}
+              </select>
+              <span>{c.and}</span>
+              <select id="f-to" aria-label={c.to}>
+                {decades.map((d, i) => <option value={d} selected={i === decades.length - 1}>{c.decade(d)}</option>)}
+              </select>
+              {c.after && <span>{c.after}</span>}
+            </div>
+          </div>
+        )
+      }
+    </form>
+
+    <div class="result-row" hidden={objects.length === 0}>
+      <p
+        class="small result-count"
+        aria-live="polite"
+        data-all={c.count}
+        data-some={c.countFiltered}
+      >
+        {c.count.replace('{total}', String(objects.length))}
+      </p>
+      <button type="button" class="clear-filters" id="clear" hidden>{c.clear}</button>
+    </div>
+
+    <ul class="object-grid" id="objects">
+      {objects.map((item) => <ObjectCard item={item} lang={lang} />)}
+    </ul>
+
+    <p class="no-results" id="no-matches" hidden>{c.noMatches}</p>
+  </div>
+</Base>
+
+<script>
+  const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel);
+  const cards = [...document.querySelectorAll<HTMLElement>('#objects .object-card')];
+  const search = $<HTMLInputElement>('#search')!;
+  const type = $<HTMLSelectElement>('#f-type')!;
+  const brand = $<HTMLSelectElement>('#f-brand');
+  const from = $<HTMLSelectElement>('#f-from');
+  const to = $<HTMLSelectElement>('#f-to');
+  const count = $('.result-count')!;
+  const empty = $('#no-matches')!;
+  const clear = $<HTMLButtonElement>('#clear')!;
+  const form = $<HTMLFormElement>('.filters')!;
+  const total = cards.length;
+
+  // "8 objects" / "Showing 3 of 8 objects", in the page's language
+  const countText = (shown: number) =>
+    (shown === total ? count.dataset.all ?? '' : count.dataset.some ?? '')
+      .replace('{shown}', String(shown))
+      .replace('{total}', String(total));
+
+  const firstDecade = from ? from.options[0].value : '';
+  const lastDecade = to ? to.options[to.options.length - 1].value : '';
+
+  // Set a select to a value only if that value is one of its options
+  function choose(select: HTMLSelectElement | null, value: string | null) {
+    if (select && value && [...select.options].some((o) => o.value === value)) select.value = value;
+  }
+
+  // Start from the filters in the web address, e.g. ?category=Glassware&brand=Unbranded
+  const start = new URLSearchParams(location.search);
+  search.value = start.get('q') ?? '';
+  choose(type, start.get('category'));
+  choose(brand, start.get('brand'));
+  choose(from, start.get('from'));
+  choose(to, start.get('to'));
+
+  function update() {
+    const words = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let lo = from ? Number(from.value) : -Infinity;
+    let hi = to ? Number(to.value) + 9 : Infinity;
+    if (lo > hi) [lo, hi] = [hi - 9, lo + 9]; // the two dates were picked the wrong way round
+    const dateActive = Boolean(from && to && (from.value !== firstDecade || to.value !== lastDecade));
+
+    let shown = 0;
+    for (const card of cards) {
+      const year = Number(card.dataset.year || NaN);
+      const visible =
+        (!type.value || card.dataset.category === type.value) &&
+        (!brand?.value || card.dataset.brand === brand.value) &&
+        (!dateActive || (year >= lo && year <= hi)) &&
+        words.every((w) => (card.dataset.search ?? '').includes(w));
+      card.hidden = !visible;
+      if (visible) shown++;
+    }
+
+    count.textContent = countText(shown);
+    empty.hidden = shown > 0 || total === 0;
+    const anyActive = Boolean(words.length || type.value || brand?.value || dateActive);
+    clear.hidden = !anyActive;
+
+    // Keep the filters in the web address, so a filtered view can be bookmarked or shared
+    const params = new URLSearchParams();
+    if (search.value.trim()) params.set('q', search.value.trim());
+    if (type.value) params.set('category', type.value);
+    if (brand?.value) params.set('brand', brand.value);
+    if (dateActive && from && to) {
+      params.set('from', from.value);
+      params.set('to', to.value);
+    }
+    const query = params.toString();
+    history.replaceState(null, '', query ? `?${query}` : location.pathname);
+  }
+
+  clear.addEventListener('click', () => {
+    search.value = '';
+    type.value = '';
+    if (brand) brand.value = '';
+    if (from) from.value = firstDecade;
+    if (to) to.value = lastDecade;
+    update();
+    search.focus();
+  });
+
+  form.addEventListener('submit', (e) => e.preventDefault());
+  search.addEventListener('input', update);
+  for (const el of [type, brand, from, to]) el?.addEventListener('change', update);
+  update();
+</script>

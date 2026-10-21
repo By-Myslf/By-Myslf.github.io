@@ -1,34 +1,45 @@
 ---
-// The frame around every page: <head>, header with menu, footer.
+// The frame around every page: <head>, header with menu and language switch, footer.
 import '../styles/global.css';
 import { site } from '../site.config';
-import { url } from '../lib/helpers';
+import { ui, languages, type Lang } from '../i18n';
+import { url, translations } from '../lib/helpers';
 
 interface Props {
+  lang?: Lang;
   title?: string;
   description?: string;
   onWall?: boolean; // the home page header sits on the green wall
+  // Where the HU / EN switch should lead, if not to the same page in the other language
+  switchTo?: Record<Lang, string>;
 }
 
-const { title, description = site.description, onWall = false } = Astro.props;
+const { lang = 'en', title, onWall = false } = Astro.props;
+const t = ui[lang];
+const description = Astro.props.description ?? site.description[lang];
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
 const nav = [
-  { href: url('catalogue/'), label: 'Catalogue' },
-  { href: url('journal/'), label: 'Journal' },
-  { href: url('guide/'), label: "Collector's guide" },
-  { href: url('buying/'), label: 'I buy' },
-  { href: url('about/'), label: 'About' },
-  { href: url('contact/'), label: 'Contact' },
+  { href: url('catalogue/', lang), label: t.menu.catalogue },
+  { href: url('journal/', lang), label: t.menu.journal },
+  { href: url('guide/', lang), label: t.menu.guide },
+  { href: url('buying/', lang), label: t.menu.buying },
+  { href: url('about/', lang), label: t.menu.about },
+  { href: url('contact/', lang), label: t.menu.contact },
 ];
 
 const here = Astro.url.pathname;
 const isCurrent = (href: string) => here === href || here.startsWith(href);
 const year = new Date().getFullYear();
+
+// The same page in the other language, for the HU / EN switch
+const other = Astro.props.switchTo ?? translations(here);
+const switchOrder: Lang[] = ['hu', 'en'];
+const absolute = (path: string) => new URL(path, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +47,16 @@ const year = new Date().getFullYear();
     <meta name="description" content={description} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_GB'} />
+    {
+      !Astro.props.switchTo && (
+        <>
+          <link rel="alternate" hreflang="en" href={absolute(other.en)} />
+          <link rel="alternate" hreflang="hu" href={absolute(other.hu)} />
+          <link rel="alternate" hreflang="x-default" href={absolute(other.en)} />
+        </>
+      )
+    }
     <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,12 +66,33 @@ const year = new Date().getFullYear();
     />
   </head>
   <body class={onWall ? 'on-wall' : undefined}>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{t.skipToContent}</a>
 
     <header class="site-header">
       <div class="wrap">
-        <a class="site-name" href={url()}>{site.name}</a>
-        <nav class="site-nav" aria-label="Main">
+        <a class="site-name" href={url('', lang)}>{site.name}</a>
+
+        <nav class="lang-switch" aria-label={t.languageMenu}>
+          {
+            switchOrder.map((code, i) => (
+              <>
+                {i > 0 && <span class="lang-sep" aria-hidden="true">/</span>}
+                <a
+                  href={other[code]}
+                  hreflang={code}
+                  lang={code}
+                  title={languages[code]}
+                  aria-current={code === lang ? 'true' : undefined}
+                >
+                  <span aria-hidden="true">{code.toUpperCase()}</span>
+                  <span class="visually-hidden">{languages[code]}</span>
+                </a>
+              </>
+            ))
+          }
+        </nav>
+
+        <nav class="site-nav" aria-label={t.mainMenu}>
           <ul>
             {
               nav.map((item) => (
@@ -72,9 +114,18 @@ const year = new Date().getFullYear();
 
     <footer class="site-footer">
       <div class="wrap">
-        <p>&copy; {year} {site.owner}{site.location && `, ${site.location}`}</p>
-        <p><a href={url('contact/')}>Get in touch</a></p>
+        <p>&copy; {year} {site.owner[lang]}{site.location[lang] && `, ${site.location[lang]}`}</p>
+        <p><a href={url('contact/', lang)}>{t.getInTouch}</a></p>
       </div>
     </footer>
+
+    <script>
+      // Keep catalogue filters (the part of the address after "?") when switching language
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('.lang-switch a')) {
+        link.addEventListener('click', () => {
+          if (location.search) link.search = location.search;
+        });
+      }
+    </script>
   </body>
 </html>

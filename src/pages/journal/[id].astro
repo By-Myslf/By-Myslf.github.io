@@ -1,36 +1,12 @@
 ---
-// One journal post. Made automatically for every file in src/content/journal/.
-import { render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import { getPosts } from '../../lib/content';
-import { site } from '../../site.config';
-import { url, img, formatDate } from '../../lib/helpers';
+// The English page. Its content and wording live in src/views/PostPage.astro,
+// shared with the Hungarian page in src/pages/hu/.
+import PostPage from '../../views/PostPage.astro';
+import { postPaths } from '../../lib/content';
 
-export async function getStaticPaths() {
-  const posts = await getPosts();
-  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+export function getStaticPaths() {
+  return postPaths('en');
 }
-
-const { post } = Astro.props;
-const { Content } = await render(post);
 ---
 
-<Base title={post.data.title} description={post.data.summary}>
-  <div class="wrap">
-    <article class="reading">
-      <h1>{post.data.title}</h1>
-      <p class="byline">
-        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>, by {site.owner}
-      </p>
-      {
-        post.data.image && (
-          <img class="cover" src={img('journal', post.data.image)} alt="" />
-        )
-      }
-      <div class="prose">
-        <Content />
-      </div>
-    </article>
-    <p class="back"><a href={url('journal/')}>All journal posts</a></p>
-  </div>
-</Base>
+<PostPage lang="en" {...Astro.props} />

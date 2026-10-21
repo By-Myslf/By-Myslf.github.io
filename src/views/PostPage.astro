@@ -1,0 +1,36 @@
+---
+// One journal post. Made automatically for every file in src/content/journal/, in both languages.
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import type { LocalPost } from '../lib/content';
+import { site } from '../site.config';
+import { ui, type Lang } from '../i18n';
+import { url, img, formatDate } from '../lib/helpers';
+
+interface Props {
+  lang: Lang;
+  post: LocalPost;
+}
+
+const { lang, post } = Astro.props;
+const t = ui[lang];
+const { Content } = await render(post.entry);
+const d = post.data;
+---
+
+<Base lang={lang} title={d.title} description={d.summary}>
+  <div class="wrap">
+    <article class="reading">
+      <h1>{d.title}</h1>
+      <p class="byline">
+        {t.journal.byline(formatDate(d.date, lang), site.owner[lang])}
+      </p>
+      {d.image && <img class="cover" src={img('journal', d.image)} alt="" />}
+      {!post.textTranslated && <p class="untranslated">{t.notTranslated}</p>}
+      <div class="prose" lang={post.textTranslated ? undefined : 'en'}>
+        <Content />
+      </div>
+    </article>
+    <p class="back"><a href={url('journal/', lang)}>{t.journal.back}</a></p>
+  </div>
+</Base>

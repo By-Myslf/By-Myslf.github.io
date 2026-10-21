@@ -1,38 +1,7 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { getArticles } from '../../lib/content';
-import { url, formatDate } from '../../lib/helpers';
-
-const articles = await getArticles();
+// The English page. Its content and wording live in src/views/GuidePage.astro,
+// shared with the Hungarian page in src/pages/hu/.
+import GuidePage from '../../views/GuidePage.astro';
 ---
 
-<Base title="Collector's guide" description="Guides to champagne glasses, buckets, stoppers, muselets and labels, for new and experienced collectors.">
-  <div class="wrap">
-    <header class="page-head">
-      <h1>Collector's guide</h1>
-      <p>Practical guides to champagne objects: how to date them, care for them and build a collection. Written by specialists and by me.</p>
-    </header>
-
-    {
-      articles.length === 0 ? (
-        <p class="small">No guides yet.</p>
-      ) : (
-        <ul class="entry-list wide">
-          {articles.map((article) => (
-            <li>
-              <a href={url(`guide/${article.id}/`)}>
-                <span class="small">
-                  {article.data.author}
-                  {article.data.authorRole && `, ${article.data.authorRole}`}
-                </span>
-                <h3>{article.data.title}</h3>
-                <p>{article.data.summary}</p>
-                <span class="small">{formatDate(article.data.date)}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </div>
-</Base>
+<GuidePage lang="en" />

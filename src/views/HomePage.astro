@@ -1,0 +1,161 @@
+---
+// The home page, in both languages. The text is right below.
+import Base from '../layouts/Base.astro';
+import ObjectCard from '../components/ObjectCard.astro';
+import { getObjects, getPosts, getArticles } from '../lib/content';
+import { url, img, formatDate } from '../lib/helpers';
+import { ui, type Lang } from '../i18n';
+
+const text = {
+  en: {
+    heading: 'Objects collected slowly, over many years',
+    intro:
+      'A private collection of antiques and works of art. Each piece is catalogued here with its history, alongside my notes and essays by specialists I admire.',
+    browse: 'Browse the catalogue',
+    fromCatalogue: 'From the catalogue',
+    seeAll: (n: number) => `See all ${n} objects`,
+    buyKicker: 'I buy',
+    buyText: 'Vintage champagne-related items and complete collections.',
+    buyLink: 'How selling to me works',
+  },
+  hu: {
+    heading: 'Lassan, hosszú évek alatt gyűjtött tárgyak',
+    intro:
+      'Antik tárgyak és műalkotások magángyűjteménye. Minden darab a történetével együtt szerepel itt, a saját jegyzeteim és az általam nagyra becsült szakértők írásai mellett.',
+    browse: 'Tovább a katalógusra',
+    fromCatalogue: 'Válogatás a katalógusból',
+    seeAll: (n: number) => `Mind a ${n} tárgy`,
+    buyKicker: 'Felvásárlás',
+    buyText: 'Régi, pezsgőhöz kapcsolódó tárgyakat és teljes gyűjteményeket vásárolok.',
+    buyLink: 'Így működik az eladás',
+  },
+};
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const say = text[lang];
+
+const objects = await getObjects(lang);
+const featured = objects.filter((o) => o.data.featured);
+
+// The first featured object hangs on the green wall at the top
+const hero = featured[0] ?? objects[0];
+const highlights = (featured.length > 1 ? featured : objects).filter((o) => o !== hero).slice(0, 6);
+
+const posts = (await getPosts(lang)).slice(0, 3);
+const articles = (await getArticles(lang)).slice(0, 3);
+---
+
+<Base lang={lang} onWall>
+  <section class="wall">
+    <div class="wrap wall-grid">
+      {
+        hero && (
+          <a class="hung" href={url(`catalogue/${hero.id}/`, lang)}>
+            <div class:list={['mat', { empty: !hero.data.images[0] }]}>
+              {hero.data.images[0] && (
+                <img src={img('catalogue', hero.data.images[0])} alt={hero.data.title} />
+              )}
+            </div>
+          </a>
+        )
+      }
+
+      <div class="wall-text">
+        <h1>{say.heading}</h1>
+        <p class="intro">{say.intro}</p>
+        <a class="button on-wall-button" href={url('catalogue/', lang)}>{say.browse}</a>
+
+        {
+          hero && (
+            <p class="label">
+              <span class="no">{t.no} {hero.data.number}</span>
+              <a class="title" href={url(`catalogue/${hero.id}/`, lang)}>{hero.data.title}</a>
+              <span class="meta">
+                {[hero.data.maker, hero.data.date, hero.data.materials].filter(Boolean).join(', ')}
+              </span>
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    {
+      highlights.length > 0 && (
+        <section class="section" aria-labelledby="from-catalogue">
+          <div class="section-head">
+            <h2 id="from-catalogue">{say.fromCatalogue}</h2>
+            <a href={url('catalogue/', lang)}>{say.seeAll(objects.length)}</a>
+          </div>
+          <ul class="object-grid">
+            {highlights.map((item) => (
+              <ObjectCard item={item} lang={lang} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {(posts.length > 0 || articles.length > 0) && (
+    <div class="section two-col">
+      {posts.length > 0 && (
+      <section aria-labelledby="latest-journal">
+        <div class="section-head">
+          <h2 id="latest-journal">{t.journal.title}</h2>
+          <a href={url('journal/', lang)}>{t.journal.allPosts}</a>
+        </div>
+        <ul class="entry-list">
+          {
+            posts.map((post) => (
+              <li>
+                <a href={url(`journal/${post.id}/`, lang)}>
+                  <span class="small">{formatDate(post.data.date, lang)}</span>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.summary}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      )}
+
+      {articles.length > 0 && (
+      <section aria-labelledby="latest-articles">
+        <div class="section-head">
+          <h2 id="latest-articles">{t.guide.title}</h2>
+          <a href={url('guide/', lang)}>{t.guide.allGuides}</a>
+        </div>
+        <ul class="entry-list">
+          {
+            articles.map((article) => (
+              <li>
+                <a href={url(`guide/${article.id}/`, lang)}>
+                  <span class="small">{article.data.author}</span>
+                  <h3>{article.data.title}</h3>
+                  <p>{article.data.summary}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      )}
+    </div>
+    )}
+
+    <section class="section">
+      <a class="buy-callout" href={url('buying/', lang)}>
+        <span class="buy-callout-kicker">{say.buyKicker}</span>
+        <span class="buy-callout-text">{say.buyText}</span>
+        <span class="buy-callout-link">{say.buyLink}</span>
+      </a>
+    </section>
+  </div>
+</Base>

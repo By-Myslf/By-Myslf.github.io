@@ -1,18 +1,25 @@
 ---
 // One object in a grid: photo on its mount, with a museum-style label.
-import type { CollectionEntry } from 'astro:content';
+import type { LocalObject } from '../lib/content';
+import { ui, type Lang } from '../i18n';
 import { img, url } from '../lib/helpers';
 
 interface Props {
-  item: CollectionEntry<'catalogue'>;
+  item: LocalObject;
+  lang?: Lang;
 }
 
-const { item } = Astro.props;
-const { title, number, date, maker, category, brand, year, images } = item.data;
+const { item, lang = 'en' } = Astro.props;
+const { title, number, date, maker, images } = item.data;
 const photo = images[0];
+const t = ui[lang];
 
-// Text the catalogue search looks through
-const searchText = [title, number, date, maker, brand, category, item.data.origin, item.data.materials]
+// Text the catalogue search looks through (in both languages, so either works)
+const searchText = [
+  ...new Set(
+    [item.data, item.en].flatMap((d) => [d.title, d.number, d.date, d.maker, d.brand, d.category, d.origin, d.materials]),
+  ),
+]
   .filter(Boolean)
   .join(' ')
   .toLowerCase();
@@ -20,17 +27,17 @@ const searchText = [title, number, date, maker, brand, category, item.data.origi
 
 <li
   class="object-card"
-  data-category={category}
-  data-brand={brand ?? ''}
-  data-year={year ?? ''}
+  data-category={item.en.category}
+  data-brand={item.en.brand ?? ''}
+  data-year={item.data.year ?? ''}
   data-search={searchText}
 >
-  <a href={url(`catalogue/${item.id}/`)}>
+  <a href={url(`catalogue/${item.id}/`, lang)}>
     <div class:list={['mat', { empty: !photo }]}>
       {photo && <img src={img('catalogue', photo)} alt={title} loading="lazy" decoding="async" />}
     </div>
     <div class="label">
-      <span class="no">No. {number}</span>
+      <span class="no">{t.no} {number}</span>
       <span class="title">{title}</span>
       <span class="meta">{maker ? `${maker}, ${date}` : date}</span>
     </div>

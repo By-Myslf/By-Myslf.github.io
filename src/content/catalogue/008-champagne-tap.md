@@ -8,11 +8,10 @@ year: 1900
 origin: England
 materials: Silver plate, steel
 dimensions: Length 9 cm
-images: []
+images:
+  - 008-champagne-tap.jpg
 ---
 
 *Sample text: replace this with your own description.*
 
-A hollow, screw-pointed spike that is driven through the cork, with a small tap on the side. It let a little champagne be poured without opening the whole bottle.
-
-Photographs of this piece are still to come. This entry shows how an object looks in the catalogue before you have added a photo.
+A hollow, screw-pointed spike that is driven through the cork, with a small tap on the side and a T-handle for screwing it in. It let a little champagne be poured without opening the whole bottle.

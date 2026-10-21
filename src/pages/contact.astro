@@ -1,49 +1,7 @@
 ---
-// The Contact page. The email address comes from src/site.config.ts.
-import Base from '../layouts/Base.astro';
-import { site } from '../site.config';
-import { mailto } from '../lib/helpers';
+// The English page. Its content and wording live in src/views/ContactPage.astro,
+// shared with the Hungarian page in src/pages/hu/.
+import ContactPage from '../views/ContactPage.astro';
 ---
 
-<Base title="Contact" description={`Write to ${site.owner}.`}>
-  <div class="wrap">
-    <article class="reading">
-      <h1>Contact</h1>
-      <div class="prose">
-        <p class="lead">
-          Questions about a piece, its history, or the collection are always welcome. I reply to
-          every message, usually within a few days.
-        </p>
-        <p>
-          If you are writing about a particular object, please mention its number from the
-          catalogue. The button on each object's page fills that in for you.
-        </p>
-      </div>
-
-      <div class="contact-box">
-        <p class="address">{site.email}</p>
-        <div class="actions">
-          <a class="button" href={mailto(site.email, `Message from the website`)}>Write to me</a>
-          <button type="button" class="button quiet" id="copy" data-email={site.email}>
-            Copy email address
-          </button>
-          <span class="copy-status" aria-live="polite"></span>
-        </div>
-      </div>
-    </article>
-  </div>
-</Base>
-
-<script>
-  const btn = document.querySelector<HTMLButtonElement>('#copy');
-  const status = document.querySelector<HTMLElement>('.copy-status');
-
-  btn?.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(btn.dataset.email ?? '');
-      if (status) status.textContent = 'Email address copied.';
-    } catch {
-      if (status) status.textContent = 'Copying is blocked here. Select the address above instead.';
-    }
-  });
-</script>
+<ContactPage lang="en" />

@@ -1,0 +1,12 @@
+---
+// The Hungarian page. Its content and wording live in src/views/ObjectPage.astro,
+// shared with the English page.
+import ObjectPage from '../../../views/ObjectPage.astro';
+import { objectPaths } from '../../../lib/content';
+
+export function getStaticPaths() {
+  return objectPaths('hu');
+}
+---
+
+<ObjectPage lang="hu" {...Astro.props} />

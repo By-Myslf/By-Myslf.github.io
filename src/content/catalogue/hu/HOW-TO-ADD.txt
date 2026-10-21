@@ -1,0 +1,5 @@
+Keep this file. It stops GitHub removing this folder when it is empty.
+
+Hungarian versions go here. Each file has the SAME name as its English partner
+one folder up, and holds only the Hungarian words (title, a few details and the text).
+Anything left out is shown in English. See "The Hungarian version" in README.md.

@@ -1,0 +1,122 @@
+---
+// The page for a single object. One is made automatically for every
+// Markdown file in src/content/catalogue/, in both languages.
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import type { LocalObject } from '../lib/content';
+import { site } from '../site.config';
+import { ui, type Lang } from '../i18n';
+import { url, img, mailto } from '../lib/helpers';
+
+interface Props {
+  lang: Lang;
+  item: LocalObject;
+  prev?: LocalObject;
+  next?: LocalObject;
+}
+
+const { lang, item, prev, next } = Astro.props;
+const t = ui[lang];
+const { Content } = await render(item.entry);
+const d = item.data;
+
+// [label, shown value, link to the filtered catalogue]
+const allFacts: [string, string | undefined, string?][] = [
+  [t.facts.category, d.category, url(`catalogue/?category=${encodeURIComponent(item.en.category)}`, lang)],
+  [t.facts.brand, d.brand, item.en.brand && url(`catalogue/?brand=${encodeURIComponent(item.en.brand)}`, lang)],
+  [t.facts.date, d.date],
+  [t.facts.maker, d.maker],
+  [t.facts.origin, d.origin],
+  [t.facts.materials, d.materials],
+  [t.facts.dimensions, d.dimensions],
+];
+const facts = allFacts.filter((f): f is [string, string, string?] => Boolean(f[1]));
+
+const photos = d.images.map((file) => img('catalogue', file));
+---
+
+<Base lang={lang} title={d.title} description={`${t.no} ${d.number}: ${d.title}, ${d.date}`}>
+  <div class="wrap">
+    <a class="back" href={url('catalogue/', lang)}>{t.object.back}</a>
+
+    <article class="object-page">
+      <div class="gallery">
+        <div class:list={['mat', { empty: photos.length === 0 }]}>
+          {photos[0] && <img id="main-photo" src={photos[0]} alt={d.title} />}
+        </div>
+        {
+          photos.length > 1 && (
+            <ul class="thumbs" aria-label={t.object.morePhotos}>
+              {photos.map((src, i) => (
+                <li>
+                  <button type="button" data-src={src} aria-current={i === 0 ? 'true' : 'false'}>
+                    <img src={src} alt={t.object.photoOf(i + 1, photos.length)} loading="lazy" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+
+      <div class="object-info">
+        <p class="no">{t.no} {d.number}</p>
+        <h1>{d.title}</h1>
+
+        <dl class="facts">
+          {
+            facts.map(([label, value, link]) => (
+              <>
+                <dt>{label}</dt>
+                <dd>{link ? <a href={link}>{value}</a> : value}</dd>
+              </>
+            ))
+          }
+        </dl>
+
+        {!item.textTranslated && <p class="untranslated">{t.notTranslated}</p>}
+        <div class="prose" lang={item.textTranslated ? undefined : 'en'}>
+          <Content />
+        </div>
+
+        <div class="enquire">
+          <a class="button" href={mailto(site.email, t.object.enquirySubject(d.number, d.title))}>
+            {t.object.enquire}
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <nav class="pager" aria-label={t.object.otherObjects}>
+      {
+        prev && (
+          <a class="prev" href={url(`catalogue/${prev.id}/`, lang)}>
+            <small>{t.object.previous}</small>
+            <span>{prev.data.title}</span>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a class="next" href={url(`catalogue/${next.id}/`, lang)}>
+            <small>{t.object.next}</small>
+            <span>{next.data.title}</span>
+          </a>
+        )
+      }
+    </nav>
+  </div>
+</Base>
+
+<script>
+  const main = document.querySelector<HTMLImageElement>('#main-photo');
+  const thumbs = [...document.querySelectorAll<HTMLButtonElement>('.thumbs button')];
+
+  for (const t of thumbs) {
+    t.addEventListener('click', () => {
+      if (!main || !t.dataset.src) return;
+      main.src = t.dataset.src;
+      for (const other of thumbs) other.setAttribute('aria-current', String(other === t));
+    });
+  }
+</script>

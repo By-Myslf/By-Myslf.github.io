@@ -1,33 +1,12 @@
 ---
-// One guide article. Made automatically for every file in src/content/articles/.
-import { render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import { getArticles } from '../../lib/content';
-import { url, formatDate } from '../../lib/helpers';
+// The English page. Its content and wording live in src/views/ArticlePage.astro,
+// shared with the Hungarian page in src/pages/hu/.
+import ArticlePage from '../../views/ArticlePage.astro';
+import { articlePaths } from '../../lib/content';
 
-export async function getStaticPaths() {
-  const articles = await getArticles();
-  return articles.map((article) => ({ params: { id: article.id }, props: { article } }));
+export function getStaticPaths() {
+  return articlePaths('en');
 }
-
-const { article } = Astro.props;
-const { Content } = await render(article);
-const d = article.data;
 ---
 
-<Base title={d.title} description={d.summary}>
-  <div class="wrap">
-    <article class="reading">
-      <h1>{d.title}</h1>
-      <p class="lead">{d.summary}</p>
-      <p class="byline">
-        By <strong>{d.author}</strong>{d.authorRole && `, ${d.authorRole}`}. Published{' '}
-        <time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>
-      </p>
-      <div class="prose">
-        <Content />
-      </div>
-    </article>
-    <p class="back"><a href={url('guide/')}>Back to the Collector's guide</a></p>
-  </div>
-</Base>
+<ArticlePage lang="en" {...Astro.props} />

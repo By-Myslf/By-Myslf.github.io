@@ -1,0 +1,149 @@
+---
+// The "I buy" page: what the collector is looking for, and how to offer items.
+// The text in both languages is right below. The email address comes from src/site.config.ts.
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import { mailto, url } from '../lib/helpers';
+import type { Lang } from '../i18n';
+
+const text = {
+  en: {
+    title: 'I buy',
+    description:
+      'I buy vintage champagne-related items and complete collections: glasses, ice buckets, stoppers, muselet caps, labels and more.',
+    kicker: 'Selling a piece or a collection?',
+    heading: 'I buy vintage champagne-related items and complete collections.',
+    intro:
+      "From a single coupe to a lifetime's collection, I'm always glad to hear about objects connected with champagne and its history. Every offer gets a personal reply.",
+    offer: 'Offer an item',
+    offerSubject: 'Offer: champagne items',
+    wantedHeading: "What I'm looking for",
+    seeCollection: 'See the collection',
+    // What I'm looking for. Add, remove or reword freely.
+    wanted: [
+      ['Champagne glasses', 'Coupes, flutes and complete services, from pressed glass to engraved crystal.'],
+      ['Ice buckets and coolers', 'Silver, silver plate, pewter and enamel, with or without stands.'],
+      ['Stoppers, taps and openers', 'Clamp stoppers, champagne taps, cork pliers and cases.'],
+      ['Muselet caps', 'Single rare caps, albums and entire collections.'],
+      ['Labels and ephemera', 'Labels, menus, price lists, posters and advertising.'],
+      ['Champagne house items', 'Trays, ashtrays, signs and gifts made for a champagne house.'],
+    ],
+    howHeading: 'How it works',
+    steps: [
+      ['Send photos', 'A few clear photos, the size, any marks or names, and what you know about the history.'],
+      ['Get a reply', 'I answer every message, usually within a few days, with questions or an offer.'],
+      ['Agree and hand over', 'Payment on collection in Budapest, or by arrangement with insured shipping.'],
+    ],
+    collectionsHeading: 'Complete collections',
+    collections: [
+      "If you are selling a whole collection, or clearing a house or an estate, I'm happy to look at everything together and make one offer for the lot. Collections stay together wherever possible, and their history is recorded in the catalogue.",
+      'Everything you send is treated in confidence.',
+    ],
+    otherQuestions: 'Other questions',
+  },
+  hu: {
+    title: 'Felvásárlás',
+    description:
+      'Régi, pezsgőhöz kapcsolódó tárgyakat és teljes gyűjteményeket vásárolok: poharakat, pezsgőhűtőket, pezsgőzárókat, pezsgőkupakokat, címkéket és még sok mást.',
+    kicker: 'Egy darabot vagy egy egész gyűjteményt adna el?',
+    heading: 'Régi, pezsgőhöz kapcsolódó tárgyakat és teljes gyűjteményeket vásárolok.',
+    intro:
+      'Egyetlen pezsgőskehelytől egy egész élet gyűjteményéig mindig örömmel hallok a pezsgőhöz és történetéhez kapcsolódó tárgyakról. Minden ajánlatra személyesen válaszolok.',
+    offer: 'Tárgyat ajánlok',
+    offerSubject: 'Ajánlat: pezsgős tárgyak',
+    wantedHeading: 'Mit keresek?',
+    seeCollection: 'A gyűjtemény megtekintése',
+    wanted: [
+      ['Pezsgőspoharak', 'Széles pezsgőskelyhek, karcsú flûte poharak és teljes készletek, a préselt üvegtől a metszett kristályig.'],
+      ['Pezsgőhűtők és jégvödrök', 'Ezüst, ezüstözött, ón és zománcozott darabok, állvánnyal vagy anélkül.'],
+      ['Pezsgőzárók, csapok és nyitók', 'Kapcsos pezsgőzárók, pezsgőcsapok, dugófogók és tokok.'],
+      ['Pezsgőkupakok', 'Ritka egyedi darabok, albumok és teljes gyűjtemények.'],
+      ['Címkék és nyomtatványok', 'Címkék, menük, árjegyzékek, plakátok és reklámanyagok.'],
+      ['Pezsgőházak tárgyai', 'Tálcák, hamutálak, cégtáblák és ajándéktárgyak, amelyek egy-egy pezsgőház számára készültek.'],
+    ],
+    howHeading: 'Hogyan működik?',
+    steps: [
+      ['Küldjön fényképeket', 'Néhány éles fotó, a méretek, az esetleges jelzések vagy feliratok, és amit a tárgy történetéről tud.'],
+      ['Választ kap', 'Minden üzenetre válaszolok, általában néhány napon belül, kérdésekkel vagy ajánlattal.'],
+      ['Megállapodás és átadás', 'Fizetés átvételkor Budapesten, vagy megbeszélés szerint, biztosított szállítással.'],
+    ],
+    collectionsHeading: 'Teljes gyűjtemények',
+    collections: [
+      'Ha egy egész gyűjteményt adna el, vagy lakást, hagyatékot számol fel, szívesen megnézek mindent együtt, és egyetlen ajánlatot teszek az egészre. A gyűjtemények lehetőség szerint egyben maradnak, történetük pedig bekerül a katalógusba.',
+      'Mindent, amit elküld, bizalmasan kezelek.',
+    ],
+    otherQuestions: 'Egyéb kérdések',
+  },
+};
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const say = text[lang];
+const offerLink = mailto(site.email, say.offerSubject);
+---
+
+<Base lang={lang} title={say.title} description={say.description}>
+  <section class="buy-hero">
+    <div class="wrap">
+      <p class="buy-kicker">{say.kicker}</p>
+      <h1>{say.heading}</h1>
+      <p class="buy-intro">{say.intro}</p>
+      <a class="button on-wall-button" href={offerLink}>{say.offer}</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="section" aria-labelledby="wanted">
+      <div class="section-head">
+        <h2 id="wanted">{say.wantedHeading}</h2>
+        <a href={url('catalogue/', lang)}>{say.seeCollection}</a>
+      </div>
+      <ul class="wanted-grid">
+        {
+          say.wanted.map(([title, body]) => (
+            <li>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="how">
+      <div class="section-head">
+        <h2 id="how">{say.howHeading}</h2>
+      </div>
+      <ol class="steps">
+        {
+          say.steps.map(([title, body]) => (
+            <li>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="section buy-collections" aria-labelledby="collections">
+      <div class="reading-col">
+        <h2 id="collections">{say.collectionsHeading}</h2>
+        <div class="prose">
+          {say.collections.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+
+      <div class="contact-box">
+        <p class="address">{site.email}</p>
+        <div class="actions">
+          <a class="button" href={offerLink}>{say.offer}</a>
+          <a class="button quiet" href={url('contact/', lang)}>{say.otherQuestions}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>

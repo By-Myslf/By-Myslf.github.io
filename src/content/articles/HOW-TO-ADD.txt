@@ -3,3 +3,6 @@ Keep this file. It stops GitHub removing this folder when it has no articles in 
 Each article is one .md file in this folder.
 These make up the Collector's guide on the website.
 See "Publish a Collector's guide article" in README.md.
+
+The Hungarian version of each file goes in the "hu" folder here, with the same file name.
+See "The Hungarian version" in README.md.

@@ -1,14 +1,22 @@
 ---
+// Shown for any address that doesn't exist. There is only one of these pages,
+// so it speaks both languages.
 import Base from '../layouts/Base.astro';
 import { url } from '../lib/helpers';
 ---
 
-<Base title="Page not found">
+<Base title="Page not found" switchTo={{ en: url('', 'en'), hu: url('', 'hu') }}>
   <div class="wrap">
     <article class="reading">
       <h1>This page isn't here</h1>
       <p class="lead">The link may be old, or the piece may have been renamed.</p>
       <p><a class="button" href={url('catalogue/')}>Go to the catalogue</a></p>
+
+      <div lang="hu" class="not-found-hu">
+        <h2>Ez az oldal nem található</h2>
+        <p class="lead">Lehet, hogy a link elavult, vagy a tárgy új nevet kapott.</p>
+        <p><a class="button quiet" href={url('catalogue/', 'hu')}>Tovább a katalógusra</a></p>
+      </div>
     </article>
   </div>
 </Base>

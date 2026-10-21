@@ -1,0 +1,51 @@
+---
+// The list of journal posts. The wording is in src/i18n.ts (look for "journal").
+import Base from '../layouts/Base.astro';
+import { getPosts } from '../lib/content';
+import { ui, type Lang } from '../i18n';
+import { url, img, formatDate } from '../lib/helpers';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang].journal;
+const posts = await getPosts(lang);
+const anyImages = posts.some((p) => p.data.image);
+---
+
+<Base lang={lang} title={t.title} description={t.description}>
+  <div class="wrap">
+    <header class="page-head">
+      <h1>{t.title}</h1>
+      <p>{t.intro}</p>
+    </header>
+
+    {
+      posts.length === 0 ? (
+        <p class="small">{t.empty}</p>
+      ) : (
+        <ul class:list={['entry-list', 'wide', { 'with-thumbs': anyImages }]}>
+          {posts.map((post) => (
+            <li>
+              <a href={url(`journal/${post.id}/`, lang)}>
+                <div>
+                  <span class="small">{formatDate(post.data.date, lang)}</span>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.summary}</p>
+                </div>
+                {anyImages &&
+                  (post.data.image ? (
+                    <img class="thumb" src={img('journal', post.data.image)} alt="" loading="lazy" />
+                  ) : (
+                    <span />
+                  ))}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Base>

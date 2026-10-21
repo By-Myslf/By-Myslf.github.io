@@ -1,0 +1,36 @@
+---
+// One guide article. Made automatically for every file in src/content/articles/, in both languages.
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import type { LocalArticle } from '../lib/content';
+import { ui, type Lang } from '../i18n';
+import { url, formatDate } from '../lib/helpers';
+
+interface Props {
+  lang: Lang;
+  article: LocalArticle;
+}
+
+const { lang, article } = Astro.props;
+const t = ui[lang];
+const { Content } = await render(article.entry);
+const d = article.data;
+---
+
+<Base lang={lang} title={d.title} description={d.summary}>
+  <div class="wrap">
+    <article class="reading">
+      <h1>{d.title}</h1>
+      <p class="lead">{d.summary}</p>
+      <p class="byline">
+        {t.guide.by} <strong>{d.author}</strong>{d.authorRole && `, ${d.authorRole}`}. {t.guide.published}{' '}
+        <time datetime={d.date.toISOString()}>{formatDate(d.date, lang)}</time>
+      </p>
+      {!article.textTranslated && <p class="untranslated">{t.notTranslated}</p>}
+      <div class="prose" lang={article.textTranslated ? undefined : 'en'}>
+        <Content />
+      </div>
+    </article>
+    <p class="back"><a href={url('guide/', lang)}>{t.guide.back}</a></p>
+  </div>
+</Base>

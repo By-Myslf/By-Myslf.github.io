@@ -188,6 +188,84 @@ p {
   border-bottom-color: var(--wall-ink);
 }
 
+/* Language switch: HU / EN in the top corner */
+.site-name {
+  margin-right: auto;
+}
+
+.site-nav {
+  order: 2;
+}
+
+.lang-switch {
+  order: 3;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding-left: 22px;
+  border-left: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.lang-switch a {
+  color: var(--pewter);
+  text-decoration: none;
+  padding: 4px 1px;
+  border-bottom: 1px solid transparent;
+}
+
+.lang-switch a:hover {
+  color: var(--ink);
+}
+
+.lang-switch a[aria-current='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--gilt);
+}
+
+.lang-sep {
+  color: var(--line);
+}
+
+.on-wall .lang-switch {
+  border-left-color: rgb(238 240 234 / 0.25);
+}
+
+.on-wall .lang-switch a {
+  color: rgb(238 240 234 / 0.72);
+}
+
+.on-wall .lang-switch a:hover,
+.on-wall .lang-switch a[aria-current='true'] {
+  color: var(--wall-ink);
+}
+
+.on-wall .lang-sep {
+  color: rgb(238 240 234 / 0.35);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Note on a Hungarian page whose text is still only in English */
+.untranslated {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--pewter);
+  border-left: 2px solid var(--gilt);
+  padding: 2px 0 2px 12px;
+  margin: 0 0 1.4em;
+}
+
 /* ── Footer ─────────────────────────────────────────────── */
 
 .site-footer {
@@ -1006,6 +1084,19 @@ button.button {
 
 /* ── Small screens ──────────────────────────────────────── */
 
+/* Header: site name and HU / EN on the first line, the menu below */
+@media (max-width: 1080px) {
+  .lang-switch {
+    order: 1;
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .site-nav {
+    flex-basis: 100%;
+  }
+}
+
 @media (max-width: 860px) {
   .wanted-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1072,4 +1163,11 @@ button.button {
   * {
     transition: none !important;
   }
+}
+
+/* The Hungarian half of the "page not found" page */
+.not-found-hu {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
 }

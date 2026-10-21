@@ -1,43 +1,7 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { getPosts } from '../../lib/content';
-import { url, img, formatDate } from '../../lib/helpers';
-
-const posts = await getPosts();
-const anyImages = posts.some((p) => p.data.image);
+// The English page. Its content and wording live in src/views/JournalPage.astro,
+// shared with the Hungarian page in src/pages/hu/.
+import JournalPage from '../../views/JournalPage.astro';
 ---
 
-<Base title="Journal" description="Notes from the collector: new arrivals, visits, auctions and discoveries.">
-  <div class="wrap">
-    <header class="page-head">
-      <h1>Journal</h1>
-      <p>New arrivals, visits, auctions and the occasional discovery.</p>
-    </header>
-
-    {
-      posts.length === 0 ? (
-        <p class="small">No posts yet.</p>
-      ) : (
-        <ul class:list={['entry-list', 'wide', { 'with-thumbs': anyImages }]}>
-          {posts.map((post) => (
-            <li>
-              <a href={url(`journal/${post.id}/`)}>
-                <div>
-                  <span class="small">{formatDate(post.data.date)}</span>
-                  <h3>{post.data.title}</h3>
-                  <p>{post.data.summary}</p>
-                </div>
-                {anyImages &&
-                  (post.data.image ? (
-                    <img class="thumb" src={img('journal', post.data.image)} alt="" loading="lazy" />
-                  ) : (
-                    <span />
-                  ))}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </div>
-</Base>
+<JournalPage lang="en" />

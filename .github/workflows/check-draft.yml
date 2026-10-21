@@ -1,0 +1,40 @@
+# Test-builds work in progress on any branch other than main, WITHOUT publishing it.
+# The built site is kept for a few days under "Artifacts" on the run's page,
+# so changes can be previewed before they go live. You don't need to edit this file.
+
+name: Check draft
+
+on:
+  push:
+    branches-ignore: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the files
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install Astro
+        run: npm install
+
+      - name: Build the website
+        run: npm run build
+        env:
+          SITE: https://by-myslf.github.io
+          BASE: /
+
+      - name: Keep the built site for previewing
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: ./dist
+          retention-days: 5
