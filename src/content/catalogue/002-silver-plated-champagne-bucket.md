@@ -2,7 +2,9 @@
 title: Silver-plated champagne bucket with loop handles
 number: "002"
 category: Ice buckets
+brand: Maison Exemple
 date: c. 1910
+year: 1910
 origin: Probably France
 materials: Silver-plated copper
 dimensions: Height 21 cm, diameter 23 cm

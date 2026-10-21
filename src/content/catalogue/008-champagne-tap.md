@@ -2,7 +2,9 @@
 title: Champagne tap
 number: "008"
 category: Openers & taps
+brand: Unbranded
 date: c. 1900
+year: 1900
 origin: England
 materials: Silver plate, steel
 dimensions: Length 9 cm

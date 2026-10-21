@@ -2,7 +2,9 @@
 title: Champagne flute with an engraved garland
 number: "003"
 category: Glassware
+brand: Unbranded
 date: 1920s
+year: 1925
 origin: Central Europe
 materials: Glass, wheel-engraved
 dimensions: Height 21 cm

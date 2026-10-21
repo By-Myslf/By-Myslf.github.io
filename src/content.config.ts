@@ -13,9 +13,13 @@ const catalogue = defineCollection({
     title: z.string(),
     // Your own inventory number, e.g. "014" (keep the quotes to keep the zeros)
     number: z.coerce.string(),
-    // Used for the filter on the catalogue page, e.g. "Ceramics"
+    // The item type, used for the "Item type" filter, e.g. "Glassware"
     category: z.string(),
+    // The champagne house or brand, used for the "Brand" filter, e.g. "Unbranded"
+    brand: z.string().optional(),
     date: z.coerce.string(), // free text: "c. 1880", "Late 18th century"
+    // Approximate year it was made, as a number, for the "Made between" filter: 1885
+    year: z.number().int().optional(),
     maker: z.string().optional(),
     origin: z.string().optional(),
     materials: z.string().optional(),

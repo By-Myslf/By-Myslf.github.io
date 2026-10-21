@@ -38,24 +38,26 @@ The email address there is used by every "Write to me" button. It will be visibl
 
 **Step 1. Upload the photos.** Go to `public/images/catalogue/`, click **Add file → Upload files**, and add the photos.
 
-- Use simple file names without spaces: `009-vase.jpg`, `009-vase-back.jpg`.
+- Use simple file names without spaces: `009-bucket.jpg`, `009-bucket-back.jpg`.
 - Resize photos to about 1600 pixels on the longest side before uploading. Phone photos are often 4000+ pixels and make pages slow.
 
-**Step 2. Create the description.** Go to `src/content/catalogue/`, click **Add file → Create new file**, name it e.g. `009-zsolnay-vase.md` (the name becomes the web address), and paste:
+**Step 2. Create the description.** Go to `src/content/catalogue/`, click **Add file → Create new file**, name it e.g. `009-lion-mask-bucket.md` (the name becomes the web address), and paste:
 
 ```markdown
 ---
-title: Vase with iridescent glaze
+title: Champagne bucket with lion-mask handles
 number: "009"
-category: Ceramics
-date: c. 1900
-maker: Zsolnay
-origin: Pécs, Hungary
-materials: Earthenware with eosin glaze
+category: Ice buckets
+brand: Unbranded
+date: c. 1880
+year: 1880
+maker: Christofle
+origin: Paris, France
+materials: Silver plate
 dimensions: Height 24 cm
 images:
-  - 009-vase.jpg
-  - 009-vase-back.jpg
+  - 009-bucket.jpg
+  - 009-bucket-back.jpg
 featured: false
 ---
 
@@ -69,7 +71,10 @@ Notes:
 
 - The part between the two `---` lines is the **details**; below it is the **description**.
 - Keep `number` in quotes so leading zeros stay (`"009"`, not `9`). The catalogue is sorted by number.
-- `category` creates the filter buttons on the catalogue page. Spell each category exactly the same way every time.
+- The catalogue page has three filters, filled in automatically from these details. Spell each value exactly the same way every time, or it shows up as a separate choice:
+  - `category` is the **item type** (Glassware, Ice buckets, Stoppers…).
+  - `brand` is the champagne house or brand. Use `Unbranded` for pieces without one.
+  - `year` is an approximate year it was made, written as a plain number (`1880`, no quotes, no "c."). It is only used by the "Made between" filter; visitors see the `date` text instead.
 - Leave out any line you don't need (for example `maker` or `dimensions`).
 - `featured: true` shows the object on the home page. The first featured object hangs on the green wall at the top.
 - No photos yet? Write `images: []`. The object shows a "Photo to follow" mount.

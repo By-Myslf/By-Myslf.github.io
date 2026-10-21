@@ -2,7 +2,9 @@
 title: Brass champagne stopper with hinged clamps
 number: "004"
 category: Stoppers
+brand: Maison Modèle
 date: c. 1930
+year: 1930
 origin: France
 materials: Brass, rubber seal
 dimensions: Height 6 cm

@@ -20,7 +20,8 @@ const { Content } = await render(item);
 const d = item.data;
 
 const allFacts: [string, string | undefined][] = [
-  ['Category', d.category],
+  ['Item type', d.category],
+  ['Brand', d.brand],
   ['Date', d.date],
   ['Maker', d.maker],
   ['Origin', d.origin],
@@ -66,8 +67,10 @@ const photos = d.images.map((file) => img('catalogue', file));
               <>
                 <dt>{label}</dt>
                 <dd>
-                  {label === 'Category' ? (
+                  {label === 'Item type' ? (
                     <a href={url(`catalogue/?category=${encodeURIComponent(value)}`)}>{value}</a>
+                  ) : label === 'Brand' ? (
+                    <a href={url(`catalogue/?brand=${encodeURIComponent(value)}`)}>{value}</a>
                   ) : (
                     value
                   )}

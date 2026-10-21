@@ -2,7 +2,9 @@
 title: Group of nine muselet caps
 number: "005"
 category: Muselets
+brand: Various houses
 date: Early to mid 20th century
+year: 1930
 origin: Champagne region, France
 materials: Printed and embossed tinplate
 dimensions: Diameter about 3 cm each

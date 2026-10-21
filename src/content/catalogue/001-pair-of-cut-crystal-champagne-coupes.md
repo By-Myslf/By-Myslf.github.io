@@ -2,7 +2,9 @@
 title: Pair of cut-crystal champagne coupes
 number: "001"
 category: Glassware
+brand: Unbranded
 date: c. 1900
+year: 1900
 origin: Probably Bohemia
 materials: Lead crystal, cut and polished
 dimensions: Height 15 cm, rim diameter 12 cm

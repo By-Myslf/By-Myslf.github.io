@@ -2,7 +2,9 @@
 title: Printed champagne label, Carte d'Or
 number: "007"
 category: Ephemera
+brand: Maison Exemple
 date: c. 1904
+year: 1904
 origin: Reims, France
 materials: Lithograph on paper
 dimensions: 11 × 15 cm

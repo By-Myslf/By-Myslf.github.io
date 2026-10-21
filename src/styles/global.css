@@ -499,77 +499,101 @@ button.button {
 /* ── Catalogue filters ──────────────────────────────────── */
 
 .filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
   align-items: end;
-  gap: 20px 40px;
-  padding-bottom: 18px;
-  margin-bottom: clamp(28px, 4vw, 44px);
+  gap: 20px 28px;
+  padding-bottom: 22px;
+  margin-bottom: 18px;
   border-bottom: 1px solid var(--line);
   font-family: var(--sans);
   font-size: 0.92rem;
 }
 
-.filter-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 22px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.filter-list button {
-  font: inherit;
-  background: none;
-  border: 0;
-  padding: 4px 0;
-  color: var(--pewter);
-  cursor: pointer;
-  border-bottom: 1px solid transparent;
-}
-
-.filter-list button:hover {
-  color: var(--ink);
-}
-
-.filter-list button[aria-pressed='true'] {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
-}
-
-.search {
+.field {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  min-width: min(100%, 260px);
+  min-width: 0;
 }
 
-.search label {
+.field label,
+.field-label {
   color: var(--pewter);
   font-size: 0.82rem;
 }
 
-.search input {
+.field input,
+.field select {
   font: inherit;
   font-size: 1rem;
+  width: 100%;
   padding: 8px 2px;
   border: 0;
   border-bottom: 1px solid var(--pewter);
-  background: transparent;
+  background-color: transparent;
   color: var(--ink);
   border-radius: 0;
 }
 
-.search input:focus {
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 22px;
+  cursor: pointer;
+  /* small chevron on the right */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23636864' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+}
+
+.field input::placeholder {
+  color: #9a9e99;
+}
+
+.field input:focus,
+.field select:focus {
   outline: none;
   border-bottom-color: var(--wall);
   box-shadow: 0 1px 0 var(--wall);
 }
 
-.result-count {
-  margin: -20px 0 28px;
+.range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range span {
+  color: var(--pewter);
+  font-size: 0.9rem;
+}
+
+.result-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.result-row .result-count {
+  margin: 0;
+}
+
+.clear-filters {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--wall);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.clear-filters:hover {
+  color: var(--ink);
 }
 
 .no-results {
@@ -836,6 +860,15 @@ button.button {
 /* ── Small screens ──────────────────────────────────────── */
 
 @media (max-width: 860px) {
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field-search,
+  .field-period {
+    grid-column: 1 / -1;
+  }
+
   .wall-grid,
   .object-page,
   .two-col {

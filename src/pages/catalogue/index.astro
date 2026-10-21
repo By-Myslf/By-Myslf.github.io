@@ -1,11 +1,25 @@
 ---
-// The full catalogue, with category filters and a search box.
+// The full catalogue, with filters (item type, brand, date) and a search box.
+// The filter choices are built from the objects themselves, so a new type
+// or brand appears in the list as soon as you use it.
 import Base from '../../layouts/Base.astro';
 import ObjectCard from '../../components/ObjectCard.astro';
 import { getObjects } from '../../lib/content';
 
 const objects = await getObjects();
-const categories = [...new Set(objects.map((o) => o.data.category))].sort();
+const byName = (a: string, b: string) => a.localeCompare(b, 'en');
+
+const types = [...new Set(objects.map((o) => o.data.category))].sort(byName);
+const brands = [...new Set(objects.map((o) => o.data.brand).filter((b): b is string => Boolean(b)))].sort(byName);
+
+// Decades from the oldest to the newest object, for "Made between"
+const years = objects.map((o) => o.data.year).filter((y): y is number => typeof y === 'number');
+const decades: number[] = [];
+if (years.length > 0) {
+  const first = Math.floor(Math.min(...years) / 10) * 10;
+  const last = Math.floor(Math.max(...years) / 10) * 10;
+  for (let d = first; d <= last; d += 10) decades.push(d);
+}
 ---
 
 <Base title="Catalogue" description="Every object in the collection, with photographs and descriptions.">
@@ -19,78 +33,144 @@ const categories = [...new Set(objects.map((o) => o.data.category))].sort();
       <p class="no-results">The catalogue is being prepared. Objects will appear here soon.</p>
     )}
 
-    <div class="filters" hidden={objects.length === 0}>
-      <ul class="filter-list" aria-label="Show category">
-        <li><button type="button" data-filter="" aria-pressed="true">All</button></li>
-        {
-          categories.map((c) => (
-            <li>
-              <button type="button" data-filter={c} aria-pressed="false">
-                {c}
-              </button>
-            </li>
-          ))
-        }
-      </ul>
-      <div class="search">
-        <label for="search">Search by name, maker or date</label>
-        <input id="search" type="search" autocomplete="off" />
+    <form class="filters" role="search" aria-label="Filter the catalogue" hidden={objects.length === 0}>
+      <div class="field field-search">
+        <label for="search">Search</label>
+        <input id="search" type="search" autocomplete="off" placeholder="Name, maker, place…" />
       </div>
-    </div>
 
-    <p class="small result-count" aria-live="polite" hidden={objects.length === 0}>
-      {objects.length} objects
-    </p>
+      <div class="field">
+        <label for="f-type">Item type</label>
+        <select id="f-type">
+          <option value="">All types</option>
+          {types.map((t) => <option value={t}>{t}</option>)}
+        </select>
+      </div>
+
+      {
+        brands.length > 0 && (
+          <div class="field">
+            <label for="f-brand">Brand</label>
+            <select id="f-brand">
+              <option value="">All brands</option>
+              {brands.map((b) => <option value={b}>{b}</option>)}
+            </select>
+          </div>
+        )
+      }
+
+      {
+        decades.length > 1 && (
+          <div class="field field-period" role="group" aria-labelledby="period-label">
+            <span class="field-label" id="period-label">Made between</span>
+            <div class="range">
+              <select id="f-from" aria-label="From">
+                {decades.map((d, i) => <option value={d} selected={i === 0}>{d}s</option>)}
+              </select>
+              <span>and</span>
+              <select id="f-to" aria-label="To">
+                {decades.map((d, i) => <option value={d} selected={i === decades.length - 1}>{d}s</option>)}
+              </select>
+            </div>
+          </div>
+        )
+      }
+    </form>
+
+    <div class="result-row" hidden={objects.length === 0}>
+      <p class="small result-count" aria-live="polite">{objects.length} objects</p>
+      <button type="button" class="clear-filters" id="clear" hidden>Clear filters</button>
+    </div>
 
     <ul class="object-grid" id="objects">
       {objects.map((item) => <ObjectCard item={item} />)}
     </ul>
 
-    <p class="no-results" id="no-matches" hidden>Nothing matches that search. Try a shorter word, or choose All.</p>
+    <p class="no-results" id="no-matches" hidden>
+      Nothing matches these filters. Try a shorter word, or clear the filters.
+    </p>
   </div>
 </Base>
 
 <script>
-  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel);
   const cards = [...document.querySelectorAll<HTMLElement>('#objects .object-card')];
-  const search = document.querySelector<HTMLInputElement>('#search')!;
-  const count = document.querySelector<HTMLElement>('.result-count')!;
-  const empty = document.querySelector<HTMLElement>('#no-matches')!;
+  const search = $<HTMLInputElement>('#search')!;
+  const type = $<HTMLSelectElement>('#f-type')!;
+  const brand = $<HTMLSelectElement>('#f-brand');
+  const from = $<HTMLSelectElement>('#f-from');
+  const to = $<HTMLSelectElement>('#f-to');
+  const count = $('.result-count')!;
+  const empty = $('#no-matches')!;
+  const clear = $<HTMLButtonElement>('#clear')!;
+  const form = $<HTMLFormElement>('.filters')!;
   const total = cards.length;
 
-  let category = new URLSearchParams(location.search).get('category') ?? '';
-  if (!buttons.some((b) => b.dataset.filter === category)) category = '';
+  const firstDecade = from ? from.options[0].value : '';
+  const lastDecade = to ? to.options[to.options.length - 1].value : '';
+
+  // Set a select to a value only if that value is one of its options
+  function choose(select: HTMLSelectElement | null, value: string | null) {
+    if (select && value && [...select.options].some((o) => o.value === value)) select.value = value;
+  }
+
+  // Start from the filters in the web address, e.g. ?category=Glassware&brand=Unbranded
+  const start = new URLSearchParams(location.search);
+  search.value = start.get('q') ?? '';
+  choose(type, start.get('category'));
+  choose(brand, start.get('brand'));
+  choose(from, start.get('from'));
+  choose(to, start.get('to'));
 
   function update() {
     const words = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
-    let shown = 0;
+    let lo = from ? Number(from.value) : -Infinity;
+    let hi = to ? Number(to.value) + 9 : Infinity;
+    if (lo > hi) [lo, hi] = [hi - 9, lo + 9]; // the two dates were picked the wrong way round
+    const dateActive = Boolean(from && to && (from.value !== firstDecade || to.value !== lastDecade));
 
+    let shown = 0;
     for (const card of cards) {
-      const inCategory = !category || card.dataset.category === category;
-      const text = card.dataset.search ?? '';
-      const matches = words.every((w) => text.includes(w));
-      const visible = inCategory && matches;
+      const year = Number(card.dataset.year || NaN);
+      const visible =
+        (!type.value || card.dataset.category === type.value) &&
+        (!brand?.value || card.dataset.brand === brand.value) &&
+        (!dateActive || (year >= lo && year <= hi)) &&
+        words.every((w) => (card.dataset.search ?? '').includes(w));
       card.hidden = !visible;
       if (visible) shown++;
     }
 
-    for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.filter === category));
     count.textContent = shown === total ? `${total} objects` : `Showing ${shown} of ${total} objects`;
     empty.hidden = shown > 0 || total === 0;
+    const anyActive = Boolean(words.length || type.value || brand?.value || dateActive);
+    clear.hidden = !anyActive;
+
+    // Keep the filters in the web address, so a filtered view can be bookmarked or shared
+    const params = new URLSearchParams();
+    if (search.value.trim()) params.set('q', search.value.trim());
+    if (type.value) params.set('category', type.value);
+    if (brand?.value) params.set('brand', brand.value);
+    if (dateActive && from && to) {
+      params.set('from', from.value);
+      params.set('to', to.value);
+    }
+    const query = params.toString();
+    history.replaceState(null, '', query ? `?${query}` : location.pathname);
   }
 
-  for (const b of buttons) {
-    b.addEventListener('click', () => {
-      category = b.dataset.filter ?? '';
-      const params = new URLSearchParams(location.search);
-      if (category) params.set('category', category);
-      else params.delete('category');
-      const query = params.toString();
-      history.replaceState(null, '', query ? `?${query}` : location.pathname);
-      update();
-    });
-  }
+  clear.addEventListener('click', () => {
+    search.value = '';
+    type.value = '';
+    if (brand) brand.value = '';
+    if (from) from.value = firstDecade;
+    if (to) to.value = lastDecade;
+    update();
+    search.focus();
+  });
 
+  form.addEventListener('submit', (e) => e.preventDefault());
   search.addEventListener('input', update);
+  for (const el of [type, brand, from, to]) el?.addEventListener('change', update);
   update();
 </script>

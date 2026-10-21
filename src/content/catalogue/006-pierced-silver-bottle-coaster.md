@@ -2,7 +2,9 @@
 title: Bottle coaster with a pierced gallery
 number: "006"
 category: Bottle coasters
+brand: Unbranded
 date: Late 19th century
+year: 1885
 origin: Probably England
 materials: Silver plate, turned walnut base
 dimensions: Diameter 15 cm, height 5 cm
