@@ -645,6 +645,7 @@ button.button {
 .range span {
   color: var(--pewter);
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .result-row {
