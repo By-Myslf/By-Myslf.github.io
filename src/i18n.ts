@@ -31,6 +31,7 @@ const en = {
 
   // Catalogue labels
   no: 'No.',
+  photoToFollow: 'Photo to follow', // on the mount of an object without photos yet
   facts: {
     category: 'Item type',
     brand: 'Brand',
@@ -121,6 +122,7 @@ const hu: Words = {
   notTranslated: 'Ez a szöveg egyelőre csak angolul olvasható.',
 
   no: 'Ltsz.',
+  photoToFollow: 'Fénykép hamarosan',
   facts: {
     category: 'Tárgytípus',
     brand: 'Márka',

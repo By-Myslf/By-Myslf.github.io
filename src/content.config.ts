@@ -83,7 +83,7 @@ const articles = defineCollection({
     date: z.coerce.date(),
     summary: z.string(),
     author: z.string(),
-    authorRole: z.string().optional(), // e.g. "Ceramics specialist"
+    authorRole: z.string().optional(), // e.g. "Glass specialist"
     draft: z.boolean().default(false),
   }),
 });

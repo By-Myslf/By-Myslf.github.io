@@ -139,6 +139,7 @@ p {
   color: var(--ink);
   text-decoration: none;
   line-height: 1.1;
+  margin-right: auto; /* pushes the menu and HU / EN to the right */
 }
 
 .site-nav ul {
@@ -189,10 +190,6 @@ p {
 }
 
 /* Language switch: HU / EN in the top corner */
-.site-name {
-  margin-right: auto;
-}
-
 .site-nav {
   order: 2;
 }
@@ -356,8 +353,11 @@ button.button {
   object-fit: contain;
 }
 
-.mat.empty::after {
-  content: 'Photo to follow';
+/* An object without photos yet: the mount shows "Photo to follow" in the
+   page's language (the words are in src/i18n.ts, look for photoToFollow) */
+.mat.empty::after,
+.wall .hung .slide.empty::after {
+  content: attr(data-empty);
   font-family: var(--sans);
   font-size: 0.8rem;
   color: var(--pewter);
@@ -453,8 +453,11 @@ button.button {
   box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.55);
 }
 
+/* The objects on the wall take turns: all are stacked in one place, and the
+   active one fades in while the previous one fades out */
 .wall .hung .mat {
   aspect-ratio: 5 / 4;
+  position: relative;
 }
 
 .wall-text h1 {
@@ -473,12 +476,6 @@ button.button {
   padding-top: 18px;
   border-top: 1px solid rgb(238 240 234 / 0.25);
   max-width: 24em;
-}
-
-/* The objects on the wall take turns: all are stacked in one place, and the
-   active one fades in while the previous one fades out */
-.wall .hung .mat {
-  position: relative;
 }
 
 .wall .hung .slide {
@@ -520,13 +517,6 @@ button.button {
 .wall .hung .slide.empty {
   display: grid;
   place-items: center;
-}
-
-.wall .hung .slide.empty::after {
-  content: 'Photo to follow';
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  color: var(--pewter);
 }
 
 /* The labels change along with the object */
@@ -631,18 +621,6 @@ button.button {
 }
 
 .wall-pause:hover {
-  color: var(--wall-ink);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .wall .hung .slide,
-  .wall-labels .label {
-    transform: none !important;
-    filter: none !important;
-  }
-}
-
-.wall .label .title {
   color: var(--wall-ink);
 }
 
@@ -1338,15 +1316,22 @@ button.button {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
-}
-
 /* The Hungarian half of the "page not found" page */
 .not-found-hu {
   margin-top: 48px;
   padding-top: 32px;
   border-top: 1px solid var(--line);
+}
+
+/* Visitors who switched on "reduce motion": no fades, zooms or blurs */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+
+  .wall .hung .slide,
+  .wall-labels .label {
+    transform: none !important;
+    filter: none !important;
+  }
 }

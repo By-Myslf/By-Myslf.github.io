@@ -78,6 +78,7 @@ const articles = (await getArticles(lang)).slice(0, 3);
               {onWall.map((o, i) => (
                 <a
                   class:list={['slide', { empty: !o.data.images[0], active: i === 0 }]}
+                  data-empty={o.data.images[0] ? undefined : t.photoToFollow}
                   href={url(`catalogue/${o.id}/`, lang)}
                   aria-hidden={i === 0 ? undefined : 'true'}
                   tabindex={i === 0 ? undefined : -1}

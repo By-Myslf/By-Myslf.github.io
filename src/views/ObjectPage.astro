@@ -41,7 +41,7 @@ const photos = d.images.map((file) => img('catalogue', file));
 
     <article class="object-page">
       <div class="gallery">
-        <div class:list={['mat', { empty: photos.length === 0 }]}>
+        <div class:list={['mat', { empty: photos.length === 0 }]} data-empty={photos.length === 0 ? t.photoToFollow : undefined}>
           {photos[0] && <img id="main-photo" src={photos[0]} alt={d.title} />}
         </div>
         {

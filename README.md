@@ -1,6 +1,6 @@
 # Champagne Club Budapest website
 
-A website for a private collection of antiques and art: a catalogue with photos, a journal, a collector's guide, an "I buy" page, an about page and a contact page, in English and Hungarian. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
+A website for a private collection of champagne-related accessories: a catalogue with photos, a journal, a collector's guide, an "I buy" page, an about page and a contact page, in English and Hungarian. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
 
 You never need to write code to add content. Each object, post and article is one small text file.
 

@@ -33,7 +33,7 @@ const searchText = [
   data-search={searchText}
 >
   <a href={url(`catalogue/${item.id}/`, lang)}>
-    <div class:list={['mat', { empty: !photo }]}>
+    <div class:list={['mat', { empty: !photo }]} data-empty={photo ? undefined : t.photoToFollow}>
       {photo && <img src={img('catalogue', photo)} alt={title} loading="lazy" decoding="async" />}
     </div>
     <div class="label">
