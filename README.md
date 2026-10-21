@@ -1,4 +1,4 @@
-# The Collection website
+# Champagne Club Budapest website
 
 A website for a private collection of antiques and art: a catalogue with photos, a journal, expert articles, an about page and a contact page. It's built with [Astro](https://astro.build) and published free with GitHub Pages.
 

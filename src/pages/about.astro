@@ -8,7 +8,19 @@ import { url } from '../lib/helpers';
 <Base title="About" description={`About ${site.owner} and the collection.`}>
   <div class="wrap">
     <article class="reading">
-      <h1>About the collection</h1>
+      <header class="about-head">
+        <h1>
+          <span class="about-name">{site.owner}</span>
+          <span class="about-sep" aria-hidden="true">|</span>
+          <span class="about-club">{site.name}</span>
+        </h1>
+        <p class="about-roles">
+          Collector <span aria-hidden="true">·</span> Researcher <span aria-hidden="true">·</span>
+          Champagne Objects &amp; Culture
+        </p>
+      </header>
+
+      <h2>About the collection</h2>
       <div class="prose">
         <p class="lead">
           This is where you tell visitors who you are and how the collection began. Write it the way

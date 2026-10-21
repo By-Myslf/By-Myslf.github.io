@@ -6,14 +6,14 @@
 
 export const site = {
   // The name shown at the top of every page and in the browser tab
-  name: 'The Collection',
+  name: 'Champagne Club Budapest',
 
   // A short line describing the site (used by Google and when links are shared)
   description:
     'A private collection of antiques and works of art, with notes from the collector and essays by specialists.',
 
   // Your name, as the collector
-  owner: 'Your Name',
+  owner: 'Borics Zoltán',
 
   // Where contact messages should go. Every "Write to me" button uses this.
   email: 'hello@example.com',
