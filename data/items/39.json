@@ -1,0 +1,320 @@
+{
+ "id": 39,
+ "kind": "item",
+ "ref": "CC-39",
+ "date": "2023-05-16",
+ "modified": "2025-02-14",
+ "slug_hu": "bollinger-champagne-fem-pezsgos-vodor",
+ "slug_en": "bollinger-champagne-vintage-metal-ice-bucket",
+ "title": {
+  "hu": "Bollinger Champagne fém pezsgős vödör",
+  "en": "Bollinger Champagne Vintage Metal Ice Bucket"
+ },
+ "intro": {
+  "hu": "Vintage French Champagne vödör az 1980-as évekből, a világhírű \"BOLLINGER\" champagne háztól.",
+  "en": "A charming 1980s vintage French champagne bucket from the world-famous Bollinger champagne house – a special-edition registered model designed by Eric Berthès. It is made of brushed stainless steel with shiny vertical stripes and the Bollinger name in black. The inside is red and shows more signs of use than the outside. Net weight: 897 g."
+ },
+ "body": {
+  "hu": "<p>Különleges kiadású regisztrált modell, tervezte: Eric Berthes</p>\n<p>Szálcsiszolt rozsdamentes acélból készült, és fényes függőleges csíkokkal, fekete BOLLINGER felirattal.</p>\n<p>A belseje piros, és vannak rajta használati nyomok, inkább mint a külsején.</p>\n<p>Nettó tömege 897 gramm.</p>",
+  "en": ""
+ },
+ "details": {
+  "hu": [
+   [
+    "Méretek",
+    "29 cm a magas oldalon, 22 cm alacsony oldalon, átmérője alsó 12 cm"
+   ]
+  ],
+  "en": [
+   [
+    "Dimensions",
+    "29 cm on the high side, 22 cm on the low side, base diameter 12 cm"
+   ]
+  ]
+ },
+ "photos": [
+  {
+   "n": 1,
+   "w": 1600,
+   "h": 2400,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    4000,
+    6000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-6.jpg"
+  },
+  {
+   "n": 2,
+   "w": 1170,
+   "h": 1156,
+   "sizes": [
+    480,
+    960,
+    1170
+   ],
+   "alt": "",
+   "original_size": [
+    1170,
+    1156
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/BOLLINGER-pezsgo-ajandekok-1.png"
+  },
+  {
+   "n": 3,
+   "w": 1170,
+   "h": 1436,
+   "sizes": [
+    480,
+    960,
+    1170
+   ],
+   "alt": "",
+   "original_size": [
+    1170,
+    1436
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/BOLLINGER-pezsgo-ajandekok-2.png"
+  },
+  {
+   "n": 4,
+   "w": 1170,
+   "h": 1158,
+   "sizes": [
+    480,
+    960,
+    1170
+   ],
+   "alt": "",
+   "original_size": [
+    1170,
+    1158
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/BOLLINGER-pezsgo-ajandekok-3.png"
+  },
+  {
+   "n": 5,
+   "w": 1600,
+   "h": 1067,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    6000,
+    4000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-4.jpg"
+  },
+  {
+   "n": 6,
+   "w": 1600,
+   "h": 2400,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    4000,
+    6000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-5.jpg"
+  },
+  {
+   "n": 7,
+   "w": 1600,
+   "h": 2400,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    4000,
+    6000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-7.jpg"
+  },
+  {
+   "n": 8,
+   "w": 1600,
+   "h": 2400,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    4000,
+    6000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-1.jpg"
+  },
+  {
+   "n": 9,
+   "w": 1600,
+   "h": 2400,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    4000,
+    6000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-2.jpg"
+  },
+  {
+   "n": 10,
+   "w": 1024,
+   "h": 683,
+   "sizes": [
+    480,
+    960,
+    1024
+   ],
+   "alt": "",
+   "original_size": [
+    1024,
+    683
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Bollinger-Champagne-fem-pezsgos-vodor-champagneclub-3-1024x683-1.jpg"
+  },
+  {
+   "n": 11,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    1920,
+    2560
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Bollinger-Champagne-fabol-keszult-pezsgo-tarolo-doboz-2-scaled-1.jpg"
+  },
+  {
+   "n": 12,
+   "w": 1600,
+   "h": 1223,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    2048,
+    1565
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/esernyo-champagne-bollinger-francia-pezsgo-ajandek-1-2048x1565-1.jpg"
+  },
+  {
+   "n": 13,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    1920,
+    2560
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/barkellekek-pezsgos-pogharak-Bollinger-Champagne-4-scaled-1.jpg"
+  },
+  {
+   "n": 14,
+   "w": 1600,
+   "h": 1200,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    2048,
+    1536
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Bollinger-007-champagne-disztoll-ajandek-otletek-pezsgo-imadoknak-2-2048x1536-1.jpg"
+  },
+  {
+   "n": 15,
+   "w": 1422,
+   "h": 930,
+   "sizes": [
+    480,
+    960,
+    1422
+   ],
+   "alt": "",
+   "original_size": [
+    1422,
+    930
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/05/Check-out-our-Bollinger-gift-collection-of-special-collectors-items-in-the-current-offer-at-champagneclub.hu-BDPST-3-2.jpg"
+  },
+  {
+   "n": 16,
+   "w": 900,
+   "h": 601,
+   "sizes": [
+    480,
+    900
+   ],
+   "alt": "",
+   "original_size": [
+    900,
+    601
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/05/Bollinger-Champagne-pezsgokostolok-Budapesten-champagneclub.hu-BDPST-2.jpg"
+  },
+  {
+   "n": 17,
+   "w": 1000,
+   "h": 556,
+   "sizes": [
+    480,
+    960,
+    1000
+   ],
+   "alt": "",
+   "original_size": [
+    1000,
+    556
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/05/Champagne-kostolo-Budapesten-maximum-8-fo-reszere-a-Champagne-Club-ban-vagy-kulso-helyszinen-ahol-szeretne-4.png"
+  }
+ ],
+ "highlight": false,
+ "status": "sold",
+ "type": "single-bottle-coolers",
+ "house": "bollinger",
+ "year": null,
+ "era": {},
+ "period": null,
+ "materials": [],
+ "keywords": {
+  "en": "Bollinger Champagne fém pezsgős vödör",
+  "hu": "Bollinger Champagne Vintage Metal Ice Bucket"
+ }
+}

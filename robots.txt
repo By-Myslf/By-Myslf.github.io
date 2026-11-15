@@ -1,0 +1,3 @@
+# Test version – not for search engines. The real site is https://champagneclub.hu
+User-agent: *
+Disallow: /

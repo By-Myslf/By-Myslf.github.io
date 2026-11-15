@@ -22,6 +22,7 @@ OUT = ROOT / "data" / "items"
 OVR = ROOT / "data" / "overrides"
 SITE = json.loads((ROOT / "data" / "site.json").read_text())
 CUR = json.loads((ROOT / "data" / "curation.json").read_text())
+OVERRIDES = json.loads((ROOT / "data" / "overrides.json").read_text()) if (ROOT / "data" / "overrides.json").exists() else {}
 
 # ---------------------------------------------------------------- language
 HU_CHARS = set("őűáéíóöüúŐŰÁÉÍÓÖÜÚ")
@@ -35,7 +36,7 @@ def lang_of(text):
     words = re.findall(r"[a-zA-ZőűáéíóöüúŐŰÁÉÍÓÖÜÚ]+", text.lower())
     if not words:
         return None
-    hu = sum(1 for w in words if w in HU_WORDS) + 1.5 * sum(1 for c in text if c in HU_CHARS) / max(1, len(words)) * len(words) * 0.15
+    hu = sum(1 for w in words if w in HU_WORDS or any(c in HU_CHARS for c in w))
     en = sum(1 for w in words if w in EN_WORDS)
     if hu == en:
         return None
@@ -43,7 +44,7 @@ def lang_of(text):
 
 
 # ---------------------------------------------------------------- html blocks
-BLOCK = re.compile(r"<(h[1-6]|p|ul|ol|blockquote|table)\b[^>]*>(.*?)</\1>", re.S | re.I)
+BLOCK = re.compile(r"<(h[1-6]|p|pre|ul|ol|blockquote|table)\b[^>]*>(.*?)</\1>", re.S | re.I)
 TAG = re.compile(r"<[^>]+>")
 ALLOWED = re.compile(r"</?(?:strong|em|b|i|br|a|li|ul|ol|sup|sub)\b[^>]*>", re.I)
 
@@ -62,10 +63,14 @@ def tidy_inline(s):
 
 
 BOILER = [r"champagneclub", r"champagne club budapest", r"ingyenes a kiszállítás", r"kiszállítás", r"free delivery",
-          r"\bdelivery\b", r"szállítás", r"nézze meg a kínálatunkban", r"take a look at our offer", r"buborékok elillannak",
+          r"nézze meg a kínálatunkban", r"take a look at our offer", r"buborékok elillannak",
           r"bubbles fade", r"bubbles disappear", r"vegye fel a kapcsolatot", r"contact us", r"megpróbálunk beszerezni",
           r"we will try to", r"^eladó!?$", r"^for sale!?$", r"^elad[óo]\b.*\bdarab", r"webshop", r"vásárolja meg",
-          r"személyes átvétel", r"personal pickup", r"postán", r"foxpost", r"\bgls\b", r"utánvét", r"^(eladva|sold)\b"]
+          r"személyes átvétel", r"personal pickup", r"postán", r"foxpost", r"\bgls\b", r"utánvét", r"^(eladva|sold)\b", r"browse more of our", r"check out more of our",
+          r"nézze meg (a )?további", r"további .{0,40}(kiegészítő|termék|kínálat)", r"\bVIP\b.{0,60}kóstoló", r"tasting.{0,40}budapest",
+          r"^https?://", r"^www\.", r"^\[\d+\]", r"\+36", r"sursumvivere",
+          r"időpont[ -]?egyeztetés", r"champagneclub\.hu kínálat", r"nézze meg a többi", r"check out our other", r"érdeklődés és",
+          r"egyedi méretű és kialakítású", r"vasbútor", r"sisaktartó", r"bárpult", r"bar counters", r"iron furniture", r"helmet holder"]
 BOILER_RE = re.compile("|".join(BOILER), re.I)
 
 KV = re.compile(r"^([A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű'’ /().-]{2,45}?)\s*:\s+(.{1,200})$")
@@ -86,9 +91,11 @@ def blocks_of(html):
                 if t:
                     out.append({"tag": "li", "list": tag, "html": tidy_inline(li), "text": t})
             continue
-        t = text_of(inner)
-        if t:
-            out.append({"tag": tag, "html": tidy_inline(inner), "text": t})
+        pieces = re.split(r"<br\s*/?>", inner, flags=re.I) if tag in ("p", "pre") else [inner]
+        for piece in pieces:
+            t = text_of(piece)
+            if t:
+                out.append({"tag": "p" if tag == "pre" else tag, "html": tidy_inline(piece), "text": t})
     return out
 
 
@@ -131,24 +138,40 @@ def split_languages(blocks):
     return blocks
 
 
-def assemble(blocks):
+def split_at_english(blocks):
+    """Articles: Hungarian first, then the English version starting at a heading."""
+    langs = [lang_of(b["text"]) if len(b["text"].split()) >= 6 else None for b in blocks]
+    cut = len(blocks)
+    for i, b in enumerate(blocks):
+        if not b["tag"].startswith("h"):
+            continue
+        after = [lg for lg in langs[i + 1:i + 12] if lg][:6]
+        before = [lg for lg in langs[:i] if lg]
+        if len(after) >= 4 and after.count("en") >= len(after) - 1 and before and before.count("hu") > len(before) / 2:
+            cut = i
+            break
+    for i, b in enumerate(blocks):
+        b["lang"] = "hu" if i < cut else "en"
+    return blocks
+
+
+def assemble(blocks, item=True):
     """Blocks of one language -> (intro, body html, details, title guess)."""
     details, body, intro, title_guess = [], [], None, None
     for b in blocks:
         t = b["text"]
         if BOILER_RE.search(t):
             continue
-        kv = KV.match(t) if len(t) < 220 else None
+        kv = KV.match(t) if (item and len(t) < 220) else None
         if kv and b["tag"] in ("li", "p") and not t.endswith("?"):
             k, v = kv.group(1).strip(), kv.group(2).strip().rstrip(".")
             if k.lower() not in SKIP_KEYS and len(k.split()) <= 5:
                 details.append([k[0].upper() + k[1:], v])
             continue
-        if title_guess is None and b["tag"].startswith("h") or (title_guess is None and not body and len(t) < 150 and not t.endswith(".")):
-            if title_guess is None:
-                title_guess = t
-                continue
-        if len(t) < 60 and re.search(r"^(méret|műszaki adat|jellemző|dimensions|specification|details|features|technical)", t, re.I):
+        if item and title_guess is None and b["tag"].startswith("h") and not body and intro is None:
+            title_guess = t
+            continue
+        if item and len(t) < 60 and re.search(r"^(méret|műszaki adat|jellemző|dimensions|specification|details|features|technical)", t, re.I):
             continue
         if b["tag"].startswith("h"):
             # headings that only announce the details list are dropped
@@ -160,10 +183,19 @@ def assemble(blocks):
         elif b["tag"] == "blockquote":
             body.append(f"<blockquote>{b['html']}</blockquote>")
         else:
-            if intro is None and len(t) > 40:
+            if intro is None and len(t) > 80 and t.rstrip().endswith((".", "!", "”", '"')) \
+                    and not re.search(r"\d+([.,]\d+)?\s?(cm|mm)\b.*\d+([.,]\d+)?\s?(cm|mm)\b", t):
                 intro = t.lstrip("—–- ").strip()
-                continue
+                if item:
+                    continue
             body.append(f"<p>{b['html']}</p>")
+    if intro is None and item:
+        for i, part in enumerate(body):
+            txt = text_of(part)
+            if part.startswith("<p>") and len(txt) > 30 and not re.search(r"\d+([.,]\d+)?\s?(cm|mm)\b", txt):
+                intro = txt.lstrip("—–- ").strip()
+                body.pop(i)
+                break
     # wrap loose <li> runs in <ul>
     html, inlist = [], False
     for part in body:
@@ -261,6 +293,7 @@ def period_of(y):
 
 def materials_of(texts):
     blob = " " + " ".join(t.lower() for t in texts if t) + " "
+    blob = re.sub(r"ezüst\s?színű|ezüstös|silver[- ]colou?red|silver[- ]tone|silver colou?r|arany\s?színű|gold[- ]colou?red", " ", blob)
     found = []
     for m in SITE["materials"]:
         if any(k in blob for k in m["match"]):
@@ -293,6 +326,17 @@ def slugify(s, n=80):
 
 
 # ---------------------------------------------------------------- main
+PARTNER_PHOTO = re.compile(r"sursumvivere|fembutor|vasbutor|femszerkezet|lakasbutor|lakberendez", re.I)
+
+
+def keep_photos(raw):
+    """Drop the partner workshop's advert photos, except on display stands it makes."""
+    if raw["id"] in CUR.get("display_stands", []) or raw["role"] == "article":
+        photos = raw["photos"]
+    else:
+        photos = [p for p in raw["photos"] if not PARTNER_PHOTO.search(p.get("source", ""))]
+    return photos
+
 def deep_merge(a, b):
     for k, v in b.items():
         if isinstance(v, dict) and isinstance(a.get(k), dict):
@@ -319,10 +363,14 @@ def main():
         if raw["id"] in CUR.get("made_to_order", []) or re.search(r"MEGRENDELHETŐ", raw["title"], re.I):
             status = "made_to_order"
 
-        blocks = split_languages(blocks_of(raw["html"]))
+        is_item = role == "item"
+        if is_item:
+            blocks = split_languages(blocks_of(raw["html"]))
+        else:
+            blocks = split_at_english(blocks_of(raw["html"]))
         parts = {}
         for lg in ("hu", "en"):
-            parts[lg] = assemble([b for b in blocks if b["lang"] == lg])
+            parts[lg] = assemble([b for b in blocks if b["lang"] == lg], item=is_item)
         intro_hu, body_hu, det_hu, _ = parts["hu"]
         intro_en, body_en, det_en, title_en = parts["en"]
         if title_en and (len(title_en) > 160 or lang_of(title_en) == "hu"):
@@ -336,7 +384,7 @@ def main():
             "intro": {"hu": intro_hu, "en": intro_en},
             "body": {"hu": body_hu, "en": body_en},
             "details": {"hu": det_hu, "en": det_en},
-            "photos": raw["photos"],
+            "photos": keep_photos(raw),
             "highlight": raw["id"] in CUR.get("highlights", []),
         }
         if role == "page":
@@ -348,7 +396,7 @@ def main():
             year_texts = [v for k, v in det_hu + det_en if k.lower() in YEAR_KEYS] + [title_hu, title_en or ""]
             y, era = era_from(year_texts)
             e["year"], e["era"], e["period"] = y, era, period_of(y)
-            mat_texts = [v for k, v in det_hu + det_en if k.lower() in MAT_KEYS] + [title_hu, title_en or ""]
+            mat_texts = [v for k, v in det_hu + det_en if k.lower() in MAT_KEYS]
             e["materials"] = materials_of(mat_texts)
         if role != "item" and (body_en or intro_en) and not title_en:
             title_en = None
@@ -356,6 +404,8 @@ def main():
         f = OVR / f"{raw['id']}.json"
         if f.exists():
             deep_merge(e, json.loads(f.read_text()))
+        if str(raw["id"]) in OVERRIDES:
+            deep_merge(e, json.loads(json.dumps(OVERRIDES[str(raw["id"])])))
         # rebuild slug and keywords after overrides
         if e["title"].get("en"):
             base = e.get("slug_en") or slugify(e["title"]["en"])
@@ -364,17 +414,23 @@ def main():
                 slug, i = f"{base}-{i}", i + 1
             e["slug_en"] = slug
             used_slugs.add(slug)
+        # old addresses that contain a price get a clean address; the old one redirects to it
+        priced = re.sub(r"-\d{1,3}(?:-\d{3})+-?ft(?=-|$)|-\d+-?ft(?=-|$)|-\d{1,3}(?:-\d{3})+-?huf(?=-|$)", "", e["slug_hu"])
+        if priced != e["slug_hu"]:
+            e["old_slugs"] = [e["slug_hu"]]
+            e["slug_hu"] = priced.strip("-")
         e["keywords"] = {"en": e["title"].get("hu") or "", "hu": e["title"].get("en") or ""}
         if e["kind"] == "item" and e["intro"].get("en") is None and e["body"].get("en"):
             pass
         (OUT / f"{raw['id']}.json").write_text(json.dumps(e, ensure_ascii=False, indent=1))
         missing = [k for k in ("title", "intro") if not e[k].get("en")]
+        has_ovr = f.exists() or str(raw["id"]) in OVERRIDES
         report.append({
             "id": raw["id"], "kind": e["kind"], "status": e.get("status"), "type": e.get("type"), "house": e.get("house"),
             "era": e.get("era", {}).get("en"), "mat": e.get("materials"), "photos": len(e["photos"]),
             "hu": title_hu[:70], "en": (e["title"].get("en") or "")[:70],
             "det": f"{len(e['details']['hu'])}/{len(e['details']['en'] or [])}",
-            "missing_en": missing, "has_ovr": f.exists(),
+            "missing_en": missing, "has_ovr": has_ovr,
         })
     (ROOT / "data" / "normalize-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
     print(f"{len(report)} entries written to data/items")

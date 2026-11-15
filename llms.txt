@@ -1,0 +1,27 @@
+# Champagne Club
+
+> A private collection of champagne accessories – ice buckets, coolers, glasses, bar accessories and promotional pieces from the great champagne houses. Each piece has its own page in English and Hungarian. Prices are not published; enquiries about buying or selling go through the contact page.
+
+## Main pages
+- [Collection](https://champagneclub.hu/en/collection/): every piece, searchable by type, house, period, material and status
+- [Champagne houses](https://champagneclub.hu/en/champagne-houses/): the collection by maker
+- [New arrivals](https://champagneclub.hu/en/new-arrivals/)
+- [Sold archive](https://champagneclub.hu/en/sold-archive/)
+- [Collectors' guide](https://champagneclub.hu/en/collectors-guide/): history and advice
+- [Contact](https://champagneclub.hu/en/contact/)
+
+## Types
+- [Single-bottle coolers](https://champagneclub.hu/en/collection/single-bottle-coolers/)
+- [Multi-bottle coolers](https://champagneclub.hu/en/collection/multi-bottle-coolers/)
+- [Vintage & antique coolers](https://champagneclub.hu/en/collection/vintage-antique-coolers/)
+- [Champagne glasses](https://champagneclub.hu/en/collection/champagne-glasses/)
+- [Gift items](https://champagneclub.hu/en/collection/gift-items/)
+- [Special items](https://champagneclub.hu/en/collection/special-items/)
+- [Illuminated bar accessories](https://champagneclub.hu/en/collection/illuminated-bar-accessories/)
+- [Champagne sabres](https://champagneclub.hu/en/collection/champagne-sabres/)
+- [Cigar accessories](https://champagneclub.hu/en/collection/cigar-accessories/)
+- [Dummy bottles](https://champagneclub.hu/en/collection/dummy-bottles/)
+- [Display stands](https://champagneclub.hu/en/collection/display-stands/)
+
+## Hungarian version
+- [Magyar főoldal](https://champagneclub.hu/hu/)

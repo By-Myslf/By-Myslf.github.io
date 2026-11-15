@@ -38,20 +38,30 @@ QUALITY = 82
 CURRENCY = re.compile(
     r"(\d[\d\s.,]*\s?(?:\.-\s?)?(?:Ft|HUF|EUR|USD|GBP|€|£|\$)(?![a-zA-Z]))"
     r"|((?:€|£|NZ\$|US\$|\$)\s?\d)"
-    r"|(\d[\d.]*\.-)",
+    r"|(\d[\d.]*\.-)"
+    r"|(\d[\d\s.,]*\s?(?:eur[oó]\w*|forint\w*|doll[aá]r\w*|ft-?\w*\b)(?![a-z]))",
+    re.I,
 )
 TITLE_PRICE = re.compile(r"\s*[–\-]\s*\d[\d\s.]*\.?-?\s*(?:Ft|HUF)\b\.?", re.I)
 SOLD_LINE = re.compile(r"^\s*(?:ELADVA|SOLD)\s*[–\-—]", re.I)
-BLOCK = re.compile(r"<(p|li|h[1-6]|figcaption|td)\b[^>]*>.*?</\1>", re.S | re.I)
+BLOCK = re.compile(r"<(p|pre|li|h[1-6]|figcaption|td)\b[^>]*>.*?</\1>", re.S | re.I)
 TAG = re.compile(r"<[^>]+>")
 
 
 def text_of(html):
-    return re.sub(r"\s+", " ", TAG.sub(" ", html)).strip()
+    return re.sub(r"\s+", " ", htmllib.unescape(TAG.sub(" ", html))).strip()
+
+
+SOLD_SEGMENT = re.compile(r"(?:ELADVA|SOLD)\s*(?:&#8211;|&#8212;|&ndash;|[–\-—])\s*[^<\n]{0,80}", re.I)
+PHONE = re.compile(r"(?:\+36|06)[\s/-]?\d{1,2}[\s/-]?\d{3}[\s/-]?\d{3,4}[^<\n]{0,40}")
 
 
 def clean_html(html):
     removed = []
+    for rx in (SOLD_SEGMENT, PHONE):
+        for m in rx.findall(html):
+            removed.append(m[:120])
+        html = rx.sub("", html)
 
     def repl(m):
         t = text_of(m.group(0))

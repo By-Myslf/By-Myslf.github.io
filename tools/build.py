@@ -860,6 +860,9 @@ def redirects():
     sold_cat = wp_cat_slug(24)
     if sold_cat:
         rules.append((f"/category/{sold_cat}/", PATHS["sold"]["hu"]))
+    for e in ENTRIES:
+        for old in e.get("old_slugs", []):
+            rules.append((f"/{old}/", entry_path(e, "hu")))
     rules = [(o, n) for o, n in rules if o and "None" not in o]
     # GitHub Pages cannot send real redirects, so small forwarding pages are written there.
     for old, new in rules:

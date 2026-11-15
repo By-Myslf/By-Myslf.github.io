@@ -1,0 +1,449 @@
+{
+ "id": 300,
+ "kind": "item",
+ "ref": "CC-300",
+ "date": "2023-05-16",
+ "modified": "2026-11-06",
+ "slug_hu": "taittinger-champagne-pezsgozaro-dugo",
+ "slug_en": "taittinger-champagne-bottle-stopper",
+ "title": {
+  "hu": "Taittinger Champagne pezsgőzáró dugó",
+  "en": "Taittinger Champagne Bottle Stopper"
+ },
+ "intro": {
+  "hu": "Kitűnő meglepetés ajándék egy Taittinger Champagne kedvelőnek",
+  "en": "A stylish metal Champagne stopper finished in matt black."
+ },
+ "body": {
+  "hu": "",
+  "en": ""
+ },
+ "details": {
+  "hu": [],
+  "en": []
+ },
+ "photos": [
+  {
+   "n": 1,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    3024,
+    4032
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Taittinger-Champagne-stopper-for-sale-champagneclub-1.jpg"
+  },
+  {
+   "n": 2,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    3024,
+    4032
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Taittinger-Champagne-stopper-for-sale-champagneclub-2.jpg"
+  },
+  {
+   "n": 3,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    3024,
+    4032
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Taittinger-Champagne-stopper-for-sale-champagneclub-3.jpg"
+  },
+  {
+   "n": 4,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    3024,
+    4032
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Taittinger-Champagne-stopper-for-sale-champagneclub-4.jpg"
+  },
+  {
+   "n": 5,
+   "w": 1600,
+   "h": 2133,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    3024,
+    4032
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2023/05/Taittinger-Champagne-stopper-for-sale-champagneclub-5.jpg"
+  },
+  {
+   "n": 6,
+   "w": 768,
+   "h": 1024,
+   "sizes": [
+    480,
+    768
+   ],
+   "alt": "",
+   "original_size": [
+    768,
+    1024
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Taittinger-Champagne-stopper-for-sale-champagneclub-6-768x1024-1.jpg"
+  },
+  {
+   "n": 7,
+   "w": 1600,
+   "h": 2319,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    1766,
+    2560
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Onotvozetbol-keszult-Art-Deco-italhuto-jegkad-a-Taittinger-Champagne-haztol-vintage-scaled-1.jpg"
+  },
+  {
+   "n": 8,
+   "w": 1000,
+   "h": 1000,
+   "sizes": [
+    480,
+    960,
+    1000
+   ],
+   "alt": "",
+   "original_size": [
+    1000,
+    1000
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Kulonleges-dupla-magnum-Taittinger-Champagne-hutotal-champagneclub-3.jpg"
+  },
+  {
+   "n": 9,
+   "w": 1536,
+   "h": 1373,
+   "sizes": [
+    480,
+    960,
+    1536
+   ],
+   "alt": "",
+   "original_size": [
+    1536,
+    1373
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Taittinger-Half-Moon-Champagne-cooler-ice-bucket-champagneclub.hu_-1-1536x1373-2.jpg"
+  },
+  {
+   "n": 10,
+   "w": 1024,
+   "h": 1536,
+   "sizes": [
+    480,
+    960,
+    1024
+   ],
+   "alt": "",
+   "original_size": [
+    1024,
+    1536
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/hordozhato-mobil-vilagito-pezsgo-barbult-champgneclub.hu-Taittinger-1-1024x1536-1.jpg"
+  },
+  {
+   "n": 11,
+   "w": 1024,
+   "h": 1536,
+   "sizes": [
+    480,
+    960,
+    1024
+   ],
+   "alt": "",
+   "original_size": [
+    1024,
+    1536
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/CHAMPAGNE-COOLER-tinned-copper-Taittinger-first-half-of-the-20th-century-champagneclub.hu-BDPST-2-1024x1536-1.jpg"
+  },
+  {
+   "n": 12,
+   "w": 1365,
+   "h": 2048,
+   "sizes": [
+    480,
+    960,
+    1365
+   ],
+   "alt": "",
+   "original_size": [
+    1365,
+    2048
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/01/Taittinger-Champagne-purple-ice-cooler-for-sale-champagneclub-1365x2048-1.jpg"
+  },
+  {
+   "n": 13,
+   "w": 1600,
+   "h": 1066,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    2048,
+    1365
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/06/Taittinger-Champagne-Half-Moon-4-palackos-pezsgos-jegveder-champagneclub.hu-BDPST-2-2048x1365-2.jpg"
+  },
+  {
+   "n": 14,
+   "w": 1600,
+   "h": 1200,
+   "sizes": [
+    480,
+    960,
+    1600
+   ],
+   "alt": "",
+   "original_size": [
+    4032,
+    3024
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/06/Valogasson-tovabb-aktualis-Taittinger-Champagne-barfelszereleseink-es-ajandektargyaink-kozott-champagneclub.hu-BDPST.jpg"
+  },
+  {
+   "n": 15,
+   "w": 804,
+   "h": 544,
+   "sizes": [
+    480,
+    804
+   ],
+   "alt": "",
+   "original_size": [
+    804,
+    544
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/06/Pezsgokostolo-Rendeljen-TAITTINGER-termekbemutatot-csaladi-vagy-ceges-rendezvenyehez.jpg"
+  },
+  {
+   "n": 16,
+   "w": 1024,
+   "h": 683,
+   "sizes": [
+    480,
+    960,
+    1024
+   ],
+   "alt": "",
+   "original_size": [
+    1024,
+    683
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2024/06/Pezsgokostolok-Budapesten-–-Taittinger-Champagne-–-Maximum-8-fo-reszere-champagneclub-BDPST.jpg"
+  },
+  {
+   "n": 17,
+   "w": 750,
+   "h": 934,
+   "sizes": [
+    480,
+    750
+   ],
+   "alt": "",
+   "original_size": [
+    750,
+    934
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-–-Egy-pillanat-ami-orokke-tart.png"
+  },
+  {
+   "n": 18,
+   "w": 360,
+   "h": 505,
+   "sizes": [
+    360
+   ],
+   "alt": "",
+   "original_size": [
+    360,
+    505
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-–-Egy-pillanat-ami-orokke-tart-1.jpg"
+  },
+  {
+   "n": 19,
+   "w": 1024,
+   "h": 1344,
+   "sizes": [
+    480,
+    960,
+    1024
+   ],
+   "alt": "",
+   "original_size": [
+    1024,
+    1344
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/Taiittinger-ujsaghirdetesek-az-1960-as-evekbol-champagneclub.hu-1.jpg"
+  },
+  {
+   "n": 20,
+   "w": 1247,
+   "h": 1600,
+   "sizes": [
+    480,
+    960,
+    1247
+   ],
+   "alt": "",
+   "original_size": [
+    1247,
+    1600
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/Taiittinger-ujsaghirdetesek-az-1960-as-evekbol-champagneclub.hu-3.jpg"
+  },
+  {
+   "n": 21,
+   "w": 1179,
+   "h": 1600,
+   "sizes": [
+    480,
+    960,
+    1179
+   ],
+   "alt": "",
+   "original_size": [
+    1179,
+    1600
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/Taiittinger-ujsaghirdetesek-az-1960-as-evekbol-champagneclub.hu-2.jpg"
+  },
+  {
+   "n": 22,
+   "w": 645,
+   "h": 843,
+   "sizes": [
+    480,
+    645
+   ],
+   "alt": "",
+   "original_size": [
+    645,
+    843
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-–-A-Moment-That-Lasts-Forever-1.jpg"
+  },
+  {
+   "n": 23,
+   "w": 602,
+   "h": 792,
+   "sizes": [
+    480,
+    602
+   ],
+   "alt": "",
+   "original_size": [
+    602,
+    792
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-–-A-Moment-That-Lasts-Forever-2.jpg"
+  },
+  {
+   "n": 24,
+   "w": 500,
+   "h": 632,
+   "sizes": [
+    480,
+    500
+   ],
+   "alt": "",
+   "original_size": [
+    500,
+    632
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-–-A-Moment-That-Lasts-Forever-1.png"
+  },
+  {
+   "n": 25,
+   "w": 910,
+   "h": 1175,
+   "sizes": [
+    480,
+    910
+   ],
+   "alt": "",
+   "original_size": [
+    910,
+    1175
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-champagneclub.hu-3.jpg"
+  },
+  {
+   "n": 26,
+   "w": 1179,
+   "h": 1600,
+   "sizes": [
+    480,
+    960,
+    1179
+   ],
+   "alt": "",
+   "original_size": [
+    1179,
+    1600
+   ],
+   "source": "https://champagneclub.hu/wp-content/uploads/2025/05/LInstant-Taittinger-champagneclub.hu-2.jpg"
+  }
+ ],
+ "highlight": false,
+ "status": "available",
+ "type": "gift-items",
+ "house": "taittinger",
+ "year": null,
+ "era": {},
+ "period": null,
+ "materials": [],
+ "old_slugs": [
+  "taittinger-champagne-pezsgozaro-dugo-6-000-ft"
+ ],
+ "keywords": {
+  "en": "Taittinger Champagne pezsgőzáró dugó",
+  "hu": "Taittinger Champagne Bottle Stopper"
+ }
+}
