@@ -204,9 +204,12 @@
  "status": "sold",
  "type": "single-bottle-coolers",
  "house": "moet-chandon",
- "year": null,
- "era": {},
- "period": null,
+ "year": 2020,
+ "era": {
+  "en": "2020",
+  "hu": "2020"
+ },
+ "period": "2000-today",
  "materials": [],
  "types": [
   "single-bottle-coolers"

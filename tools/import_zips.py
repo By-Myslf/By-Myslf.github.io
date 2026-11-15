@@ -3,9 +3,12 @@
 
 Each ZIP holds raw WordPress posts (raw/<id>.json) and photos already converted to
 WebP at up to 1600 px wide (img/<id>/<nn>.webp). This script:
-  * removes prices and buyer locations from the text (same rules as fetch_wp.py)
+  * removes prices, buyer locations and phone numbers from the text (tools/cleaning.py)
+  * leaves out banners, logos and repeated photos
   * writes data/raw/<id>.json
-  * saves each photo in three widths under img/items/<id>/<nn>-<width>.webp
+  * saves each photo 480 and 960 px wide and in the size it arrived, under img/items/<id>/<nn>-<width>.webp
+
+With --text-only the photos already imported are left alone and only the text is read again.
 
 Usage: python3 tools/import_zips.py path/to/cc-sample-1.zip [more.zip …]
 """
@@ -20,7 +23,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_wp import IMG_TAG, clean_html, clean_title  # noqa: E402
+from cleaning import IMG_TAG, clean_html, clean_title  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"

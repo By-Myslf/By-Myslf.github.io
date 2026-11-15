@@ -5,7 +5,7 @@
  "date": "2026-10-30",
  "modified": "2026-10-30",
  "slug_hu": "piper-heidsieck-champagne-art-deco-pezsgohuto-1920-1930-as-evek-elado",
- "slug_en": "piper-heidsieck-art-deco-champagne-cooler-1920s1930s",
+ "slug_en": "piper-heidsieck-art-deco-champagne-cooler-1920s-1930s",
  "title": {
   "hu": "Piper-Heidsieck Champagne – Art Deco pezsgőhűtő, 1920–1930-as évek",
   "en": "Piper-Heidsieck Art Deco Champagne Cooler, 1920s–1930s"
@@ -230,10 +230,10 @@
  "status": "available",
  "type": "vintage-antique-coolers",
  "house": "piper-heidsieck",
- "year": 1930,
+ "year": 1920,
  "era": {
-  "en": "1930s",
-  "hu": "1930-as évek"
+  "en": "1920s–1930s",
+  "hu": "1920–30-as évek"
  },
  "period": "1900-1945",
  "materials": [

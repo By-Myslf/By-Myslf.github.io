@@ -5,7 +5,7 @@
  "date": "2026-11-06",
  "modified": "2026-11-06",
  "slug_hu": "champagne-pommery-monumentalis-francia-on-pezsgohuto-gazdag-szecesszios-dombormuvekkel-1950-60-korul",
- "slug_en": "pommery-vintage-french-pewter-champagne-cooler-with-art-nouveau-reliefs-c-195060",
+ "slug_en": "pommery-vintage-french-pewter-champagne-cooler-with-art-nouveau-reliefs-c-1950",
  "title": {
   "hu": "CHAMPAGNE POMMERY – Francia ón pezsgőhűtő, gazdag szecessziós domborművekkel, 1950–60 körül",
   "en": "Pommery Vintage French Pewter Champagne Cooler with Art Nouveau Reliefs (c. 1950–60)"
@@ -448,8 +448,8 @@
  "house": "pommery",
  "year": 1950,
  "era": {
-  "en": "1950s",
-  "hu": "1950-es évek"
+  "en": "1950s–1960s",
+  "hu": "1950–60-as évek"
  },
  "period": "1946-1979",
  "materials": [

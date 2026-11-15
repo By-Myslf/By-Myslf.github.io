@@ -18,6 +18,7 @@ import shutil
 import sys
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote_plus
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -25,7 +26,6 @@ LIVE = "--live" in sys.argv
 SITE = json.loads((DATA / "site.json").read_text())
 BASE_URL = SITE["site_url"]
 TEMPLATE = (ROOT / "templates" / "base.html").read_text()
-TODAY = date.today().isoformat()
 
 # Folders and files this script creates (removed and rebuilt each time).
 GENERATED_DIRS = ["en", "hu", "category", "tag"]
@@ -162,8 +162,6 @@ ICON = {
 # ---------------------------------------------------------------------------
 TYPES = {t["key"]: t for t in SITE["types"]}
 HOUSES = {h["key"]: h for h in SITE["houses"]}
-PERIODS = {p["key"]: p for p in SITE["periods"]}
-MATERIALS = {m["key"]: m for m in SITE["materials"]}
 STATUSES = {s["key"]: s for s in SITE["statuses"]}
 
 ENTRIES = [json.loads(p.read_text()) for p in sorted((DATA / "items").glob("*.json"))]
@@ -281,25 +279,30 @@ def card_meta(e, lang):
     return " · ".join(b for b in bits if b)
 
 
-def badge(e, lang, new_ids=()):
+# The newest pieces still in the collection carry a "New" badge wherever their card is shown.
+NEW_COUNT = 8
+NEW_IDS = {e["id"] for e in [x for x in ITEMS if x["status"] != "sold"][:NEW_COUNT]}
+
+
+def badge(e, lang):
     st = e["status"]
     if st in ("sold", "reserved", "made_to_order"):
         return f'<span class="badge badge-{st}">{esc(status_label(st, lang))}</span>'
-    if e["id"] in new_ids:
+    if e["id"] in NEW_IDS:
         return f'<span class="badge badge-new">{esc(S[lang]["new_badge"])}</span>'
     return ""
 
 
-def card(e, lang, new_ids=()):
+def card(e, lang):
     return (f'<a class="card" href="{entry_path(e, lang)}">'
-            f'<div class="frame ratio-45">{badge(e, lang, new_ids)}{img_tag(e, lang, "(max-width: 600px) 90vw, 300px")}</div>'
+            f'<div class="frame ratio-45">{badge(e, lang)}{img_tag(e, lang, "(max-width: 600px) 90vw, 300px")}</div>'
             f'<span class="small-caps card-house">{esc(house_name(e.get("house"), lang))}</span>'
             f'<span class="card-title">{esc(e["title"][lang])}</span>'
             f'<span class="card-meta">{esc(card_meta(e, lang))}</span></a>')
 
 
-def grid(entries, lang, new_ids=()):
-    return '<div class="grid">' + "".join(card(e, lang, new_ids) for e in entries) + "</div>"
+def grid(entries, lang):
+    return '<div class="grid">' + "".join(card(e, lang) for e in entries) + "</div>"
 
 
 def crumbs(lang, trail):
@@ -453,7 +456,6 @@ def new_arrivals(n=8):
 
 def build_home(lang):
     s = S[lang]
-    new_ids = {e["id"] for e in new_arrivals(8)}
     hl = [e for e in ITEMS if e.get("highlight") and e.get("photos")]
     hero = hl[0] if hl else (ITEMS[0] if ITEMS else None)
 
@@ -534,7 +536,7 @@ def build_home(lang):
 <section class="section section-alt"><div class="wrap">
 <div class="section-head"><div><p class="eyebrow">{esc(s['recent'])}</p><h2>{esc(s['nav']['new'])}</h2></div>
 <a class="link-line" href="{PATHS['new'][lang]}">{esc(s['see_new'])}</a></div>
-{grid(new_arrivals(8), lang)}</div></section>
+{grid(new_arrivals(NEW_COUNT), lang)}</div></section>
 
 <section class="section" style="text-align:center"><div class="wrap">
 <p class="eyebrow">{esc(s['houses_eyebrow'])}</p><h2 style="font-size:clamp(34px,4vw,44px);margin-bottom:40px">{esc(s['nav']['houses'])}</h2>
@@ -607,7 +609,9 @@ def build_collection(lang):
             "house": e.get("house") or "", "houseName": house_name(e.get("house"), lang),
             "type": types_of(e), "typeName": " / ".join(type_name(t, lang) for t in types_of(e)),
             "period": e.get("period") or "", "material": e.get("materials", []), "status": e["status"],
-            "badge": status_label(e["status"], lang) if e["status"] != "available" else "",
+            "badge": (status_label(e["status"], lang) if e["status"] != "available"
+                      else s["new_badge"] if e["id"] in NEW_IDS else ""),
+            "badgeClass": e["status"] if e["status"] != "available" else "new" if e["id"] in NEW_IDS else "",
             "year": e.get("year"), "date": e["date"], "meta": card_meta(e, lang),
             "img": photo_src(e, p, 480) if p else "", "srcset": srcset(e, p) if p else "", "alt": photo_alt(e, lang),
             "keywords": e.get("keywords", {}).get(lang, ""),
@@ -618,10 +622,9 @@ def build_collection(lang):
     target.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
 
 
-def build_listing(lang, key, path_map, title, intro, entries, trail_parent=None, new_ids=()):
-    s = S[lang]
+def build_listing(lang, key, path_map, title, intro, entries, trail_parent=None):
     trail = ([trail_parent] if trail_parent else []) + [(title, None)]
-    body = page_head(lang, title, intro, trail) + f'<section class="wrap" style="padding-bottom:96px">{grid(entries, lang, new_ids)}</section>'
+    body = page_head(lang, title, intro, trail) + f'<section class="wrap" style="padding-bottom:96px">{grid(entries, lang)}</section>'
     ld = [crumbs_ld(lang, [(t, p) for t, p in trail[:-1]] + [(title, path_map[lang])]),
           {"@context": "https://schema.org", "@type": "CollectionPage", "name": title, "url": BASE_URL + path_map[lang],
            "inLanguage": lang, "hasPart": [{"@type": "Product", "name": e["title"][lang], "url": BASE_URL + entry_path(e, lang)} for e in entries[:50]]}]
@@ -709,7 +712,7 @@ def build_item(e, lang):
     dl = "".join(f'<div class="details-group"><dt>{v}</dt></div>' if k == "#" else f"<div><dt>{k}</dt><dd>{v}</dd></div>"
                  for k, v in details)
 
-    enquire = PATHS["contact"][lang] + "?item=" + esc(f'{e["ref"]} – {title}').replace(" ", "+")
+    enquire = PATHS["contact"][lang] + "?item=" + quote_plus(f'{e["ref"]} – {title}')
     rel_kind, rel = related_for(e)
     rel_title = f'{s["more_from"]} {house_name(e["house"], lang)}' if rel_kind == "house" else s["similar"]
     rel_link = (f'<a class="link-line" href="{house_path(e["house"], lang)}">{esc(s["view_house"])}</a>' if rel_kind == "house" else
@@ -899,8 +902,12 @@ def redirects():
              "RewriteRule ^wp-sitemap.*\\.xml$ /sitemap.xml [R=301,L]",
              "RewriteCond %{QUERY_STRING} ^p=([0-9]+)$", "RewriteRule ^$ / [R=301,L,QSD]",
              "</IfModule>", ""]
+    # RedirectMatch with ^…$ matches the whole address. A plain "Redirect" matches the beginning only and would
+    # send /category/x/page/2/ to a page that does not exist.
     for old, new in rules:
-        lines.append(f"Redirect 301 {old} {new}")
+        rx = re.sub(r"([.^$*+?()\[\]{}|\\])", r"\\\1", old.rstrip("/"))
+        pages = "(?:/page/[0-9]+)?" if old.startswith(("/category/", "/tag/")) else ""
+        lines.append(f"RedirectMatch 301 ^{rx}{pages}/?$ {new}")
     lines += ["", "<IfModule mod_expires.c>", "ExpiresActive On",
               'ExpiresByType image/webp "access plus 1 year"', 'ExpiresByType font/woff2 "access plus 1 year"',
               'ExpiresByType text/css "access plus 1 week"', 'ExpiresByType application/javascript "access plus 1 week"',
@@ -1054,7 +1061,7 @@ def main():
     for t in SITE["types"]:
         if any(t["key"] in types_of(e) for e in ITEMS):
             alt_pairs.append((type_path(t["key"], "en"), type_path(t["key"], "hu")))
-    for k in {e["house"] for e in ITEMS if e.get("house")}:
+    for k in sorted({e["house"] for e in ITEMS if e.get("house")}):
         alt_pairs.append((house_path(k, "en"), house_path(k, "hu")))
     for e in ITEMS:
         alt_pairs.append((entry_path(e, "en"), entry_path(e, "hu")))

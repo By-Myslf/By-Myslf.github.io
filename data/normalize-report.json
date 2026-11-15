@@ -39,7 +39,7 @@
   "status": "sold",
   "type": "single-bottle-coolers",
   "house": "moet-chandon",
-  "era": null,
+  "era": "2020",
   "mat": [],
   "photos": 11,
   "hu": "Moët & Chandon Champagne jeges veder",
@@ -305,7 +305,7 @@
   "status": "available",
   "type": "vintage-antique-coolers",
   "house": "monopole-heidsieck",
-  "era": "1930",
+  "era": "1930s",
   "mat": [
    "pewter",
    "metal"
@@ -490,7 +490,7 @@
   "status": "available",
   "type": "champagne-sabres",
   "house": "canard-duchene",
-  "era": "1960",
+  "era": "1960–1970",
   "mat": [
    "steel",
    "metal",
@@ -760,7 +760,7 @@
   "status": "available",
   "type": "vintage-antique-coolers",
   "house": "charles-heidsieck",
-  "era": "1940s",
+  "era": "1930s–1940s",
   "mat": [
    "silver",
    "pewter",
@@ -811,7 +811,7 @@
   "status": "available",
   "type": "artwork",
   "house": "louis-roederer",
-  "era": "1960",
+  "era": "1960s–1970s",
   "mat": [
    "glass"
   ],
@@ -828,7 +828,7 @@
   "status": "available",
   "type": "vintage-antique-coolers",
   "house": "piper-heidsieck",
-  "era": "1930s",
+  "era": "1920s–1930s",
   "mat": [
    "metal"
   ],
@@ -978,7 +978,7 @@
   "status": "available",
   "type": "vintage-antique-coolers",
   "house": "pommery",
-  "era": "1950s",
+  "era": "1950s–1960s",
   "mat": [
    "pewter"
   ],

@@ -5,7 +5,7 @@
  "date": "2026-10-16",
  "modified": "2026-11-05",
  "slug_hu": "louis-roederer-reklamtukor-jose-simont-grafikaja-1960-70-es-evek-75-x-57-cm-elado",
- "slug_en": "louis-roederer-advertising-mirror-artwork-by-jose-simont-1960s1970s",
+ "slug_en": "louis-roederer-advertising-mirror-artwork-by-jose-simont-1960s-1970s",
  "title": {
   "hu": "Louis Roederer reklámtükör – José Simont grafikája – 1960–70-es évek – 75 × 57 cm",
   "en": "Louis Roederer Advertising Mirror – Artwork by José Simont – 1960s–1970s"
@@ -316,8 +316,8 @@
  "house": "louis-roederer",
  "year": 1960,
  "era": {
-  "en": "1960",
-  "hu": "1960"
+  "en": "1960s–1970s",
+  "hu": "1960–70-es évek"
  },
  "period": "1946-1979",
  "materials": [

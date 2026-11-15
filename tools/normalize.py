@@ -6,7 +6,7 @@ For each post it:
   * picks out the details lines (maker, material, dimensions, condition, …)
   * works out the type, champagne house, status, period and materials
   * removes shop phrases (delivery offers, slogans) that do not belong on a collectors' site
-Manual corrections and translations in data/overrides/<id>.json are applied last
+Manual corrections and translations in data/overrides.json (keyed by post id) are applied last
 ("drop_photos": [numbers] there leaves out photos that show other items;
 "contents": [{"qty", "en", "hu", "type"}] describes the pieces of a set;
 "also_types": [keys] puts a single piece into more categories (e.g. an illuminated cooler);
@@ -24,7 +24,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"
 OUT = ROOT / "data" / "items"
-OVR = ROOT / "data" / "overrides"
 SITE = json.loads((ROOT / "data" / "site.json").read_text())
 CUR = json.loads((ROOT / "data" / "curation.json").read_text())
 OVERRIDES = json.loads((ROOT / "data" / "overrides.json").read_text()) if (ROOT / "data" / "overrides.json").exists() else {}
@@ -51,7 +50,6 @@ def lang_of(text):
 # ---------------------------------------------------------------- html blocks
 BLOCK = re.compile(r"<(h[1-6]|p|pre|ul|ol|blockquote|table)\b[^>]*>(.*?)</\1>", re.S | re.I)
 TAG = re.compile(r"<[^>]+>")
-ALLOWED = re.compile(r"</?(?:strong|em|b|i|br|a|li|ul|ol|sup|sub)\b[^>]*>", re.I)
 
 
 def text_of(s):
@@ -173,7 +171,6 @@ SKIP_KEYS = {"márka", "brand", "pezsgőház", "champagne house", "house"}
 YEAR_KEYS = {"készítés ideje", "gyártás ideje", "gyártási év", "évjárat", "kor", "korszak", "időszak", "datálás", "kiadás éve",
              "year", "period", "date", "era", "age", "circa", "production year", "year of production", "dating", "release year", "edition"}
 MAT_KEYS = {"anyag", "anyaga", "material", "materials", "anyagok"}
-COND_KEYS = {"állapot", "condition"}
 
 
 def blocks_of(html):
@@ -396,20 +393,57 @@ def guess_house(title, tags):
     return "other" if 65 in tags else None
 
 
-YEAR_RE = re.compile(r"(?<!\d)(1[89]\d\d|20[0-2]\d)(?!\d)")
-DECADE_HU = re.compile(r"(1[89]\d0|20[0-2]0)\s*[-–]?\s*(?:as|es|ás|és)\b")
-DECADE_EN = re.compile(r"(1[89]\d0|20[0-2]0)['’]?s\b")
-HU_SUFFIX = {"00": "es", "10": "es", "20": "as", "30": "as", "40": "es", "50": "es", "60": "as", "70": "es", "80": "as", "90": "es"}
+_YEAR = r"(?:1[89]\d\d|20[0-2]\d)"
+_DEC = r"(?:1[89]\d0|20[0-2]0)"
+_DASH = r"\s*[-–—/]\s*"
+# Hungarian decade ending: "1960-as", "1930’as", "1960as" – but not "2020 és 2021" (és = and)
+_HU_END = r"(?:\s*[-–'’]\s*(?:as|es|ás|és)|(?:as|es))\b"
+YEAR_RE = re.compile(rf"(?<!\d)({_YEAR})(?!\d)")
+DECADE_HU = re.compile(rf"(?<!\d)({_DEC}){_HU_END}")
+DECADE_EN = re.compile(rf"(?<!\d)({_DEC})['’]?s\b")
+# two decades: "1960s–1970s", "1960s–70s", "1960–70-es évek", "1920–1930-as évek"
+DECADES_EN = re.compile(rf"(?<!\d)({_DEC})['’]?s{_DASH}({_DEC}|\d0)['’]?s\b")
+DECADES_HU = re.compile(rf"(?<!\d)({_DEC}){_DASH}({_DEC}|\d0){_HU_END}")
+# two years: "1960–1970", or short "1950–60" (no spaces, so that "2007 – 75 cl" is not read as a range)
+YEARS_RE = re.compile(rf"(?<!\d)({_YEAR})\s*[-–—]\s*({_YEAR})(?!\d)|(?<!\d)({_YEAR})[-–—](\d\d)(?![\d-])")
+_HU_TENS = {10: "es", 20: "as", 30: "as", 40: "es", 50: "es", 60: "as", 70: "es", 80: "as", 90: "es"}
+
+
+def hu_suffix(y):
+    """The ending of a Hungarian decade: 1960-as, 1970-es; 1900-as and 1800-as, but 2000-es."""
+    if y % 100 == 0:
+        return "es" if y % 1000 == 0 else "as"
+    return _HU_TENS[y % 100]
+
+
+def _second(first, second):
+    """The second number of a range, written in full: 1960 + "70" -> 1970."""
+    return int(second) if len(second) == 4 else (first // 100) * 100 + int(second)
 
 
 def era_from(texts):
+    """(year used for sorting and the period filter, label in both languages) from the first dated text.
+    A range keeps both ends in the label; its first year is the one used for sorting."""
     for t in texts:
         if not t:
             continue
+        m = DECADES_EN.search(t) or DECADES_HU.search(t)
+        if m:
+            y1 = int(m.group(1))
+            y2 = _second(y1, m.group(2))
+            if y2 > y1:
+                hu2 = str(y2)[2:] if y1 // 100 == y2 // 100 else str(y2)
+                return y1, {"en": f"{y1}s–{y2}s", "hu": f"{y1}–{hu2}-{hu_suffix(y2)} évek"}
+        m = YEARS_RE.search(t)
+        if m:
+            y1 = int(m.group(1) or m.group(3))
+            y2 = _second(y1, m.group(2) or m.group(4))
+            if y2 > y1:
+                return y1, {"en": f"{y1}–{y2}", "hu": f"{y1}–{y2}"}
         m = DECADE_EN.search(t) or DECADE_HU.search(t)
         if m:
             y = int(m.group(1))
-            return y, {"en": f"{y}s", "hu": f"{y}-{HU_SUFFIX[str(y)[2:]]} évek"}
+            return y, {"en": f"{y}s", "hu": f"{y}-{hu_suffix(y)} évek"}
         m = YEAR_RE.search(t)
         if m:
             y = int(m.group(1))
@@ -470,10 +504,6 @@ def tidy_materials(found):
     return [m["key"] for m in SITE["materials"] if m["key"] in found]
 
 
-def materials_of(texts, material_line=False):
-    return tidy_materials([k for t in texts if t for k in mats_in(t, material_line)])
-
-
 def detect_materials(e):
     """Materials from, in order: the Material line, the title, phrases in the description, the kind of item.
     Returns (keys, {key: where it was found}) – the second part goes into data/materials-report.json."""
@@ -505,11 +535,12 @@ def clean_title(t):
     t = htmllib.unescape(t)
     t = re.sub(r"^\s*SOLD\s*/\s*ELADVA\s*[–\-—]\s*", "", t, flags=re.I)
     t = re.sub(r"\s*[–\-—]\s*(ELADÓ|FOGLALT|MEGRENDELHETŐ|SOLD|ELADVA)\s*$", "", t, flags=re.I)
-    t = re.sub(r"\s*[–\-—]\s*(ELADÓ|FOGLALT|MEGRENDELHETŐ)\s*$", "", t, flags=re.I)
+    t = re.sub(r"\s*[–\-—]\s*(ELADÓ|FOGLALT|MEGRENDELHETŐ)\s*$", "", t, flags=re.I)  # a second ending, e.g. "– ELADÓ – FOGLALT"
     return re.sub(r"\s+", " ", t).strip(" –-")
 
 
 def slugify(s, n=80):
+    s = re.sub(r"[\u2010-\u2015\u2212\u00d7]+", "-", s)  # "6–8 bottles" -> 6-8-bottles, not 68-bottles
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
     if len(s) > n:
@@ -625,20 +656,17 @@ def main():
             e["status"] = status
             e["type"] = "display-stands" if raw["id"] in CUR.get("display_stands", []) else guess_type(title_hu, raw["categories"])
             e["house"] = guess_house(title_hu + " " + (title_en or ""), raw["tags"])
-            year_texts = [v for k, v in det_hu + det_en if k.lower() in YEAR_KEYS] + [title_hu, title_en or ""]
-            y, era = era_from(year_texts)
-            e["year"], e["era"], e["period"] = y, era, period_of(y)
-            mat_texts = [v for k, v in det_hu + det_en if k.lower() in MAT_KEYS]
-            e["materials"] = materials_of(mat_texts)
-        if role != "item" and (body_en or intro_en) and not title_en:
-            title_en = None
+            # worked out further down, once the hand corrections are in
+            e["year"], e["era"], e["period"], e["materials"] = None, {}, None, []
 
-        f = OVR / f"{raw['id']}.json"
-        hand = (json.loads(f.read_text()) if f.exists() else {}) | OVERRIDES.get(str(raw["id"]), {})
-        if f.exists():
-            deep_merge(e, json.loads(f.read_text()))
-        if str(raw["id"]) in OVERRIDES:
-            deep_merge(e, json.loads(json.dumps(OVERRIDES[str(raw["id"])])))
+        hand = OVERRIDES.get(str(raw["id"]), {})
+        if hand:
+            deep_merge(e, json.loads(json.dumps(hand)))  # a copy, so the overrides themselves stay as they are
+        # period: from the dated details lines, then the titles ("year" / "era" / "period" in the overrides win)
+        if e["kind"] == "item" and not {"year", "era", "period"} & set(hand):
+            dated = [v for lg in ("hu", "en") for k, v in (e["details"].get(lg) or []) if k.lower() in YEAR_KEYS]
+            y, era = era_from(dated + [e["title"].get("hu"), e["title"].get("en")])
+            e["year"], e["era"], e["period"] = y, era, period_of(y)
         # photos that show other items (listed by number in the overrides as "drop_photos")
         drop = set(e.pop("drop_photos", []))
         set_checked = e.pop("set_checked", False)
@@ -673,11 +701,9 @@ def main():
             e["old_slugs"] = [e["slug_hu"]]
             e["slug_hu"] = priced.strip("-")
         e["keywords"] = {"en": e["title"].get("hu") or "", "hu": e["title"].get("en") or ""}
-        if e["kind"] == "item" and e["intro"].get("en") is None and e["body"].get("en"):
-            pass
         (OUT / f"{raw['id']}.json").write_text(json.dumps(e, ensure_ascii=False, indent=1))
         missing = [k for k in ("title", "intro") if not e[k].get("en")]
-        has_ovr = f.exists() or str(raw["id"]) in OVERRIDES
+        has_ovr = bool(hand)
         cleaning_report.append({"id": raw["id"], "title": e["title"].get("en") or e["title"].get("hu"),
                                 "copy_step_removed": raw.get("removed_for_privacy", 0),
                                 "dropped": {lg: v for lg, v in dropped.items() if v}})

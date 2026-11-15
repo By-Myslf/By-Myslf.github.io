@@ -47,9 +47,8 @@ p { margin: 0 0 1em; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 26px;
   font-size: 13px; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--ink); cursor: pointer; background: transparent; }
 .btn-dark { background: var(--ink); color: var(--ground); }
-.btn-dark:hover { background: #33312c; color: var(--ground); }
 .btn:hover { color: var(--gold-text); }
-.btn-dark:hover { color: var(--ground); }
+.btn-dark:hover { background: #33312c; color: var(--ground); }
 
 /* Top bar and header */
 .topbar { border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }

@@ -181,7 +181,7 @@
       });
     }
     function card(it) {
-      var badge = it.badge ? '<span class="badge badge-' + esc(it.status === "sold" ? "sold" : it.status) + '">' + esc(it.badge) + "</span>" : "";
+      var badge = it.badge ? '<span class="badge badge-' + esc(it.badgeClass || it.status) + '">' + esc(it.badge) + "</span>" : "";
       return '<a class="card" href="' + esc(it.url) + '"><div class="frame ratio-45">' + badge +
         (it.img ? '<img src="' + esc(it.img) + '" srcset="' + esc(it.srcset) + '" sizes="(max-width: 600px) 90vw, 300px" alt="' + esc(it.alt) + '" loading="lazy" width="480" height="600">' : "") +
         '</div><span class="small-caps card-house">' + esc(it.houseName) + '</span><span class="card-title">' + esc(it.title) +
