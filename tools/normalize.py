@@ -59,24 +59,82 @@ def text_of(s):
 
 
 def tidy_inline(s):
-    """Keep only simple inline formatting; drop classes, styles and old links."""
+    """Keep only simple inline formatting and the address of links; drop classes and styles."""
+    s = re.sub(r'<a\b[^>]*?href="(https?://[^"]+)"[^>]*>(.*?)</a>', lambda m: f"\x01{m.group(1)}\x02{m.group(2)}\x03", s,
+               flags=re.S | re.I)
     s = re.sub(r"<a\b[^>]*>(.*?)</a>", r"\1", s, flags=re.S | re.I)
     s = re.sub(r"<(?!/?(?:strong|em|b|i|br|li|sup|sub)\b)[^>]+>", "", s)
+    s = re.sub("\x01([^\x02]*)\x02(.*?)\x03", lambda m: f'<a href="{m.group(1)}">{m.group(2)}</a>', s, flags=re.S)
     s = re.sub(r"<(strong|em|b|i|li|sup|sub)\b[^>]*>", r"<\1>", s)
     s = s.replace("&nbsp;", " ")
     return re.sub(r"\s+", " ", s).strip()
 
 
-BOILER = [r"champagneclub", r"champagne club budapest", r"ingyenes a kiszállítás", r"kiszállítás", r"free delivery",
-          r"nézze meg a kínálatunkban", r"take a look at our offer", r"buborékok elillannak",
-          r"bubbles fade", r"bubbles disappear", r"vegye fel a kapcsolatot", r"contact us", r"megpróbálunk beszerezni",
-          r"we will try to", r"^eladó!?$", r"^for sale!?$", r"^elad[óo]\b.*\bdarab", r"webshop", r"vásárolja meg",
-          r"személyes átvétel", r"personal pickup", r"postán", r"foxpost", r"\bgls\b", r"utánvét", r"^(eladva|sold)\b", r"browse more of our", r"check out more of our",
-          r"nézze meg (a )?további", r"további .{0,40}(kiegészítő|termék|kínálat)", r"\bVIP\b.{0,60}kóstoló", r"tasting.{0,40}budapest",
-          r"^https?://", r"^www\.", r"^\[\d+\]", r"\+36", r"sursumvivere",
-          r"időpont[ -]?egyeztetés", r"champagneclub\.hu kínálat", r"nézze meg a többi", r"check out our other", r"érdeklődés és",
-          r"egyedi méretű és kialakítású", r"vasbútor", r"sisaktartó", r"bárpult", r"bar counters", r"iron furniture", r"helmet holder"]
-BOILER_RE = re.compile("|".join(BOILER), re.I)
+# --- what the text cleaning leaves out (agreed with the user: remove as little as possible) ---
+# 1. prices (also removed when copying; checked again here)
+PRICE_RX = re.compile(r"\d[\d\s.,]*\s?(?:\.-\s?)?(?:Ft|HUF|EUR|USD|GBP|€|£)(?![a-zA-Z])|(?:€|£|NZ\$|US\$)\s?\d|"
+                      r"\d[\d\s.,]*\s?(?:eur[oó]\w*|forint\w*)(?![a-z])", re.I)
+# 2. direct references to other websites: a line that is (almost) only a web address
+WEB_RX = re.compile(r"(?:https?://|www\.)\S+|\b[\w-]+(?:\.[\w-]+)*\.(?:hu|com|fr|de|it|uk|net|org|eu|co|at|ch|be|nl)\b(?:/\S*)?", re.I)
+# 3. tasting events offered by Champagne Club (not tastings mentioned in a description)
+TASTING_RX = re.compile(
+    r"max(?:imum|\.)?\s*8\s*(?:f[őo]|people|persons|guests)|pezsgőkóstoló\w*\s+budapest|kóstoló\w*\s+budapesten|"
+    r"tastings?\s+in\s+budapest|privát\s+pezsgőkóstoló|private\s+(?:champagne\s+)?tasting|pezsgőkóstoló\s+keretében|"
+    r"(?:rendeljen|rendelhet|order)\b.{0,80}(?:kóstoló|tasting)|(?:hívja el|invite)\b.{0,60}(?:kóstoló|tasting)|"
+    r"érdeklődés és időpont[ -]?egyeztetés|bárjában,? vagy külső helyszínen|kertjében,? vagy a teraszán", re.I)
+# 4. the slogan, which is now shown once in the footer
+SLOGAN_RX = re.compile(r"buborékok\s+(?:eltűnnek|elmúlnak|elillannak)|bubbles\s+(?:fade|vanish|disappear)", re.I)
+SOURCES_HEAD = re.compile(r"^(?:forrásjegyzék|források|felhasznált források|irodalom|references|sources|bibliography)\b", re.I)
+
+
+def other_websites(text):
+    return [m for m in WEB_RX.findall(text) if "champagneclub" not in m.lower()]
+
+
+def drop_reason(t, in_sources=False):
+    """Why a block of text is left out, or None to keep it."""
+    if PRICE_RX.search(t):
+        return "price"
+    if in_sources:
+        return None
+    if other_websites(t):
+        rest = re.sub(r"[\W_]+", " ", WEB_RX.sub(" ", t)).strip()
+        if len(rest) < 60:
+            return "website: " + other_websites(t)[0]
+    if TASTING_RX.search(t):
+        return "tasting: " + TASTING_RX.search(t).group(0)
+    if SLOGAN_RX.search(t) and len(t) < 120:
+        return "slogan (now in the footer)"
+    return None
+
+
+def fix_links(h, keep_external):
+    """Old champagneclub.hu links become cc-old: links (pointed at the new pages at build time);
+    other links are kept only in articles (their sources)."""
+    from urllib.parse import urlparse
+
+    def repl(m):
+        url, inner = m.group(1), m.group(2)
+        u = urlparse(htmllib.unescape(url))
+        if "champagneclub.hu" in u.netloc.lower():
+            return f'<a href="cc-old:{u.path or "/"}">{inner}</a>'
+        if keep_external and text_of(inner):
+            return f'<a href="{url}" rel="noopener">{inner}</a>'
+        return inner
+    return re.sub(r'<a href="([^"]+)">(.*?)</a>', repl, h, flags=re.S)
+
+
+# Label words of real specification lines. A long "Label: text" line whose label has none of these
+# (e.g. a workshop's "Lakberendezési tárgyak: fém tárolók, …") stays in the description instead of the details table.
+SPEC_WORDS = re.compile(r"anyag|méret|magasság|szélesség|mélység|átmérő|súly|űrtartalom|kapacitás|állapot|gyártó|tervez|"
+                        r"származás|évjárat|kiadás|tárolás|szín|csomagolás|model|típus|kor\b|darab|mennyiség|tartalm|"
+                        r"tartozék|doboz|tok\b|táska|megjegyzés|jelzés|felirat|"
+                        r"storage|includ|content|alcohol|alkohol|champagne|edition|vintage|style|grape|szőlő|region|régió|"
+                        r"condition|size|height|width|depth|diameter|weight|capacity|material|colou?r|finish|case|box|bag|"
+                        r"accessor|packag|mark|note|origin|maker|manufactur|design|year|date|period|dimension", re.I)
+# "browse more" lines are kept, but never used as the short summary under the title
+NOT_INTRO = re.compile(r"champagneclub\.hu|>>>|^(nézze meg|tekintse meg|böngésszen|válogasson|check out|browse|see more|"
+                       r"take a look)|ingyenes a kiszállítás|free delivery", re.I)
 
 KV = re.compile(r"^([A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű'’ /().-]{2,45}?)\s*:\s+(.{1,200})$")
 SKIP_KEYS = {"márka", "brand", "pezsgőház", "champagne house", "house"}
@@ -164,16 +222,24 @@ def assemble(blocks, item=True, dropped=None):
     """Blocks of one language -> (intro, body html, details, title guess).
     Text left out as shop/advert wording is added to `dropped` with the rule that caught it."""
     details, body, intro, title_guess = [], [], None, None
+    in_sources = False
     for b in blocks:
         t = b["text"]
-        hit = BOILER_RE.search(t)
-        if hit:
+        if not item and (b["tag"].startswith("h") and SOURCES_HEAD.match(t)):
+            in_sources = True  # an article's source list: kept whole, with its links
+        why = drop_reason(t, in_sources or (not item and re.match(r"^(\[\d+\]|forrás|source)", t, re.I)))
+        if why:
             if dropped is not None:
-                dropped.append({"text": t, "rule": hit.group(0)})
+                dropped.append({"text": t, "rule": why})
             continue
+        b = dict(b, html=fix_links(b["html"], keep_external=not item))
         kv = KV.match(t) if (item and len(t) < 220) else None
         if kv and b["tag"] in ("li", "p") and not t.endswith("?"):
             k, v = kv.group(1).strip(), kv.group(2).strip().rstrip(".")
+            # long "Label: text" lines that are not specifications (e.g. a workshop's list of services) stay as text
+            if len(v) > 100 and not SPEC_WORDS.search(k):
+                body.append(f"<p>{b['html']}</p>")
+                continue
             if k.lower() not in SKIP_KEYS and len(k.split()) <= 5:
                 details.append([k[0].upper() + k[1:], v])
             continue
@@ -192,7 +258,7 @@ def assemble(blocks, item=True, dropped=None):
         elif b["tag"] == "blockquote":
             body.append(f"<blockquote>{b['html']}</blockquote>")
         else:
-            if intro is None and len(t) > 80 and t.rstrip().endswith((".", "!", "”", '"')) \
+            if intro is None and len(t) > 80 and t.rstrip().endswith((".", "!", "”", '"')) and not NOT_INTRO.search(t) \
                     and not re.search(r"\d+([.,]\d+)?\s?(cm|mm)\b.*\d+([.,]\d+)?\s?(cm|mm)\b", t):
                 intro = t.lstrip("—–- ").strip()
                 if item:
@@ -201,7 +267,8 @@ def assemble(blocks, item=True, dropped=None):
     if intro is None and item:
         for i, part in enumerate(body):
             txt = text_of(part)
-            if part.startswith("<p>") and len(txt) > 30 and not re.search(r"\d+([.,]\d+)?\s?(cm|mm)\b", txt):
+            if part.startswith("<p>") and len(txt) > 30 and not NOT_INTRO.search(txt) \
+                    and not re.search(r"\d+([.,]\d+)?\s?(cm|mm)\b", txt):
                 intro = txt.lstrip("—–- ").strip()
                 body.pop(i)
                 break

@@ -513,5 +513,9 @@
  "retired_wp_categories": {
   "_note": "old WordPress categories with no type of their own; their old address forwards to this type",
   "11": "special-items"
+ },
+ "old_paths": {
+  "_note": "old champagneclub.hu addresses with no automatic match: 'type:<key>' or 'house:<key>'",
+  "/category/sursum-vivere/": "type:display-stands"
  }
 }

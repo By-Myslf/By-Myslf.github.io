@@ -3,24 +3,7 @@
   "id": 22,
   "title": "Pommery Champagne Metal Ice Bucket",
   "copy_step_removed": 2,
-  "dropped": {
-   "hu": [
-    {
-     "text": "Budapest területén ingyenes a kiszállítás!",
-     "rule": "ingyenes a kiszállítás"
-    },
-    {
-     "text": "Champagne Pommery bárfelszerelések és pezsgős ajándéktárgyak a champagneclub.hu kínálatában.",
-     "rule": "champagneclub"
-    }
-   ],
-   "en": [
-    {
-     "text": "Champagne Pommery barware and champagne souvenirs on champagneclub.hu",
-     "rule": "champagneclub"
-    }
-   ]
-  }
+  "dropped": {}
  },
  {
   "id": 39,
@@ -29,26 +12,16 @@
   "dropped": {
    "hu": [
     {
-     "text": "Champagne Bollinger bárfelszerelések és pezsgős ajándéktárgyak a champagneclub.hu kínálatában. Nézze meg a többi Bollinger pezsgős jégvedrünket és ajándéktárgyunkat! >>>",
-     "rule": "champagneclub"
-    },
-    {
      "text": "VIP BOLLINGER Champagne kóstoló Budapesten maximum 8 főre",
-     "rule": "VIP BOLLINGER Champagne kóstoló"
+     "rule": "tasting: kóstoló Budapesten"
     },
     {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     },
     {
      "text": "Bárfelszerelések tervezése és gyártása Budapesten. www.sursumvivere.hu",
-     "rule": "sursumvivere"
-    }
-   ],
-   "en": [
-    {
-     "text": "Champagne Bollinger barware and champagne souvenirs from champagneclub.hu. Check out our other Bollinger champagne ice buckets and souvenirs! >>>",
-     "rule": "champagneclub"
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -60,18 +33,12 @@
   "dropped": {
    "hu": [
     {
-     "text": "Ez a pezsgős jégveder elkelt. De azért nézze át aktuális kínálatunkat, hátha éppen újra van még egy darabunk belőle! Ha nem sikerül megfelelő pezsgőhűtőt találnia, megpróbálunk egy ugyanilyen, vagy hasonló darabot beszerezni. Vegye fel a kapcsolatot Ádámmal írásban vagy telefonon!",
-     "rule": "Vegye fel a kapcsolatot"
+     "text": "Rendeljen egy maximum 8 fős Moët & Chandon pezsgőkóstolót a kertjébe",
+     "rule": "tasting: Rendeljen egy maximum 8 fős Moët & Chandon pezsgőkóstoló"
     },
     {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
-    }
-   ],
-   "en": [
-    {
-     "text": "See more Moët & Chandon Champagne gifts and barware champagneclub.hu Budapest",
-     "rule": "champagneclub"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ]
   }
@@ -83,20 +50,8 @@
   "dropped": {
    "hu": [
     {
-     "text": "Budapesten egyedi lakberendezési tárgyakat és bárfelszereléseket gyártunk, különös figyelmet fordítva a minőségre és az egyediségre. Szolgáltatásaink közé tartozik vasbútorok tervezése, kivitelezése és helyszíni beszerelése. Termékeink:",
-     "rule": "vasbútor"
-    },
-    {
-     "text": "Bárfelszerelések : egyedi méretű és kialakítású bor- és pezsgőtárolók, mobil és fix bárpultok, világítással ellátott bárberendezések.",
-     "rule": "egyedi méretű és kialakítású"
-    },
-    {
-     "text": "Lakberendezési tárgyak : fém tárolók, bemutatóállványok, motoros sisaktartók, kalaptartó állványok, valamint beltéri és kültéri vasbútorok.",
-     "rule": "sisaktartó"
-    },
-    {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -108,14 +63,12 @@
   "dropped": {
    "hu": [
     {
-     "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
-    }
-   ],
-   "en": [
+     "text": "Válogasson Piper-Heidsieck Champagne bárfelszereléseink között egy PIPER pezsgőkóstoló keretében",
+     "rule": "tasting: pezsgőkóstoló keretében"
+    },
     {
-     "text": "Browse more of our Piper-Heidsieck Champagne souvenirs and barware",
-     "rule": "Browse more of our"
+     "text": "Érdeklődés és időpont egyeztetés:",
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ]
   }
@@ -133,22 +86,12 @@
   "dropped": {
    "hu": [
     {
-     "text": "Nézze meg további a Taittinger Champagne Házzal kapcsolatos pezsgős kellékeinket és ajándéktárgyainkat is",
-     "rule": "Nézze meg további"
-    },
-    {
      "text": "Válogasson TAITTINGER ajándéktárgyaink közül egy pezsgőzés közben – Maximum 8 fős TAITTINGER pezsgőkóstolók és termékbemutatók Budapesten – champagneclub.hu Budapest",
-     "rule": "champagneclub"
+     "rule": "tasting: Maximum 8 fő"
     },
     {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
-    }
-   ],
-   "en": [
-    {
-     "text": "Check out more of our champagne accessories and souvenirs related to the Taittinger Champagne House",
-     "rule": "Check out more of our"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ]
   }
@@ -160,8 +103,16 @@
   "dropped": {
    "hu": [
     {
+     "text": "G.H. MUMM pezsgőkóstolók Budapesten",
+     "rule": "tasting: pezsgőkóstolók Budapest"
+    },
+    {
+     "text": "G.H. MUMM Champagne pezsgőkóstolót rendelhet saját magának és ismerőseink, maximum 8 fő részére a Champagne Club-ba, de igény szerint a kertjében, vagy a teraszára is.",
+     "rule": "tasting: maximum 8 fő"
+    },
+    {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ]
   }
@@ -173,8 +124,12 @@
   "dropped": {
    "hu": [
     {
+     "text": "Rendeljen egy maximum 8 fős Moët & Chandon pezsgőkóstolót a kertjébe",
+     "rule": "tasting: Rendeljen egy maximum 8 fős Moët & Chandon pezsgőkóstoló"
+    },
+    {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ]
   }
@@ -190,16 +145,10 @@
   "title": "Mini Champagne Pupitre for 18 Bottles",
   "copy_step_removed": 1,
   "dropped": {
-   "hu": [
-    {
-     "text": "Tekintse meg a Sursum Vivere Kft. további pezsgőzéshez kapcsolódó termékeit >>>",
-     "rule": "további pezsgőzéshez kapcsolódó termék"
-    }
-   ],
    "en": [
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -212,7 +161,7 @@
    "en": [
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -224,26 +173,22 @@
   "dropped": {
    "hu": [
     {
-     "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
+     "text": "Válogasson Piper-Heidsieck pezsgős ajándéktárgyaink közül egy privát pezsgőkóstolón",
+     "rule": "tasting: privát pezsgőkóstoló"
     },
     {
-     "text": "Vasbútorok, bárfelszerelések, kültéri és beltéri építészeti elemek gyártása Budapesten. A tervezéstől a helyszíni beszerelésig.",
-     "rule": "Vasbútor"
+     "text": "Hívja el barátait egy maximum 8 fős PIPER pezsgőkóstolóra, melynek keretében champagne szuvenírek is bemutatásra kerülnek.",
+     "rule": "tasting: Hívja el barátait egy maximum 8 fős PIPER pezsgőkóstoló"
+    },
+    {
+     "text": "Érdeklődés és időpont egyeztetés:",
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ],
    "en": [
     {
-     "text": "Browse more of our Piper-Heidsieck Champagne souvenirs and barware >>>",
-     "rule": "Browse more of our"
-    },
-    {
-     "text": "Manufacture of wrought iron furniture, bar equipment, and outdoor and indoor architectural elements in Budapest. From design to on-site installation.",
-     "rule": "iron furniture"
-    },
-    {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -253,16 +198,10 @@
   "title": "Custom Design Freestanding Ice Bucket Stand – Yellow",
   "copy_step_removed": 1,
   "dropped": {
-   "hu": [
-    {
-     "text": "Az ilyen állványokat az étkezőasztal, vagy a bárpult mellé lehet állítani, így a pezsgőhűtő jégveder nem foglal helyet az asztalon.",
-     "rule": "bárpult"
-    }
-   ],
    "en": [
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -272,20 +211,14 @@
   "title": "Abel Lepitre Champagne Vintage Ice Bucket from the 1940s",
   "copy_step_removed": 0,
   "dropped": {
-   "hu": [
-    {
-     "text": "Nézze meg a többi vintage és antik bárfelszerelésünket és pezsgős vödrünket is",
-     "rule": "Nézze meg a többi"
-    }
-   ],
    "en": [
     {
-     "text": "Check out our other vintage and antique barware and champagne buckets",
-     "rule": "Check out our other"
+     "text": "GB-Wines.com",
+     "rule": "website: GB-Wines.com"
     },
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -298,21 +231,25 @@
    "hu": [
     {
      "text": "ChampagneClub.hu – „A buborékok eltűnnek, a pezsgő kiegészítők megmaradnak.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
+    },
+    {
+     "text": "Válogasson Piper-Heidsieck pezsgős ajándéktárgyaink közül egy privát pezsgőkóstolón",
+     "rule": "tasting: privát pezsgőkóstoló"
+    },
+    {
+     "text": "Hívja el barátait egy maximum 8 fős PIPER pezsgőkóstolóra, melynek keretében champagne szuvenírek is bemutatásra kerülnek.",
+     "rule": "tasting: Hívja el barátait egy maximum 8 fős PIPER pezsgőkóstoló"
     },
     {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ],
    "en": [
     {
-     "text": "Browse more of our Piper-Heidsieck Champagne souvenirs and barware",
-     "rule": "Browse more of our"
-    },
-    {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -324,38 +261,26 @@
   "dropped": {
    "hu": [
     {
-     "text": "Gyűjtemény 4 db Charles Heidsieck Champagne Display palack – Eredeti üres palack – Bár bisztró bárpult kirakati dekoráció",
-     "rule": "bárpult"
-    },
-    {
-     "text": "Ezeket a palackokat a Charles Heidsieck Champagne kifejezetten a bárok és kiskereskedők számára készíti, hogy a drága töltött palackokat ne kelljen a bárpultokon vagy a kirakatokban kiállítani.",
-     "rule": "bárpult"
+     "text": "Charles Heidsieck pezsgőkóstolók Budapesten",
+     "rule": "tasting: pezsgőkóstolók Budapest"
     },
     {
      "text": "A ChampagneClub.hu bárjában, vagy külső helyszínen, akár a kertjében, vagy a teraszán.",
-     "rule": "ChampagneClub"
+     "rule": "tasting: bárjában, vagy külső helyszínen"
     },
     {
      "text": "Érdeklődés és időpont egyeztetés:",
-     "rule": "Érdeklődés és"
+     "rule": "tasting: Érdeklődés és időpont egyeztetés"
     }
    ],
    "en": [
     {
-     "text": "These bottles are prepared by Charles Heidsieck Champagne specifically for bars and retailers, so that expensive filled bottles don’t need to be displayed on the bar counters or in shop windows.",
-     "rule": "bar counters"
-    },
-    {
      "text": "ChampagneClub.hu – „The bubbles vanish, the champagne accessories remain.”",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "SursumVivere Pannonia",
-     "rule": "SursumVivere"
+     "rule": "slogan (now in the footer)"
     },
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -368,7 +293,7 @@
    "hu": [
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -381,17 +306,17 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok eltűnnek, a pezsgő tartozékok megmaradnak.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
      "text": "ChampagneClub Budapest – „Bubbles Fade Accessories Stay”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     },
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -404,21 +329,17 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok eltűnnek, a pezsgő tartozékok megmaradnak.”",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "SursumVivere Pannonia",
-     "rule": "SursumVivere"
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
      "text": "ChampagneClub Budapest – „Bubbles Fade Accessories Stay”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     },
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -431,23 +352,11 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok eltűnnek, a pezsgő tartozékok megmaradnak.”",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "Budapesten egyedi lakberendezési tárgyakat és bárfelszereléseket gyártunk, különös figyelmet fordítva a minőségre és az egyediségre. Szolgáltatásaink közé tartozik vasbútorok tervezése, kivitelezése és helyszíni beszerelése. Termékeink:",
-     "rule": "vasbútor"
-    },
-    {
-     "text": "Bárfelszerelések : egyedi méretű és kialakítású bor- és pezsgőtárolók, mobil és fix bárpultok, világítással ellátott bárberendezések.",
-     "rule": "egyedi méretű és kialakítású"
-    },
-    {
-     "text": "Lakberendezési tárgyak : fém tárolók, bemutatóállványok, motoros sisaktartók, kalaptartó állványok, valamint beltéri és kültéri vasbútorok.",
-     "rule": "sisaktartó"
+     "rule": "slogan (now in the footer)"
     },
     {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -459,20 +368,8 @@
   "dropped": {
    "hu": [
     {
-     "text": "Budapesten egyedi lakberendezési tárgyakat és bárfelszereléseket gyártunk, különös figyelmet fordítva a minőségre és az egyediségre. Szolgáltatásaink közé tartozik vasbútorok tervezése, kivitelezése és helyszíni beszerelése. Termékeink:",
-     "rule": "vasbútor"
-    },
-    {
-     "text": "Bárfelszerelések : egyedi méretű és kialakítású bor- és pezsgőtárolók, mobil és fix bárpultok, világítással ellátott bárberendezések.",
-     "rule": "egyedi méretű és kialakítású"
-    },
-    {
-     "text": "Lakberendezési tárgyak : fém tárolók, bemutatóállványok, motoros sisaktartók, kalaptartó állványok, valamint beltéri és kültéri vasbútorok.",
-     "rule": "sisaktartó"
-    },
-    {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -484,16 +381,8 @@
   "dropped": {
    "hu": [
     {
-     "text": "Bárfelszerelések: egyedi méretben és kialakítással készülő bor- és pezsgőtárolók, mobil és fix bárpultok, valamint világítással ellátott bárberendezések.",
-     "rule": "bárpult"
-    },
-    {
-     "text": "Lakberendezési tárgyak: tároló- és bemutatóállványok, motoros sisaktartók, kalaptartó állványok, beltéri és kültéri vasbútorok.",
-     "rule": "sisaktartó"
-    },
-    {
      "text": "www.sursumvivere.hu",
-     "rule": "www."
+     "rule": "website: www.sursumvivere.hu"
     }
    ]
   }
@@ -506,13 +395,13 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok elmúlnak, a kiegészítők megmaradnak.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
      "text": "ChampagneClub Budapest – „Bubbles Fade Accessories Stay”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ]
   }
@@ -525,13 +414,13 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok elillannak, a kiegészítők megmaradnak.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
      "text": "champagneclub.hu budapest – „Bubbles fade, accessories stay.”",
-     "rule": "champagneclub"
+     "rule": "slogan (now in the footer)"
     }
    ]
   }
@@ -550,13 +439,13 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok eltűnnek, a pezsgő tartozékok megmaradnak.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
      "text": "ChampagneClub Budapest – „The bubbles disappear, but the champagne accessories remain.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ]
   }
@@ -595,14 +484,7 @@
   "id": 49492,
   "title": "Veuve Clicquot “La Grande Dame” Polished Steel Champagne Cooler with Enamel Emblem",
   "copy_step_removed": 0,
-  "dropped": {
-   "hu": [
-    {
-     "text": "Letisztult, tükröződő felülete és markáns emblémája miatt nemcsak praktikus hűtőeszköz, hanem dekorációs tárgyként is megállja a helyét bárpulton, enteriőrben vagy kirakatban.",
-     "rule": "bárpult"
-    }
-   ]
-  }
+  "dropped": {}
  },
  {
   "id": 53363,
@@ -618,13 +500,13 @@
    "hu": [
     {
      "text": "ChampagneClub Budapest – „A buborékok eltűnnek, a pezsgő tartozékok megmaradnak.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
      "text": "ChampagneClub Budapest – “Bubbles fade, accessories stay.”",
-     "rule": "ChampagneClub"
+     "rule": "slogan (now in the footer)"
     }
    ]
   }
@@ -681,14 +563,7 @@
   "id": 55083,
   "title": "Dom Pérignon Book and Illuminated Bar Decoration",
   "copy_step_removed": 0,
-  "dropped": {
-   "hu": [
-    {
-     "text": "Mérete: 25 × 23 × 3,5 cm. Falra akasztható, de a mellékelt talapzatra állítva polcon, bárpulton vagy vitrinben is elhelyezhető.",
-     "rule": "bárpult"
-    }
-   ]
-  }
+  "dropped": {}
  },
  {
   "id": 55185,
@@ -757,38 +632,14 @@
   "dropped": {
    "hu": [
     {
-     "text": "A ChampagneClub.hu Borics Zoltán különleges, gondosan válogatott champagne-kiegészítő magángyűjteményét mutatja be, amely a pezsgőkultúra eleganciáját, történelmét és formatervezési örökségét őrzi.",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "A ChampagneClub.hu nem csupán gyűjtemény, hanem a különleges és ritka pezsgőkellékek adásvételének és cseréjének találkozóhelye is. Borics Zoltán folyamatosan vásárol, elad és cserél, újabb értékes és egyedi darabokkal gazdagítva a kollekciót.",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "CHAMPAGNECLUB.HU – Vintage és gyűjtői pezsgőkellékek",
-     "rule": "CHAMPAGNECLUB"
+     "text": "A buborékok eltűnnek. A pezsgőkellékek megmaradnak.",
+     "rule": "slogan (now in the footer)"
     }
    ],
    "en": [
     {
-     "text": "ChampagneClub.hu – Zoltán Borics’ Private Collection of Champagne Accessories",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "ChampagneClub.hu showcases the exceptional private collection of Zoltán Borics, featuring a carefully curated selection of rare and distinctive champagne accessories that celebrate the elegance, history, and design heritage of champagne culture.",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "ChampagneClub.hu is more than just a private collection. It is also a destination for collectors and enthusiasts of rare and exceptional champagne accessories. Zoltán Borics actively buys, sells, and trades unique and collectible pieces, continuously expanding and refining his collection with remarkable finds.",
-     "rule": "ChampagneClub"
-    },
-    {
-     "text": "CHAMPAGNECLUB.HU – Vintage & Collectible Champagne Accessories",
-     "rule": "CHAMPAGNECLUB"
-    },
-    {
      "text": "Bubbles Fade. Accessories Stay.",
-     "rule": "Bubbles Fade"
+     "rule": "slogan (now in the footer)"
     }
    ]
   }
@@ -833,304 +684,7 @@
   "id": 57087,
   "title": "Champagne Salon – The History of a Champagne House from 1905 to the Present Day",
   "copy_step_removed": 8,
-  "dropped": {
-   "hu": [
-    {
-     "text": "A szőlő egy része a Delamotte pezsgőkbe kerülhet, más része a cégcsoport további termékeihez használható fel.",
-     "rule": "további termék"
-    },
-    {
-     "text": "[1] Champagne Salon – Hivatalos honlap és történet",
-     "rule": "[1]"
-    },
-    {
-     "text": "https://www.champagne-salon.fr/en",
-     "rule": "https://"
-    },
-    {
-     "text": "[2] Groupe Laurent-Perrier – Annual Report 2011–2012",
-     "rule": "[2]"
-    },
-    {
-     "text": "https://www.finance-groupelp.com/sites/files/lpfinances/publications/2012/20120611_DDR-2012_en.pdf",
-     "rule": "https://"
-    },
-    {
-     "text": "[3] Union des Maisons de Champagne – Chronologie des évènements: Champagne Salon",
-     "rule": "[3]"
-    },
-    {
-     "text": "https://maisons-champagne.com/fr/encyclopedies/chronologie-des-evenements/?id_maison=33",
-     "rule": "https://"
-    },
-    {
-     "text": "[5] Champagne Delamotte – Delamotte’s Story",
-     "rule": "[5]"
-    },
-    {
-     "text": "https://www.champagne-delamotte.com/en/page/story",
-     "rule": "https://"
-    },
-    {
-     "text": "[6] Union des Maisons de Champagne – Champagne Delamotte kronológia",
-     "rule": "[6]"
-    },
-    {
-     "text": "https://maisons-champagne.com/fr/encyclopedies/chronologie-des-evenements/?id_maison=56",
-     "rule": "https://"
-    },
-    {
-     "text": "[7] Pandolfini Casa d’Aste – Esito asta vini pregiati e da collezione, 11 dicembre 2015",
-     "rule": "[7]"
-    },
-    {
-     "text": "https://www.pandolfini.it/it/press/esito-asta-vini-pregiati-e-da-collezione-11-dicembre-.asp",
-     "rule": "https://"
-    },
-    {
-     "text": "https://www.pandolfini.it/uploads/files/1109uk-C.S_ESITO_Pandolfini_Asta_11dicembre2015.pdf",
-     "rule": "https://"
-    },
-    {
-     "text": "[8] Krug / Moët Hennessy – The Story of Krug",
-     "rule": "[8]"
-    },
-    {
-     "text": "https://www.moethennessyjapan.com/en/brands/krug/history",
-     "rule": "https://"
-    },
-    {
-     "text": "[16] Dokumentation Obersalzberg – Die ehemalige Ausstellung im Kehlsteinhaus",
-     "rule": "[16]"
-    },
-    {
-     "text": "https://obersalzberg.de/ausstellungen/ausstellung-im-kehlsteinhaus-dokumentation-obersalzberg",
-     "rule": "https://"
-    },
-    {
-     "text": "[20] Champagne Laurent-Perrier – Our History",
-     "rule": "[20]"
-    },
-    {
-     "text": "https://www.laurent-perrier.com/en/the-maison/history",
-     "rule": "https://"
-    },
-    {
-     "text": "[4] Adam Lechmere – Behind the Bottle: Salon Champagne",
-     "rule": "[4]"
-    },
-    {
-     "text": "[9] La Fête du Champagne – Salon",
-     "rule": "[9]"
-    },
-    {
-     "text": "https://www.lafeteduchampagne.com/attending-producers/salon",
-     "rule": "https://"
-    },
-    {
-     "text": "[11] Charles Curtis MW – Champagne Salon vertical: 1982–2008",
-     "rule": "[11]"
-    },
-    {
-     "text": "https://www.decanter.com/premium/champagne-salon-vertical-1982-2008-465321",
-     "rule": "https://"
-    },
-    {
-     "text": "[12] Decanter – Delamotte & Salon Champagne Masterclass, DFWE New York 2026",
-     "rule": "[12]"
-    },
-    {
-     "text": "https://www.decanter.com/wine/sparkling-wine/delamotte-and-salon-champagne-masterclass-dfwe-new-york-2026",
-     "rule": "https://"
-    },
-    {
-     "text": "[13] Jean-Claude Ribaut – Bernard de Nonancourt",
-     "rule": "[13]"
-    },
-    {
-     "text": "https://www.lemonde.fr/disparitions/article/2010/11/13/bernard-de-nonancourt_1439518_3382.html",
-     "rule": "https://"
-    },
-    {
-     "text": "[14] Sébastien Lapaque – Les vins de France à l’épreuve de l’occupation allemande",
-     "rule": "[14]"
-    },
-    {
-     "text": "https://www.larvf.com/les-vins-de-france-a-l-epreuve-de-l-occupation-allemande,4825535.asp",
-     "rule": "https://"
-    },
-    {
-     "text": "[15] The National WWII Museum – Million Dollar Hangover: Victory Celebration at Berchtesgaden",
-     "rule": "[15]"
-    },
-    {
-     "text": "https://www.nationalww2museum.org/war/articles/victory-in-europe-celebration-berchtesgaden",
-     "rule": "https://"
-    },
-    {
-     "text": "[17] Word on the Grapevine – Distilling Krug’s Clos du Mesnil with chef de cave Julie Cavil",
-     "rule": "[17]"
-    },
-    {
-     "text": "[18] Antonio Galloni – Salon 2008",
-     "rule": "[18]"
-    },
-    {
-     "text": "https://vinous.com/producers/salon–2?article_id=2257",
-     "rule": "https://"
-    },
-    {
-     "text": "[19] Das Kehlsteinhaus – Inside and Around the Kehlsteinhaus; Tunnel and Elevator",
-     "rule": "[19]"
-    }
-   ],
-   "en": [
-    {
-     "text": "[1] Champagne Salon – Official Website and History",
-     "rule": "[1]"
-    },
-    {
-     "text": "https://www.champagne-salon.fr/en",
-     "rule": "https://"
-    },
-    {
-     "text": "[2] Groupe Laurent-Perrier – Annual Report 2011–2012",
-     "rule": "[2]"
-    },
-    {
-     "text": "https://www.finance-groupelp.com/sites/files/lpfinances/publications/2012/20120611_DDR-2012_en.pdf",
-     "rule": "https://"
-    },
-    {
-     "text": "[3] Union des Maisons de Champagne – Chronologie des évènements: Champagne Salon",
-     "rule": "[3]"
-    },
-    {
-     "text": "https://maisons-champagne.com/fr/encyclopedies/chronologie-des-evenements/?id_maison=33",
-     "rule": "https://"
-    },
-    {
-     "text": "[5] Champagne Delamotte – Delamotte’s Story",
-     "rule": "[5]"
-    },
-    {
-     "text": "https://www.champagne-delamotte.com/en/page/story",
-     "rule": "https://"
-    },
-    {
-     "text": "[6] Union des Maisons de Champagne – Champagne Delamotte Chronology",
-     "rule": "[6]"
-    },
-    {
-     "text": "https://maisons-champagne.com/fr/encyclopedies/chronologie-des-evenements/?id_maison=56",
-     "rule": "https://"
-    },
-    {
-     "text": "[7] Pandolfini Casa d’Aste – Esito asta vini pregiati e da collezione, 11 dicembre 2015",
-     "rule": "[7]"
-    },
-    {
-     "text": "https://www.pandolfini.it/it/press/esito-asta-vini-pregiati-e-da-collezione-11-dicembre-.asp",
-     "rule": "https://"
-    },
-    {
-     "text": "https://www.pandolfini.it/uploads/files/1109uk-C.S_ESITO_Pandolfini_Asta_11dicembre2015.pdf",
-     "rule": "https://"
-    },
-    {
-     "text": "[8] Krug / Moët Hennessy – The Story of Krug",
-     "rule": "[8]"
-    },
-    {
-     "text": "https://www.moethennessyjapan.com/en/brands/krug/history",
-     "rule": "https://"
-    },
-    {
-     "text": "[16] Dokumentation Obersalzberg – Die ehemalige Ausstellung im Kehlsteinhaus",
-     "rule": "[16]"
-    },
-    {
-     "text": "https://obersalzberg.de/ausstellungen/ausstellung-im-kehlsteinhaus-dokumentation-obersalzberg",
-     "rule": "https://"
-    },
-    {
-     "text": "[20] Champagne Laurent-Perrier – Our History",
-     "rule": "[20]"
-    },
-    {
-     "text": "https://www.laurent-perrier.com/en/the-maison/history",
-     "rule": "https://"
-    },
-    {
-     "text": "[4] Adam Lechmere – Behind the Bottle: Salon Champagne",
-     "rule": "[4]"
-    },
-    {
-     "text": "[9] La Fête du Champagne – Salon",
-     "rule": "[9]"
-    },
-    {
-     "text": "https://www.lafeteduchampagne.com/attending-producers/salon",
-     "rule": "https://"
-    },
-    {
-     "text": "[11] Charles Curtis MW – Champagne Salon Vertical: 1982–2008",
-     "rule": "[11]"
-    },
-    {
-     "text": "https://www.decanter.com/premium/champagne-salon-vertical-1982-2008-465321",
-     "rule": "https://"
-    },
-    {
-     "text": "[12] Decanter – Delamotte & Salon Champagne Masterclass, DFWE New York 2026",
-     "rule": "[12]"
-    },
-    {
-     "text": "https://www.decanter.com/wine/sparkling-wine/delamotte-and-salon-champagne-masterclass-dfwe-new-york-2026",
-     "rule": "https://"
-    },
-    {
-     "text": "[13] Jean-Claude Ribaut – Bernard de Nonancourt",
-     "rule": "[13]"
-    },
-    {
-     "text": "https://www.lemonde.fr/disparitions/article/2010/11/13/bernard-de-nonancourt_1439518_3382.html",
-     "rule": "https://"
-    },
-    {
-     "text": "[14] Sébastien Lapaque – Les vins de France à l’épreuve de l’occupation allemande",
-     "rule": "[14]"
-    },
-    {
-     "text": "https://www.larvf.com/les-vins-de-france-a-l-epreuve-de-l-occupation-allemande,4825535.asp",
-     "rule": "https://"
-    },
-    {
-     "text": "[15] The National WWII Museum – Million Dollar Hangover: Victory Celebration at Berchtesgaden",
-     "rule": "[15]"
-    },
-    {
-     "text": "https://www.nationalww2museum.org/war/articles/victory-in-europe-celebration-berchtesgaden",
-     "rule": "https://"
-    },
-    {
-     "text": "[17] Word on the Grapevine – Distilling Krug’s Clos du Mesnil with Chef de Cave Julie Cavil",
-     "rule": "[17]"
-    },
-    {
-     "text": "[18] Antonio Galloni – Salon 2008",
-     "rule": "[18]"
-    },
-    {
-     "text": "https://vinous.com/producers/salon–2?article_id=2257",
-     "rule": "https://"
-    },
-    {
-     "text": "[19] Das Kehlsteinhaus – Inside and Around the Kehlsteinhaus; Tunnel and Elevator",
-     "rule": "[19]"
-    }
-   ]
-  }
+  "dropped": {}
  },
  {
   "id": 57157,

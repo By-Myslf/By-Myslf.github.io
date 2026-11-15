@@ -57,6 +57,7 @@ S = {
         "callout_text": "Whether you are searching for something specific or would like to sell an item from your own collection, send a message and you will receive a personal reply.",
         "get_in_touch": "Get in touch",
         "footer_text": "A private collection of champagne accessories, presented in English and Hungarian.",
+        "slogan": "Bubbles fade, accessories stay.",
         "explore_h": "Explore", "about_h": "About", "legal_h": "Legal",
         "imprint": "Imprint", "privacy": "Privacy policy",
         "collection_intro": "Every piece in the collection, past and present. Search by name, champagne house or reference number, or narrow the list with the filters.",
@@ -110,6 +111,7 @@ S = {
         "callout_text": "Ha egy konkrét darabot keres, vagy saját gyűjteményéből szeretne eladni, írjon nekünk – személyesen válaszolunk.",
         "get_in_touch": "Kapcsolatfelvétel",
         "footer_text": "Pezsgős kiegészítők magángyűjteménye, magyar és angol nyelven.",
+        "slogan": "A buborékok elillannak, a kiegészítők megmaradnak.",
         "explore_h": "Böngészés", "about_h": "Rólunk", "legal_h": "Jogi információk",
         "imprint": "Impresszum", "privacy": "Adatvédelmi tájékoztató",
         "collection_intro": "A gyűjtemény minden darabja, a jelenlegiek és a korábbiak. Keressen név, pezsgőház vagy azonosító szerint, vagy szűkítse a listát a szűrőkkel.",
@@ -420,7 +422,7 @@ def footer(lang, other_href):
     other = "hu" if lang == "en" else "en"
     other_label = "Magyar" if other == "hu" else "English"
     return f"""<div class="wrap footer-cols">
-<div class="footer-brand"><span class="logo-name">{SITE['name']}</span><p>{esc(s['footer_text'])}</p></div>
+<div class="footer-brand"><span class="logo-name">{SITE['name']}</span><p class="slogan">{esc(s['slogan'])}</p><p>{esc(s['footer_text'])}</p></div>
 <div class="footer-col"><span class="small-caps">{esc(s['explore_h'])}</span>
 <a href="{P('collection')}">{esc(s['nav']['collection'])}</a><a href="{P('houses')}">{esc(s['nav']['houses'])}</a>
 <a href="{P('new')}">{esc(s['nav']['new'])}</a><a href="{P('sold')}">{esc(s['nav']['sold'])}</a></div>
@@ -980,8 +982,51 @@ def clean_previous():
         shutil.rmtree(ROOT / d, ignore_errors=True)
 
 
+def old_link_target(path, lang):
+    """New page for an old champagneclub.hu address, or None."""
+    path = "/" + path.strip("/").lower() + "/"
+    extra = SITE.get("old_paths", {}).get(path)
+    if extra:
+        kind, key = extra.split(":", 1)
+        return type_path(key, lang) if kind == "type" else house_path(key, lang)
+    m = re.match(r"^/tag/([^/]+)/$", path)
+    if m:
+        for h in SITE["houses"]:
+            if any(wp_tag_slug(t) == m.group(1) for t in h["wp"]) or m.group(1) == h["key"]:
+                return house_path(h["key"], lang) if h["key"] != "other" else PATHS["houses"][lang]
+        return None
+    m = re.match(r"^/category/([^/]+)/$", path)
+    if m:
+        for t in SITE["types"]:
+            if t["wp"] and wp_cat_slug(t["wp"]) == m.group(1):
+                return type_path(t["key"], lang)
+        for cid, key in SITE.get("retired_wp_categories", {}).items():
+            if cid.isdigit() and wp_cat_slug(int(cid)) == m.group(1):
+                return type_path(key, lang)
+        return None
+    slug = path.strip("/")
+    for e in ENTRIES:
+        if e.get("slug_hu") == slug or slug in e.get("old_slugs", []):
+            return entry_path(e, lang) if (e["kind"] == "item" or has_lang(e, lang)) else entry_path(e, "hu")
+    return None
+
+
+def resolve_old_links():
+    """Links to pages of the old site point to the matching new page; without one, only the text stays."""
+    def fix(html, lang):
+        def repl(m):
+            target = old_link_target(m.group(1), lang)
+            return f'<a href="{target}">{m.group(2)}</a>' if target else m.group(2)
+        return re.sub(r'<a href="cc-old:([^"]*)">(.*?)</a>', repl, html, flags=re.S)
+    for e in ENTRIES:
+        for lang in ("en", "hu"):
+            if e["body"].get(lang):
+                e["body"][lang] = fix(e["body"][lang], lang)
+
+
 def main():
     clean_previous()
+    resolve_old_links()
     alt_pairs = []
     for lang in ("en", "hu"):
         build_home(lang)
