@@ -1,15 +1,9 @@
 name: Copy sample from champagneclub.hu
 # Copies the sample posts and photos listed in data/sample.json.
 
+# champagneclub.hu refuses connections from GitHub's servers, so this only runs when started by hand.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - data/sample.json
-      - tools/fetch_wp.py
-      - tools/fetch_fonts.py
-      - .github/workflows/fetch-sample.yml
 
 permissions:
   contents: write

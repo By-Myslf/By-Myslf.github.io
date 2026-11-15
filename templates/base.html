@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{lang}}" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+{{head}}
+<link rel="preload" href="/assets/fonts/cormorant-garamond-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#FBF9F4">
+<script>window.CC_TEXT = {{js_text}};</script>
+<script src="/assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">{{skip}}</a>
+<div class="topbar"><div class="wrap"><span>{{tagline}}</span><nav class="lang-switch" aria-label="Language">{{lang_links}}</nav></div></div>
+<header class="site-header"><div class="wrap">
+<a class="logo" href="{{home}}"><span class="logo-name">Champagne Club</span><span class="logo-sub">{{logo_sub}}</span></a>
+<div style="display:flex;align-items:center;gap:6px">
+<nav class="main-nav" id="main-nav" aria-label="Main"><ul>{{nav}}</ul></nav>
+<a href="{{search_href}}" aria-label="{{search}}" style="display:inline-flex;min-width:44px;min-height:44px;align-items:center;justify-content:center">{{icon_search}}</a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="{{menu}}">{{icon_menu}}</button>
+</div>
+</div></header>
+<main id="main">
+{{body}}
+</main>
+<footer class="site-footer">
+{{footer}}
+</footer>
+</body>
+</html>

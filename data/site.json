@@ -1,0 +1,69 @@
+{
+  "site_url": "https://champagneclub.hu",
+  "name": "Champagne Club",
+  "email": "champagnegiftshop@gmail.com",
+  "types": [
+    {"key": "single-bottle-coolers", "wp": 3, "en": "Single-bottle coolers", "hu": "Egypalackos pezsgőhűtők", "slug_hu": "egypalackos-pezsgohutok"},
+    {"key": "multi-bottle-coolers", "wp": 77, "en": "Multi-bottle coolers", "hu": "Többpalackos pezsgőhűtők", "slug_hu": "tobbpalackos-pezsgohutok"},
+    {"key": "vintage-antique-coolers", "wp": 79, "en": "Vintage & antique coolers", "hu": "Vintage és antik pezsgőhűtők", "slug_hu": "vintage-es-antik-pezsgohutok"},
+    {"key": "champagne-glasses", "wp": 15, "en": "Champagne glasses", "hu": "Pezsgőspoharak", "slug_hu": "pezsgospoharak"},
+    {"key": "gift-items", "wp": 11, "en": "Gift items", "hu": "Pezsgős ajándéktárgyak", "slug_hu": "pezsgos-ajandektargyak"},
+    {"key": "special-items", "wp": 81, "en": "Special items", "hu": "Különlegességek", "slug_hu": "kulonlegessegek"},
+    {"key": "illuminated-bar-accessories", "wp": 83, "en": "Illuminated bar accessories", "hu": "Világító bárkellékek", "slug_hu": "vilagito-barkellekek"},
+    {"key": "champagne-sabres", "wp": 67, "en": "Champagne sabres", "hu": "Sabrage kardok", "slug_hu": "sabrage-kardok"},
+    {"key": "cigar-accessories", "wp": 54, "en": "Cigar accessories", "hu": "Szivaros kellékek", "slug_hu": "szivaros-kellekek"},
+    {"key": "dummy-bottles", "wp": 80, "en": "Dummy bottles", "hu": "Kirakati palackok", "slug_hu": "kirakati-palackok"},
+    {"key": "display-stands", "wp": null, "en": "Display stands", "hu": "Állványok", "slug_hu": "allvanyok"}
+  ],
+  "houses": [
+    {"key": "veuve-clicquot", "name": "Veuve Clicquot", "wp": [2, 84], "match": ["veuve clicquot", "clicquot", "la grande dame"]},
+    {"key": "moet-chandon", "name": "Moët & Chandon", "wp": [25], "match": ["moët", "moet"]},
+    {"key": "dom-perignon", "name": "Dom Pérignon", "wp": [32], "match": ["dom pérignon", "dom perignon"]},
+    {"key": "taittinger", "name": "Taittinger", "wp": [20], "match": ["taittinger"]},
+    {"key": "piper-heidsieck", "name": "Piper-Heidsieck", "wp": [69], "match": ["piper-heidsieck", "piper heidsieck", "rare champagne"]},
+    {"key": "louis-roederer", "name": "Louis Roederer", "wp": [12], "match": ["roederer", "cristal"]},
+    {"key": "perrier-jouet", "name": "Perrier-Jouët", "wp": [14], "match": ["perrier-jouët", "perrier-jouet", "perrier jouet"]},
+    {"key": "laurent-perrier", "name": "Laurent-Perrier", "wp": [26], "match": ["laurent-perrier", "laurent perrier"]},
+    {"key": "bollinger", "name": "Bollinger", "wp": [58], "match": ["bollinger"]},
+    {"key": "krug", "name": "Krug", "wp": [18], "match": ["krug"]},
+    {"key": "ruinart", "name": "Ruinart", "wp": [42], "match": ["ruinart"]},
+    {"key": "pol-roger", "name": "Pol Roger", "wp": [60], "match": ["pol roger"]},
+    {"key": "armand-de-brignac", "name": "Armand de Brignac", "wp": [71], "match": ["armand de brignac", "ace of spades"]},
+    {"key": "billecart-salmon", "name": "Billecart-Salmon", "wp": [72], "match": ["billecart"]},
+    {"key": "charles-heidsieck", "name": "Charles Heidsieck", "wp": [73], "match": ["charles heidsieck"]},
+    {"key": "mumm", "name": "G.H. Mumm", "wp": [], "match": ["mumm"]},
+    {"key": "pommery", "name": "Pommery", "wp": [], "match": ["pommery"]},
+    {"key": "deutz", "name": "Deutz", "wp": [], "match": ["deutz"]},
+    {"key": "lanson", "name": "Lanson", "wp": [], "match": ["lanson"]},
+    {"key": "abel-lepitre", "name": "Abel Lepitre", "wp": [], "match": ["abel lepitre"]},
+    {"key": "monopole-heidsieck", "name": "Heidsieck & Co Monopole", "wp": [], "match": ["monopole heidsieck", "heidsieck monopole"]},
+    {"key": "canard-duchene", "name": "Canard-Duchêne", "wp": [], "match": ["canard-duchêne", "canard-duchene"]},
+    {"key": "tsarine", "name": "Tsarine", "wp": [], "match": ["tsarine"]},
+    {"key": "salon", "name": "Salon", "wp": [], "match": ["champagne salon"]},
+    {"key": "other", "name": "Other makers", "name_hu": "Egyéb", "wp": [65], "match": []}
+  ],
+  "periods": [
+    {"key": "before-1900", "en": "Before 1900", "hu": "1900 előtt", "to": 1899},
+    {"key": "1900-1945", "en": "1900–1945", "hu": "1900–1945", "to": 1945},
+    {"key": "1946-1979", "en": "1946–1979", "hu": "1946–1979", "to": 1979},
+    {"key": "1980-1999", "en": "1980–1999", "hu": "1980–1999", "to": 1999},
+    {"key": "2000-today", "en": "2000 – today", "hu": "2000 – napjainkig", "to": 3000}
+  ],
+  "materials": [
+    {"key": "silver", "en": "Silver & silver plate", "hu": "Ezüst és ezüstözött", "match": ["silver", "ezüst"]},
+    {"key": "pewter", "en": "Pewter", "hu": "Ón", "match": ["pewter", "ónöntvény", " ón ", "ón-", "ónból"]},
+    {"key": "steel", "en": "Stainless steel", "hu": "Rozsdamentes acél", "match": ["steel", "acél", "inox"]},
+    {"key": "metal", "en": "Other metal", "hu": "Egyéb fém", "match": ["metal", "fém", "brass", "réz", "aluminium", "alumínium", "bronze", "bronz", "zinc", "cink", "iron", "vas"]},
+    {"key": "glass", "en": "Glass & crystal", "hu": "Üveg és kristály", "match": ["crystal", "kristály", "glass", "üveg"]},
+    {"key": "acrylic", "en": "Acrylic & plastic", "hu": "Akril és műanyag", "match": ["acrylic", "akril", "plexi", "plastic", "műanyag", "polycarbonate"]},
+    {"key": "wood", "en": "Wood", "hu": "Fa", "match": ["wood", "oak", "tölgy", "cedar", "cédrus", " fa ", "fából"]},
+    {"key": "leather", "en": "Leather & textile", "hu": "Bőr és textil", "match": ["leather", "bőr", "textile", "textil", "fabric", "neoprene"]},
+    {"key": "ceramic", "en": "Ceramic & porcelain", "hu": "Kerámia és porcelán", "match": ["ceramic", "kerámia", "porcelain", "porcelán"]}
+  ],
+  "statuses": [
+    {"key": "available", "en": "Available", "hu": "Elérhető"},
+    {"key": "reserved", "en": "Reserved", "hu": "Foglalt"},
+    {"key": "made_to_order", "en": "Made to order", "hu": "Megrendelhető"},
+    {"key": "sold", "en": "Sold", "hu": "Eladva"}
+  ]
+}
