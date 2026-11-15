@@ -692,7 +692,8 @@
  "period": "2000-today",
  "materials": [],
  "types": [
-  "special-items"
+  "special-items",
+  "cases"
  ],
  "keywords": {
   "en": "VEUVE CLICQUOT LA GRANDE DAME 2015 × LOUIS VUITTON",

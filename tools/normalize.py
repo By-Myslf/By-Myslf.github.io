@@ -9,6 +9,7 @@ For each post it:
 Manual corrections and translations in data/overrides/<id>.json are applied last
 ("drop_photos": [numbers] there leaves out photos that show other items;
 "contents": [{"qty", "en", "hu", "type"}] describes the pieces of a set;
+"also_types": [keys] puts a single piece into more categories (e.g. an illuminated cooler);
 "set_checked": true marks a flagged item that needs no contents list, e.g. 6 identical glasses).
 
 Usage: python3 tools/normalize.py
@@ -218,7 +219,7 @@ def assemble(blocks, item=True):
 TYPE_BY_WP = {t["wp"]: t["key"] for t in SITE["types"] if t["wp"]}
 TYPE_PRIORITY = ["display-stands", "champagne-sabres", "cigar-accessories", "dummy-bottles", "illuminated-bar-accessories",
                  "vintage-antique-coolers", "multi-bottle-coolers", "single-bottle-coolers", "champagne-glasses",
-                 "special-items", "gift-items"]
+                 "bottle-stoppers", "cases", "artwork", "special-items"]
 
 
 def guess_type(title, cats):
@@ -234,6 +235,10 @@ def guess_type(title, cats):
         return "dummy-bottles"
     if re.search(r"világító|\bled\b|illuminated", t):
         return "illuminated-bar-accessories"
+    if re.search(r"dugó|palackzár|pezsgőzár|stopper|bouchon", t):
+        return "bottle-stoppers"
+    if re.search(r"tükör|mirror|plakát|poster|festmény|painting|litográf|lithograph|grafika|artwork", t):
+        return "artwork"
     is_cooler = re.search(r"hűtő|huto|veder|vödör|vodor|jégtál|medence|kád|cooler|bucket", t)
     if is_cooler and re.search(r"antik|antique|19[0-4]\d|18\d\d|art deco", t):
         return "vintage-antique-coolers"
@@ -243,7 +248,9 @@ def guess_type(title, cats):
         return "champagne-glasses"
     if is_cooler:
         return "single-bottle-coolers"
-    return "gift-items"
+    if re.search(r"táska|koffer|\btok\b|hordozó|\bbag\b|\bcase\b|carrier", t):
+        return "cases"
+    return "special-items"
 
 
 HOUSE_BY_WP = {}
@@ -453,7 +460,8 @@ def main():
         # sets: "contents" lists the pieces; their types put the set in more than one category
         if e["kind"] == "item":
             contents = e.get("contents") or []
-            e["types"] = list(dict.fromkeys([e["type"]] + [c["type"] for c in contents if c.get("type")]))
+            e["types"] = list(dict.fromkeys([e["type"]] + e.pop("also_types", []) +
+                                            [c["type"] for c in contents if c.get("type")]))
             if contents:  # a single "Quantity" or "Set includes" line would now be wrong or repeated
                 for lg in ("hu", "en"):
                     e["details"][lg] = [r for r in (e["details"].get(lg) or []) if not SET_ROW.match(r[0].strip())]

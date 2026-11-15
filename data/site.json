@@ -32,11 +32,18 @@
    "slug_hu": "pezsgospoharak"
   },
   {
-   "key": "gift-items",
-   "wp": 11,
-   "en": "Gift items",
-   "hu": "Pezsgős ajándéktárgyak",
-   "slug_hu": "pezsgos-ajandektargyak"
+   "key": "bottle-stoppers",
+   "wp": null,
+   "en": "Bottle stoppers",
+   "hu": "Palackzárók",
+   "slug_hu": "palackzarok"
+  },
+  {
+   "key": "cases",
+   "wp": null,
+   "en": "Cases",
+   "hu": "Tokok és hordozók",
+   "slug_hu": "tokok-es-hordozok"
   },
   {
    "key": "special-items",
@@ -72,6 +79,13 @@
    "en": "Dummy bottles",
    "hu": "Kirakati palackok",
    "slug_hu": "kirakati-palackok"
+  },
+  {
+   "key": "artwork",
+   "wp": null,
+   "en": "Artwork",
+   "hu": "Műalkotások",
+   "slug_hu": "mualkotasok"
   },
   {
    "key": "display-stands",
@@ -495,5 +509,9 @@
    "en": "Sold",
    "hu": "Eladva"
   }
- ]
+ ],
+ "retired_wp_categories": {
+  "_note": "old WordPress categories with no type of their own; their old address forwards to this type",
+  "11": "special-items"
+ }
 }

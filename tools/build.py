@@ -863,6 +863,9 @@ def redirects():
     for t in SITE["types"]:
         if t["wp"]:
             rules.append((f"/category/{wp_cat_slug(t['wp'])}/", type_path(t["key"], "hu")))
+    for cid, key in SITE.get("retired_wp_categories", {}).items():
+        if cid.isdigit() and wp_cat_slug(int(cid)):
+            rules.append((f"/category/{wp_cat_slug(int(cid))}/", type_path(key, "hu")))
     for h in SITE["houses"]:
         for tid in h["wp"]:
             slug = wp_tag_slug(tid)

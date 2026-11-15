@@ -10,7 +10,8 @@
   "set_rows": [],
   "state": "checked",
   "types": [
-   "illuminated-bar-accessories"
+   "illuminated-bar-accessories",
+   "multi-bottle-coolers"
   ]
  },
  {
@@ -106,13 +107,14 @@
   "set_rows": [],
   "state": "checked",
   "types": [
-   "illuminated-bar-accessories"
+   "illuminated-bar-accessories",
+   "multi-bottle-coolers"
   ]
  },
  {
   "id": 54545,
   "title": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag with 2 Champagne Glasses",
-  "type": "special-items",
+  "type": "cases",
   "pieces_in_title": [
    "glasses",
    "other"
@@ -120,7 +122,7 @@
   "set_rows": [],
   "state": "contents",
   "types": [
-   "special-items",
+   "cases",
    "champagne-glasses"
   ]
  },
@@ -151,7 +153,7 @@
   "state": "contents",
   "types": [
    "single-bottle-coolers",
-   "gift-items"
+   "special-items"
   ]
  },
  {
@@ -222,7 +224,8 @@
   "set_rows": [],
   "state": "checked",
   "types": [
-   "illuminated-bar-accessories"
+   "illuminated-bar-accessories",
+   "multi-bottle-coolers"
   ]
  },
  {
@@ -236,7 +239,8 @@
   "set_rows": [],
   "state": "contents",
   "types": [
-   "single-bottle-coolers"
+   "single-bottle-coolers",
+   "cases"
   ]
  },
  {

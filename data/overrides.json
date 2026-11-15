@@ -87,7 +87,8 @@
    12,
    13,
    14
-  ]
+  ],
+  "type": "bottle-stoppers"
  },
  "913": {
   "title": {
@@ -142,7 +143,10 @@
    37,
    38
   ],
-  "set_checked": true
+  "set_checked": true,
+  "also_types": [
+   "multi-bottle-coolers"
+  ]
  },
  "4536": {
   "title": {
@@ -288,7 +292,8 @@
   "title": {
    "en": "Dom Pérignon Millésime Bottle Stopper Designed by Martin Szekely"
   },
-  "house": "dom-perignon"
+  "house": "dom-perignon",
+  "type": "bottle-stoppers"
  },
  "27656": {
   "title": {
@@ -377,7 +382,10 @@
   "title": {
    "en": "Taittinger Illuminated LED Champagne Cooler for 6–8 Bottles, with Remote Control"
   },
-  "set_checked": true
+  "set_checked": true,
+  "also_types": [
+   "multi-bottle-coolers"
+  ]
  },
  "54545": {
   "title": {
@@ -388,7 +396,7 @@
     "qty": 1,
     "en": "Veuve Clicquot La Grande Dame by Riva Cruiser bag",
     "hu": "Veuve Clicquot La Grande Dame by Riva Cruiser táska",
-    "type": "special-items"
+    "type": "cases"
    },
    {
     "qty": 2,
@@ -450,7 +458,8 @@
      "2882 g"
     ]
    ]
-  }
+  },
+  "type": "cases"
  },
  "54690": {
   "title": {
@@ -548,7 +557,7 @@
     "qty": 1,
     "en": "white Taittinger summer straw hat",
     "hu": "fehér Taittinger nyári szalmakalap",
-    "type": "gift-items"
+    "type": "special-items"
    }
   ],
   "details": {
@@ -795,7 +804,8 @@
  "54941": {
   "title": {
    "en": "Piper-Heidsieck Vintage Picnic Case and Bottle Carrier (Early 2000s)"
-  }
+  },
+  "type": "cases"
  },
  "54983": {
   "title": {
@@ -803,6 +813,9 @@
   },
   "drop_photos": [
    15
+  ],
+  "also_types": [
+   "cases"
   ]
  },
  "55002": {
@@ -896,7 +909,10 @@
   "title": {
    "en": "Perrier-Jouët Belle Époque Illuminated XL Champagne Cooler – Rechargeable"
   },
-  "set_checked": true
+  "set_checked": true,
+  "also_types": [
+   "multi-bottle-coolers"
+  ]
  },
  "55459": {
   "title": {
@@ -914,12 +930,16 @@
     "en": "bottle of Krug Grande Cuvée 166ème Édition Brut, 0.75 L",
     "hu": "palack KRUG Grande Cuvée 166ème Édition Brut, 0,75 L"
    }
+  ],
+  "also_types": [
+   "cases"
   ]
  },
  "55535": {
   "title": {
    "en": "Louis Roederer Advertising Mirror – Artwork by José Simont – 1960s–1970s"
-  }
+  },
+  "type": "artwork"
  },
  "56119": {
   "title": {
@@ -1085,7 +1105,8 @@
  "56758": {
   "title": {
    "en": "Laurent-Perrier Cuvée Rosé “Pétales” 2023 – Limited Edition with Metal Bottle Jacket"
-  }
+  },
+  "type": "special-items"
  },
  "56788": {
   "title": {
@@ -1095,7 +1116,10 @@
  "56967": {
   "title": {
    "en": "Veuve Clicquot La Grande Dame 2015 × Louis Vuitton"
-  }
+  },
+  "also_types": [
+   "cases"
+  ]
  },
  "57068": {
   "title": {

@@ -380,7 +380,7 @@
  ],
  "highlight": false,
  "status": "available",
- "type": "special-items",
+ "type": "cases",
  "house": "veuve-clicquot",
  "year": null,
  "era": {},
@@ -391,7 +391,7 @@
    "qty": 1,
    "en": "Veuve Clicquot La Grande Dame by Riva Cruiser bag",
    "hu": "Veuve Clicquot La Grande Dame by Riva Cruiser táska",
-   "type": "special-items"
+   "type": "cases"
   },
   {
    "qty": 2,
@@ -401,7 +401,7 @@
   }
  ],
  "types": [
-  "special-items",
+  "cases",
   "champagne-glasses"
  ],
  "keywords": {
