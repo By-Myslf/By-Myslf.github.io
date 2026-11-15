@@ -8,6 +8,7 @@ on:
     paths:
       - data/sample.json
       - tools/fetch_wp.py
+      - tools/fetch_fonts.py
       - .github/workflows/fetch-sample.yml
 
 permissions:
@@ -27,12 +28,14 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pillow
+      - name: Download fonts
+        run: python tools/fetch_fonts.py
       - name: Copy posts and photos
         run: python tools/fetch_wp.py data/sample.json 2>&1 | tee data/fetch-log.txt
       - name: Save results to the repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw img data/fetch-log.txt
+          git add data/raw img data/fetch-log.txt assets/fonts assets/css/fonts.css
           git commit -m "Copy sample items and photos from champagneclub.hu" || { echo "Nothing new"; exit 0; }
           for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
