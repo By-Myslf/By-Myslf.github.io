@@ -3,7 +3,13 @@
  "22": {
   "title": {
    "en": "Pommery Champagne Metal Ice Bucket"
-  }
+  },
+  "drop_photos": [
+   10,
+   11,
+   12,
+   13
+  ]
  },
  "39": {
   "title": {
@@ -22,7 +28,14 @@
   },
   "body": {
    "en": ""
-  }
+  },
+  "drop_photos": [
+   11,
+   12,
+   13,
+   14,
+   15
+  ]
  },
  "58": {
   "title": {
@@ -32,52 +45,117 @@
  "84": {
   "title": {
    "en": "Veuve Clicquot Yellow Ice Bucket with Gold-Coloured Handle"
-  }
+  },
+  "drop_photos": [
+   7,
+   8,
+   9,
+   11,
+   13
+  ]
  },
  "90": {
   "title": {
    "en": "Rare Champagne (Piper-Heidsieck) Stainless Steel Ice Bucket"
-  }
+  },
+  "drop_photos": [
+   14,
+   15,
+   16,
+   17,
+   18
+  ]
  },
  "127": {
   "title": {
    "en": "Tsarine Champagne Pink Portable Ice Bucket with Leather Handles"
-  }
+  },
+  "drop_photos": [
+   19
+  ]
  },
  "300": {
   "title": {
    "en": "Taittinger Champagne Bottle Stopper"
-  }
+  },
+  "drop_photos": [
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14
+  ]
  },
  "913": {
   "title": {
    "en": "G.H. Mumm XL Champagne Ice Bucket for 2–3 Magnums or 6–7 Bottles"
-  }
+  },
+  "drop_photos": [
+   10,
+   12
+  ]
  },
  "1094": {
   "title": {
    "en": "Moët & Chandon Black and Gold XL Champagne Cooler Bowl"
-  }
+  },
+  "drop_photos": [
+   8,
+   9,
+   10
+  ]
  },
  "2971": {
   "title": {
    "en": "Moët & Chandon Acrylic Ice Bucket with Grape Vine Decoration"
-  }
+  },
+  "drop_photos": [
+   21,
+   22,
+   23,
+   24
+  ]
  },
  "3888": {
   "title": {
    "en": "Mini Champagne Pupitre for 18 Bottles"
-  }
+  },
+  "drop_photos": [
+   15,
+   16,
+   17,
+   18
+  ]
  },
  "4446": {
   "title": {
    "en": "Piper-Heidsieck Illuminated 8-Bottle Champagne Cooler"
-  }
+  },
+  "drop_photos": [
+   33,
+   34,
+   35,
+   36,
+   37,
+   38
+  ]
  },
  "4536": {
   "title": {
    "en": "Piper-Heidsieck XL Champagne Cooler – Glossy Red with Gold Interior, for 6 Bottles"
-  }
+  },
+  "drop_photos": [
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23
+  ]
  },
  "8730": {
   "title": {
@@ -104,22 +182,57 @@
  "9455": {
   "title": {
    "en": "Abel Lepitre Champagne Vintage Ice Bucket from the 1940s"
-  }
+  },
+  "drop_photos": [
+   27,
+   28,
+   29,
+   30
+  ]
  },
  "12516": {
   "title": {
    "en": "Jaime Hayón Limited-Edition Grey and Gold Champagne Cooler for Piper-Heidsieck"
-  }
+  },
+  "drop_photos": [
+   20,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ]
  },
  "13395": {
   "title": {
    "en": "Charles Heidsieck Display Bottles – Fillette, Bouteille, Magnum and Jeroboam"
+  },
+  "drop_photos": [
+   21,
+   22,
+   23,
+   24
+  ]
+ },
+ "16423": {
+  "title": {
+   "en": null
+  },
+  "body": {
+   "en": null
+  },
+  "intro": {
+   "en": null
   }
  },
  "19367": {
   "title": {
    "en": "Monopole Heidsieck Pewter Ice Bucket with Bull's Head Handles and Coats of Arms (1930s)"
-  }
+  },
+  "drop_photos": [
+   39
+  ]
  },
  "22918": {
   "title": {
@@ -161,7 +274,14 @@
   "title": {
    "en": "Dom Pérignon Shield-Shaped Cigar Ashtray"
   },
-  "house": "dom-perignon"
+  "house": "dom-perignon",
+  "drop_photos": [
+   9,
+   10,
+   11,
+   12,
+   14
+  ]
  },
  "35263": {
   "title": {
@@ -236,7 +356,10 @@
  "54983": {
   "title": {
    "en": "Moët & Chandon “Nautical Star” Champagne Carrier and Ice Bucket (2007), Unused, Boxed"
-  }
+  },
+  "drop_photos": [
+   15
+  ]
  },
  "55002": {
   "title": {
@@ -246,6 +369,17 @@
  "55083": {
   "title": {
    "en": "Dom Pérignon Book and Illuminated Bar Decoration"
+  }
+ },
+ "55185": {
+  "title": {
+   "en": null
+  },
+  "body": {
+   "en": null
+  },
+  "intro": {
+   "en": null
   }
  },
  "55213": {
@@ -273,6 +407,11 @@
    "en": "Piper-Heidsieck Art Deco Champagne Cooler, 1920s–1930s"
   }
  },
+ "56174": {
+  "title": {
+   "en": "Veuve Clicquot “Clicquot in the Snow” – The Winter Campaign, the Yellow Ski Jacket and Branded Ski Gear"
+  }
+ },
  "56439": {
   "title": {
    "en": "Perrier-Jouët Grand Brut Gift Set with Two Floral Glasses in Embossed Box"
@@ -286,6 +425,12 @@
  "56558": {
   "title": {
    "en": "Ruinart × Victoria Wilmotte – 2026 Champagne Bucket"
+  }
+ },
+ "56600": {
+  "title": {
+   "en": "About the Collection",
+   "hu": "A gyűjteményről"
   }
  },
  "56713": {
@@ -319,6 +464,11 @@
    "en": "Laurent-Perrier Large 8-Bottle Champagne Cooler"
   }
  },
+ "57087": {
+  "title": {
+   "en": "Champagne Salon – The History of a Champagne House from 1905 to the Present Day"
+  }
+ },
  "57157": {
   "title": {
    "en": "Pol Roger Champagne – Vintage French Cigar Ashtray from the 1980s"
@@ -327,44 +477,6 @@
  "57180": {
   "title": {
    "en": "Perrier-Jouët Belle Époque – Set of 2 Lehmann Crystal Glasses in Gift Box"
-  }
- },
- "57087": {
-  "title": {
-   "en": "Champagne Salon – The History of a Champagne House from 1905 to the Present Day"
-  }
- },
- "56174": {
-  "title": {
-   "en": "Veuve Clicquot “Clicquot in the Snow” – The Winter Campaign, the Yellow Ski Jacket and Branded Ski Gear"
-  }
- },
- "55185": {
-  "title": {
-   "en": null
-  },
-  "body": {
-   "en": null
-  },
-  "intro": {
-   "en": null
-  }
- },
- "16423": {
-  "title": {
-   "en": null
-  },
-  "body": {
-   "en": null
-  },
-  "intro": {
-   "en": null
-  }
- },
- "56600": {
-  "title": {
-   "en": "About the Collection",
-   "hu": "A gyűjteményről"
   }
  }
 }
