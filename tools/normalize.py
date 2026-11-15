@@ -160,12 +160,16 @@ def split_at_english(blocks):
     return blocks
 
 
-def assemble(blocks, item=True):
-    """Blocks of one language -> (intro, body html, details, title guess)."""
+def assemble(blocks, item=True, dropped=None):
+    """Blocks of one language -> (intro, body html, details, title guess).
+    Text left out as shop/advert wording is added to `dropped` with the rule that caught it."""
     details, body, intro, title_guess = [], [], None, None
     for b in blocks:
         t = b["text"]
-        if BOILER_RE.search(t):
+        hit = BOILER_RE.search(t)
+        if hit:
+            if dropped is not None:
+                dropped.append({"text": t, "rule": hit.group(0)})
             continue
         kv = KV.match(t) if (item and len(t) < 220) else None
         if kv and b["tag"] in ("li", "p") and not t.endswith("?"):
@@ -452,7 +456,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for old in OUT.glob("*.json"):
         old.unlink()
-    report, used_slugs, sets_report, mat_report = [], set(), [], []
+    report, used_slugs, sets_report, mat_report, cleaning_report = [], set(), [], [], []
     for p in sorted(RAW.glob("[0-9]*.json"), key=lambda x: int(x.stem)):
         raw = json.loads(p.read_text())
         role = raw["role"]
@@ -470,9 +474,9 @@ def main():
             blocks = split_languages(blocks_of(raw["html"]))
         else:
             blocks = split_at_english(blocks_of(raw["html"]))
-        parts = {}
+        parts, dropped = {}, {"hu": [], "en": []}
         for lg in ("hu", "en"):
-            parts[lg] = assemble([b for b in blocks if b["lang"] == lg], item=is_item)
+            parts[lg] = assemble([b for b in blocks if b["lang"] == lg], item=is_item, dropped=dropped[lg])
         intro_hu, body_hu, det_hu, _ = parts["hu"]
         intro_en, body_en, det_en, title_en = parts["en"]
         if title_en and (len(title_en) > 160 or lang_of(title_en) == "hu"):
@@ -554,6 +558,9 @@ def main():
         (OUT / f"{raw['id']}.json").write_text(json.dumps(e, ensure_ascii=False, indent=1))
         missing = [k for k in ("title", "intro") if not e[k].get("en")]
         has_ovr = f.exists() or str(raw["id"]) in OVERRIDES
+        cleaning_report.append({"id": raw["id"], "title": e["title"].get("en") or e["title"].get("hu"),
+                                "copy_step_removed": raw.get("removed_for_privacy", 0),
+                                "dropped": {lg: v for lg, v in dropped.items() if v}})
         cand = set_candidate(e, set_checked)
         if cand:
             sets_report.append(cand)
@@ -565,6 +572,7 @@ def main():
             "missing_en": missing, "has_ovr": has_ovr,
         })
     (ROOT / "data" / "normalize-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
+    (ROOT / "data" / "cleaning-report.json").write_text(json.dumps(cleaning_report, ensure_ascii=False, indent=1))
     (ROOT / "data" / "materials-report.json").write_text(json.dumps(mat_report, ensure_ascii=False, indent=1))
     (ROOT / "data" / "sets-report.json").write_text(json.dumps(sets_report, ensure_ascii=False, indent=1))
     todo = sum(1 for c in sets_report if c["state"] == "to check")
