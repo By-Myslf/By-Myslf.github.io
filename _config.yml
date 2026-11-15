@@ -1,0 +1,8 @@
+# GitHub Pages settings.
+# The site is plain HTML; these folders hold the source and tools and are not published.
+exclude:
+  - tools
+  - data
+  - templates
+  - README.md
+  - .github
