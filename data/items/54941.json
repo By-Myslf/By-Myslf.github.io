@@ -253,6 +253,9 @@
  },
  "period": "2000-today",
  "materials": [],
+ "types": [
+  "gift-items"
+ ],
  "keywords": {
   "en": "Piper-Heidsieck Champagne vintage piknikkoffer / palackhordozó – ritka francia promóciós darab a korai 2000-es évekből",
   "hu": "Piper-Heidsieck Vintage Picnic Case and Bottle Carrier (Early 2000s)"

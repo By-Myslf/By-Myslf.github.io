@@ -475,6 +475,9 @@
  },
  "period": "1900-1945",
  "materials": [],
+ "types": [
+  "vintage-antique-coolers"
+ ],
  "keywords": {
   "en": "Abel Lepitre Champagne vintage pezsgős jégveder az 1940-es évekből",
   "hu": "Abel Lepitre Champagne Vintage Ice Bucket from the 1940s"

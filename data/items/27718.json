@@ -19,16 +19,7 @@
   "en": "<p><strong>3x PERRIER-JOUËT Champagne Gift 2 Mouth-blown, hand-painted Anemone 15cl tasting glass + Belle Époque glass / epoxy coaster Decorative item</strong></p>\n<p>Gift Idea for a Perrier-Jouët Champagne Enthusiast</p>\n<p>Surprise your champagne-loving friend with a thoughtful and elegant gift:</p>\n<p>Original French bar accessories for champagne enjoyment.</p>"
  },
  "details": {
-  "hu": [
-   [
-    "Belle Époque poháralátét",
-    "Kézzel készített üveg és epoxi poháralátét, amely a Belle Époque korszak ihlette designnal ötvözik a funkcionalitást és a művészetet"
-   ],
-   [
-    "Belle Époque Coaster",
-    "Handmade glass and epoxy coaster inspired by the Belle Époque era, blending functionality with art"
-   ]
-  ],
+  "hu": [],
   "en": []
  },
  "photos": [
@@ -265,6 +256,22 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 2,
+   "en": "Perrier-Jouët Belle Époque champagne flutes with the floral design",
+   "hu": "Perrier-Jouët Belle Époque pezsgőspohár virágmintával",
+   "type": "champagne-glasses"
+  },
+  {
+   "qty": 1,
+   "en": "handmade glass and epoxy decorative base inspired by the Belle Époque era",
+   "hu": "kézzel készített, Belle Époque ihletésű üveg és epoxi dekor alátét"
+  }
+ ],
+ "types": [
+  "champagne-glasses"
+ ],
  "keywords": {
   "en": "Ajándékötlet egy Perrier-Jouët pezsgőrajongónak Belle Epoque poharak dekor alátéten",
   "hu": "Perrier-Jouët Belle Époque Glasses on a Decorative Base – Gift Set"

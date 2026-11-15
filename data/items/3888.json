@@ -256,6 +256,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "display-stands"
+ ],
  "keywords": {
   "en": "Mini Champagne Pupitre 18 palackos",
   "hu": "Mini Champagne Pupitre for 18 Bottles"

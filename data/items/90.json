@@ -326,6 +326,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Rare Champagne – Piper-Heidsieck – pezsgős jégveder",
   "hu": "Rare Champagne (Piper-Heidsieck) Stainless Steel Ice Bucket"

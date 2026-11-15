@@ -25,6 +25,10 @@
     "kitűnő, karcmentes állapot"
    ],
    [
+    "#",
+    "Táska"
+   ],
+   [
     "Szélesség",
     "36 cm"
    ],
@@ -45,6 +49,10 @@
    [
     "Condition",
     "Excellent, scratch-free condition"
+   ],
+   [
+    "#",
+    "Bag"
    ],
    [
     "Width",
@@ -378,6 +386,24 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "Veuve Clicquot La Grande Dame by Riva Cruiser bag",
+   "hu": "Veuve Clicquot La Grande Dame by Riva Cruiser táska",
+   "type": "special-items"
+  },
+  {
+   "qty": 2,
+   "en": "Veuve Clicquot champagne glasses",
+   "hu": "Veuve Clicquot pezsgőspohár",
+   "type": "champagne-glasses"
+  }
+ ],
+ "types": [
+  "special-items",
+  "champagne-glasses"
+ ],
  "keywords": {
   "en": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag + 2 pezsgőspohár",
   "hu": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag with 2 Champagne Glasses"

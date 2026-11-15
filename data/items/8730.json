@@ -496,6 +496,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "display-stands"
+ ],
  "keywords": {
   "en": "Egyedi Design – SÁRGA – Szabadon álló pezsgős jégveder tartó állvány",
   "hu": "Custom Design Freestanding Ice Bucket Stand – Yellow"

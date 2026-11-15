@@ -171,6 +171,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Pommery Champagne Fém Pezsgős Veder",
   "hu": "Pommery Champagne Metal Ice Bucket"

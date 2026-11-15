@@ -1,0 +1,300 @@
+[
+ {
+  "id": 4446,
+  "title": "Piper-Heidsieck Illuminated 8-Bottle Champagne Cooler",
+  "type": "illuminated-bar-accessories",
+  "pieces_in_title": [
+   "coolers",
+   "illuminated"
+  ],
+  "set_rows": [],
+  "state": "checked",
+  "types": [
+   "illuminated-bar-accessories"
+  ]
+ },
+ {
+  "id": 13395,
+  "title": "Charles Heidsieck Display Bottles – Fillette, Bouteille, Magnum and Jeroboam",
+  "type": "dummy-bottles",
+  "pieces_in_title": [
+   "bottles"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "dummy-bottles"
+  ]
+ },
+ {
+  "id": 22918,
+  "title": "Four Moët & Chandon Stemless Tulip Glasses on a Display Stand",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses",
+   "other"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 27656,
+  "title": "Louis Roederer Set of 6 Tasting Glasses (16 cl) for Cristal Champagne",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "checked",
+  "types": [
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 27718,
+  "title": "Perrier-Jouët Belle Époque Glasses on a Decorative Base – Gift Set",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses",
+   "other"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 35263,
+  "title": "Billecart-Salmon Vintage Tasting Glasses (Set of 4, 15 cl)",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "checked",
+  "types": [
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 49492,
+  "title": "Veuve Clicquot “La Grande Dame” Polished Steel Champagne Cooler with Enamel Emblem",
+  "type": "single-bottle-coolers",
+  "pieces_in_title": [
+   "coolers"
+  ],
+  "set_rows": [
+   "Includes"
+  ],
+  "state": "checked",
+  "types": [
+   "single-bottle-coolers"
+  ]
+ },
+ {
+  "id": 53363,
+  "title": "Taittinger Illuminated LED Champagne Cooler for 6–8 Bottles, with Remote Control",
+  "type": "illuminated-bar-accessories",
+  "pieces_in_title": [
+   "coolers",
+   "illuminated"
+  ],
+  "set_rows": [],
+  "state": "checked",
+  "types": [
+   "illuminated-bar-accessories"
+  ]
+ },
+ {
+  "id": 54545,
+  "title": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag with 2 Champagne Glasses",
+  "type": "special-items",
+  "pieces_in_title": [
+   "glasses",
+   "other"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "special-items",
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 54690,
+  "title": "Deutz Champagne Set – Two Vintage Coolers and Six 16 cl Glasses",
+  "type": "single-bottle-coolers",
+  "pieces_in_title": [
+   "coolers",
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "single-bottle-coolers",
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 54708,
+  "title": "Taittinger Nocturne Champagne Buckets (Set of 2) with Summer Straw Hat",
+  "type": "single-bottle-coolers",
+  "pieces_in_title": [
+   "coolers",
+   "other"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "single-bottle-coolers",
+   "gift-items"
+  ]
+ },
+ {
+  "id": 54727,
+  "title": "Louis Roederer Two-Bottle Champagne Cooler with 6 Glasses",
+  "type": "multi-bottle-coolers",
+  "pieces_in_title": [
+   "coolers",
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "multi-bottle-coolers",
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 54739,
+  "title": "Pol Roger Champagne Set – Ice Bucket and 6 Lehmann 30 cl Glasses",
+  "type": "single-bottle-coolers",
+  "pieces_in_title": [
+   "coolers",
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "single-bottle-coolers",
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 55002,
+  "title": "Armand de Brignac Brut Gold Display Bottle Set (0.75 L)",
+  "type": "dummy-bottles",
+  "pieces_in_title": [
+   "bottles"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "dummy-bottles"
+  ]
+ },
+ {
+  "id": 55083,
+  "title": "Dom Pérignon Book and Illuminated Bar Decoration",
+  "type": "illuminated-bar-accessories",
+  "pieces_in_title": [
+   "illuminated",
+   "other"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "illuminated-bar-accessories"
+  ]
+ },
+ {
+  "id": 55435,
+  "title": "Perrier-Jouët Belle Époque Illuminated XL Champagne Cooler – Rechargeable",
+  "type": "illuminated-bar-accessories",
+  "pieces_in_title": [
+   "coolers",
+   "illuminated"
+  ],
+  "set_rows": [],
+  "state": "checked",
+  "types": [
+   "illuminated-bar-accessories"
+  ]
+ },
+ {
+  "id": 55459,
+  "title": "Krug Flânerie Leather Champagne Carrier with Krug Grande Cuvée 166ème Édition",
+  "type": "single-bottle-coolers",
+  "pieces_in_title": [
+   "coolers",
+   "bottles"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "single-bottle-coolers"
+  ]
+ },
+ {
+  "id": 56439,
+  "title": "Perrier-Jouët Grand Brut Gift Set with Two Floral Glasses in Embossed Box",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses",
+   "bottles"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 56492,
+  "title": "Bollinger – Six Elisabeth Glasses and an Acrylic Cooler Designed by Eric Berthès",
+  "type": "single-bottle-coolers",
+  "pieces_in_title": [
+   "coolers",
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "contents",
+  "types": [
+   "single-bottle-coolers",
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 56738,
+  "title": "Dom Pérignon VHQ Day Party – Set of 6 Glasses with Gold Emblem",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses"
+  ],
+  "set_rows": [],
+  "state": "checked",
+  "types": [
+   "champagne-glasses"
+  ]
+ },
+ {
+  "id": 57180,
+  "title": "Perrier-Jouët Belle Époque – Set of 2 Lehmann Crystal Glasses in Gift Box",
+  "type": "champagne-glasses",
+  "pieces_in_title": [
+   "glasses"
+  ],
+  "set_rows": [
+   "Darabszám",
+   "Quantity"
+  ],
+  "state": "checked",
+  "types": [
+   "champagne-glasses"
+  ]
+ }
+]

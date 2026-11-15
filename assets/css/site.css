@@ -218,6 +218,10 @@ a:hover .frame img { transform: scale(1.03); }
 .details div { display: flex; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
 .details dt { flex: 0 0 140px; color: var(--muted); }
 .details dd { margin: 0; flex: 1; min-width: 0; }
+.details .details-group { padding: 22px 0 8px; }
+.details .details-group dt { flex: 1; color: var(--ink); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+.details ul.contents { margin: 0; padding-left: 18px; }
+.details ul.contents li + li { margin-top: 4px; }
 .item-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .item-actions .btn-dark { flex: 1 1 240px; }
 .other-lang { font-size: 14px; color: var(--muted); margin-top: 18px; }

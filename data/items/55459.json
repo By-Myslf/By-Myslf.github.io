@@ -282,6 +282,22 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "Krug Flânerie leather champagne carrier with insulated interior (2012)",
+   "hu": "KRUG Flânerie bőr champagne-hordozó szigetelt belsővel (2012)",
+   "type": "single-bottle-coolers"
+  },
+  {
+   "qty": 1,
+   "en": "bottle of Krug Grande Cuvée 166ème Édition Brut, 0.75 L",
+   "hu": "palack KRUG Grande Cuvée 166ème Édition Brut, 0,75 L"
+  }
+ ],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "KRUG Flânerie – Bőr champagne-hordozó és KRUG Grande Cuvée 166ème Édition – Gyűjtői összeállítás",
   "hu": "Krug Flânerie Leather Champagne Carrier with Krug Grande Cuvée 166ème Édition"

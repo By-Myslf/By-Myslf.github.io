@@ -317,6 +317,9 @@
  "materials": [
   "steel"
  ],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Piper-Heidsieck BBQ & pezsgőhűtő – limitált multifunkciós darab",
   "hu": "Piper-Heidsieck BBQ & Champagne Cooler – Limited Edition"

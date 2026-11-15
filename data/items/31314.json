@@ -201,6 +201,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "multi-bottle-coolers"
+ ],
  "keywords": {
   "en": "G.H. Mumm & Cie vintage ónból készült talapzatos pezsgőhűtő jégtál",
   "hu": "G.H. Mumm & Cie Vintage Pewter Pedestal Champagne Cooler"

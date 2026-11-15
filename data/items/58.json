@@ -208,6 +208,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Moët & Chandon Champagne jeges veder",
   "hu": "Moët & Chandon Champagne Ice Bucket (2020 Model)"

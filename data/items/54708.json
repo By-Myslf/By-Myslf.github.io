@@ -21,6 +21,10 @@
  "details": {
   "hu": [
    [
+    "#",
+    "Jégvederek (darabonként)"
+   ],
+   [
     "Magasság",
     "22 cm"
    ],
@@ -38,6 +42,10 @@
    ]
   ],
   "en": [
+   [
+    "#",
+    "Buckets (each)"
+   ],
    [
     "Height",
     "22 cm"
@@ -259,6 +267,24 @@
  "period": null,
  "materials": [
   "acrylic"
+ ],
+ "contents": [
+  {
+   "qty": 2,
+   "en": "Taittinger Nocturne champagne buckets, translucent purple",
+   "hu": "Taittinger Nocturne pezsgős jégveder, átlátszó lila",
+   "type": "single-bottle-coolers"
+  },
+  {
+   "qty": 1,
+   "en": "white Taittinger summer straw hat",
+   "hu": "fehér Taittinger nyári szalmakalap",
+   "type": "gift-items"
+  }
+ ],
+ "types": [
+  "single-bottle-coolers",
+  "gift-items"
  ],
  "keywords": {
   "en": "Taittinger Nocturne pezsgős jégveder (2 db) + nyári szalmakalap",

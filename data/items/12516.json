@@ -413,6 +413,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Jaime Hayón szürke-arany limitált kiadású dedikált pezsgőhűtője a Piper-Heidsieck Champagne számára",
   "hu": "Jaime Hayón Limited-Edition Grey and Gold Champagne Cooler for Piper-Heidsieck"

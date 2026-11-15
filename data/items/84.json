@@ -127,6 +127,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "old_slugs": [
   "veuve-clicquot-champagne-pezsgo-huto-38-000-ft"
  ],

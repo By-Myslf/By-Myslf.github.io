@@ -70,7 +70,7 @@ S = {
         "other_lang": "Ezt az oldalt magyarul is elolvashatja:", "other_lang_link": "Magyar változat",
         "about_piece": "About this piece", "more_from": "More from", "similar": "Similar pieces", "view_house": "View the house",
         "enlarge": "Enlarge photo", "close": "Close", "photo": "Photo", "show_photo": "Show photo",
-        "d_house": "Champagne house", "d_type": "Type", "d_status": "Availability",
+        "d_house": "Champagne house", "d_type": "Type", "d_status": "Availability", "d_contents": "Set contents", "set_label": "Set",
         "houses_title": "Champagne Houses", "houses_intro": "The collection by maker. Each house page shows every piece made for that house.",
         "house_intro": "Pieces in the collection made for {name}.",
         "new_title": "New Arrivals", "new_intro": "The most recently added pieces.",
@@ -123,7 +123,7 @@ S = {
         "other_lang": "Read this page in English:", "other_lang_link": "English version",
         "about_piece": "A darabról", "more_from": "További darabok:", "similar": "Hasonló darabok", "view_house": "A pezsgőház oldala",
         "enlarge": "Kép nagyítása", "close": "Bezárás", "photo": "Kép", "show_photo": "Kép mutatása",
-        "d_house": "Pezsgőház", "d_type": "Típus", "d_status": "Elérhetőség",
+        "d_house": "Pezsgőház", "d_type": "Típus", "d_status": "Elérhetőség", "d_contents": "A készlet tartalma", "set_label": "Készlet",
         "houses_title": "Pezsgőházak", "houses_intro": "A gyűjtemény pezsgőházak szerint. Minden pezsgőház oldalán az adott házhoz készült darabok láthatók.",
         "house_intro": "A gyűjtemény {name} pezsgőházhoz készült darabjai.",
         "new_title": "Új darabok", "new_intro": "A legutóbb érkezett darabok.",
@@ -267,8 +267,13 @@ def img_tag(e, lang, sizes_attr, eager=False, ratio_w=480):
 # ---------------------------------------------------------------------------
 # Small building blocks
 # ---------------------------------------------------------------------------
+def types_of(e):
+    """All types of an item: the main one first, then those of the pieces in a set."""
+    return e.get("types") or [e["type"]]
+
+
 def card_meta(e, lang):
-    bits = [type_name(e["type"], lang)]
+    bits = [S[lang]["set_label"] if e.get("contents") else type_name(e["type"], lang)]
     if e.get("era", {}).get(lang):
         bits.append(e["era"][lang])
     return " · ".join(b for b in bits if b)
@@ -458,7 +463,7 @@ def build_home(lang):
     # browse by type
     type_cards = []
     for t in SITE["types"]:
-        members = [e for e in ITEMS if e["type"] == t["key"]]
+        members = [e for e in ITEMS if t["key"] in types_of(e)]
         if not members:
             continue
         rep = next((e for e in members if e.get("photos")), members[0])
@@ -584,7 +589,7 @@ def build_collection(lang):
     # search data for the collection page
     used = lambda field: {v for e in ITEMS for v in (e.get(field) if isinstance(e.get(field), list) else [e.get(field)]) if v}  # noqa: E731
     facets = {
-        "type": {"label": s["f_type"], "options": [{"key": t["key"], "label": t[lang]} for t in SITE["types"] if t["key"] in used("type")]},
+        "type": {"label": s["f_type"], "options": [{"key": t["key"], "label": t[lang]} for t in SITE["types"] if t["key"] in used("types")]},
         "house": {"label": s["f_house"], "options": sorted(
             [{"key": k, "label": house_name(k, lang)} for k in used("house")],
             key=lambda o: (o["key"] == "other", o["label"]))},
@@ -598,7 +603,7 @@ def build_collection(lang):
         rows.append({
             "id": e["id"], "ref": e["ref"], "url": entry_path(e, lang), "title": e["title"][lang],
             "house": e.get("house") or "", "houseName": house_name(e.get("house"), lang),
-            "type": e["type"], "typeName": type_name(e["type"], lang),
+            "type": types_of(e), "typeName": " / ".join(type_name(t, lang) for t in types_of(e)),
             "period": e.get("period") or "", "material": e.get("materials", []), "status": e["status"],
             "badge": status_label(e["status"], lang) if e["status"] != "available" else "",
             "year": e.get("year"), "date": e["date"], "meta": card_meta(e, lang),
@@ -626,7 +631,7 @@ def build_listing(lang, key, path_map, title, intro, entries, trail_parent=None,
 def build_types(lang):
     s = S[lang]
     for t in SITE["types"]:
-        members = [e for e in ITEMS if e["type"] == t["key"]]
+        members = [e for e in ITEMS if t["key"] in types_of(e)]
         if not members:
             continue
         n = len(members)
@@ -659,7 +664,7 @@ def build_houses(lang):
 
 def related_for(e):
     same_house = [x for x in ITEMS if x is not e and x.get("house") == e.get("house") and e.get("house") not in (None, "other")]
-    same_type = [x for x in ITEMS if x is not e and x["type"] == e["type"] and x not in same_house]
+    same_type = [x for x in ITEMS if x is not e and set(types_of(x)) & set(types_of(e)) and x not in same_house]
     if len(same_house) >= 2:
         return "house", (same_house + same_type)[:4]
     return "type", (same_type + same_house)[:4]
@@ -691,10 +696,16 @@ def build_item(e, lang):
         gallery = '<div class="gallery"><div class="gallery-main"></div></div>'
 
     details = [(s["d_house"], f'<a href="{house_path(e["house"], lang)}">{esc(house_name(e["house"], lang))}</a>')] if e.get("house") and e["house"] != "other" else []
-    details.append((s["d_type"], f'<a href="{type_path(e["type"], lang)}">{esc(tlabel)}</a>'))
-    details += [(esc(k), esc(v)) for k, v in e["details"].get(lang, [])]
+    details.append((s["d_type"], ", ".join(f'<a href="{type_path(t, lang)}">{esc(type_name(t, lang))}</a>' for t in types_of(e))))
+    if e.get("contents"):
+        pieces = "".join(f'<li>{c["qty"]} × {esc(c[lang])}</li>' if c.get("qty") else f"<li>{esc(c[lang])}</li>"
+                         for c in e["contents"])
+        details.append((s["d_contents"], f'<ul class="contents">{pieces}</ul>'))
+    details += [(k, esc(v)) if k == "#" else (esc(k), esc(v)) for k, v in e["details"].get(lang, [])]
     details.append((s["d_status"], esc(status_label(e["status"], lang))))
-    dl = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in details)
+    # a row labelled "#" is a heading: it says which piece of a set the rows below describe
+    dl = "".join(f'<div class="details-group"><dt>{v}</dt></div>' if k == "#" else f"<div><dt>{k}</dt><dd>{v}</dd></div>"
+                 for k, v in details)
 
     enquire = PATHS["contact"][lang] + "?item=" + esc(f'{e["ref"]} – {title}').replace(" ", "+")
     rel_kind, rel = related_for(e)
@@ -727,7 +738,7 @@ def build_item(e, lang):
         "@context": "https://schema.org", "@type": "Product", "name": title, "sku": e["ref"],
         "url": BASE_URL + entry_path(e, lang), "description": clip(e["intro"].get(lang) or body_html, 300),
         "image": [BASE_URL + photo_src(e, p) for p in photos[:6]],
-        "category": tlabel, "inLanguage": lang,
+        "category": tlabel if len(types_of(e)) == 1 else [type_name(t, lang) for t in types_of(e)], "inLanguage": lang,
     }
     if e.get("house") and e["house"] != "other":
         product["brand"] = {"@type": "Brand", "name": house_name(e["house"], lang)}
@@ -944,7 +955,7 @@ def build_sitemap(alt_pairs):
             f"- [Contact]({BASE_URL}{PATHS['contact']['en']})", "",
             "## Types"]
     for t in SITE["types"]:
-        if any(e["type"] == t["key"] for e in ITEMS):
+        if any(t["key"] in types_of(e) for e in ITEMS):
             llms.append(f"- [{t['en']}]({BASE_URL}{type_path(t['key'], 'en')})")
     llms += ["", "## Hungarian version", f"- [Magyar főoldal]({BASE_URL}/hu/)", ""]
     write("/llms.txt", "\n".join(llms))
@@ -992,7 +1003,7 @@ def main():
     for k in ("home", "collection", "houses", "new", "sold", "guide", "about", "contact"):
         alt_pairs.append((PATHS[k]["en"], PATHS[k]["hu"]))
     for t in SITE["types"]:
-        if any(e["type"] == t["key"] for e in ITEMS):
+        if any(t["key"] in types_of(e) for e in ITEMS):
             alt_pairs.append((type_path(t["key"], "en"), type_path(t["key"], "hu")))
     for k in {e["house"] for e in ITEMS if e.get("house")}:
         alt_pairs.append((house_path(k, "en"), house_path(k, "hu")))

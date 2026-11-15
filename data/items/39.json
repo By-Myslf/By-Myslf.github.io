@@ -233,6 +233,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Bollinger Champagne fém pezsgős vödör",
   "hu": "Bollinger Champagne Vintage Metal Ice Bucket"

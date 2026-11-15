@@ -314,6 +314,9 @@
  "materials": [
   "metal"
  ],
+ "types": [
+  "multi-bottle-coolers"
+ ],
  "keywords": {
   "en": "Piper-Heidsieck XL pezsgőhűtő – fényes piros, arany belsővel, 6 palackhoz",
   "hu": "Piper-Heidsieck XL Champagne Cooler – Glossy Red with Gold Interior, for 6 Bottles"

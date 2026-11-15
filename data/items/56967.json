@@ -691,6 +691,9 @@
  },
  "period": "2000-today",
  "materials": [],
+ "types": [
+  "special-items"
+ ],
  "keywords": {
   "en": "VEUVE CLICQUOT LA GRANDE DAME 2015 × LOUIS VUITTON",
   "hu": "Veuve Clicquot La Grande Dame 2015 × Louis Vuitton"

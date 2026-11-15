@@ -21,6 +21,10 @@
  "details": {
   "hu": [
    [
+    "#",
+    "Poharak (darabonként)"
+   ],
+   [
     "Model",
     "Lehmann Glass Opale 16"
    ],
@@ -41,19 +45,15 @@
     "Ólommentes kristályüveg"
    ],
    [
-    "GYÁRTÓ",
+    "Gyártó",
     "Lehmann Glass"
-   ],
-   [
-    "Mennyiség",
-    "6 pohár"
-   ],
-   [
-    "A készlet tartalma",
-    "1 fekete DEUTZ pezsgő jégtartó + 1 ezüstszínű DEUTZ pezsgő jégtartó + 6 DEUTZ Lehmann Glass Opale 16 cl pezsgőpohár"
    ]
   ],
   "en": [
+   [
+    "#",
+    "Glasses (each)"
+   ],
    [
     "Model",
     "Lehmann Glass Opale 16"
@@ -77,10 +77,6 @@
    [
     "Manufacturer",
     "Lehmann Glass"
-   ],
-   [
-    "Quantity",
-    "6 glasses"
    ]
   ]
  },
@@ -335,6 +331,24 @@
  "period": null,
  "materials": [
   "glass"
+ ],
+ "contents": [
+  {
+   "qty": 2,
+   "en": "Deutz champagne coolers – one black with gold-coloured lettering, one silver-coloured with black lettering",
+   "hu": "DEUTZ pezsgőhűtő – egy fekete, aranyszínű felirattal, és egy ezüstszínű, fekete felirattal",
+   "type": "single-bottle-coolers"
+  },
+  {
+   "qty": 6,
+   "en": "Deutz Lehmann Glass Opale 16 cl champagne glasses",
+   "hu": "DEUTZ Lehmann Glass Opale 16 cl pezsgőspohár",
+   "type": "champagne-glasses"
+  }
+ ],
+ "types": [
+  "single-bottle-coolers",
+  "champagne-glasses"
  ],
  "keywords": {
   "en": "DEUTZ pezsgő készlet – két vintage pezsgőhűtő és 6 DEUTZ 16 cl pezsgőpohár",

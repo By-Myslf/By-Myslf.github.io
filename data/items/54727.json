@@ -21,6 +21,10 @@
  "details": {
   "hu": [
    [
+    "#",
+    "Pezsgőhűtő"
+   ],
+   [
     "Magasság",
     "22 cm"
    ],
@@ -37,6 +41,10 @@
     "565 g"
    ],
    [
+    "#",
+    "Poharak (darabonként)"
+   ],
+   [
     "Magasság",
     "19,3 cm"
    ],
@@ -45,11 +53,15 @@
     "6,7 cm"
    ],
    [
-    "Kapacitás",
+    "Űrtartalom",
     "18 cl"
    ]
   ],
   "en": [
+   [
+    "#",
+    "Cooler"
+   ],
    [
     "Height",
     "22 cm"
@@ -65,6 +77,10 @@
    [
     "Weight",
     "565 g"
+   ],
+   [
+    "#",
+    "Glasses (each)"
    ],
    [
     "Height",
@@ -244,12 +260,35 @@
  ],
  "highlight": false,
  "status": "sold",
- "type": "single-bottle-coolers",
+ "type": "multi-bottle-coolers",
  "house": "louis-roederer",
  "year": null,
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "Louis Roederer two-bottle champagne cooler, champagne gold-bronze colour",
+   "hu": "Louis Roederer kétpalackos pezsgőhűtő, pezsgő-arany/bronz színben",
+   "type": "multi-bottle-coolers"
+  },
+  {
+   "qty": 6,
+   "en": "Lehmann Premium 18 cl champagne glasses (P. Jamesse Signature Collection)",
+   "hu": "Lehmann Premium 18 cl pezsgőspohár (P. Jamesse Signature Collection)",
+   "type": "champagne-glasses"
+  },
+  {
+   "qty": 1,
+   "en": "original Lehmann box",
+   "hu": "eredeti Lehmann doboz"
+  }
+ ],
+ "types": [
+  "multi-bottle-coolers",
+  "champagne-glasses"
+ ],
  "keywords": {
   "en": "Louis Roederer kétpalackos jégveder 6 pezsgőspohárral",
   "hu": "Louis Roederer Two-Bottle Champagne Cooler with 6 Glasses"

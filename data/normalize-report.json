@@ -360,7 +360,7 @@
   "photos": 14,
   "hu": "Ajándékötlet egy Perrier-Jouët pezsgőrajongónak Belle Epoque poharak d",
   "en": "Perrier-Jouët Belle Époque Glasses on a Decorative Base – Gift Set",
-  "det": "2/0",
+  "det": "0/0",
   "missing_en": [],
   "has_ovr": true
  },
@@ -532,7 +532,7 @@
   "photos": 19,
   "hu": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag + 2 pezsgőspohár",
   "en": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag with 2 Champagne Gla",
-  "det": "5/5",
+  "det": "6/6",
   "missing_en": [],
   "has_ovr": true
  },
@@ -549,7 +549,7 @@
   "photos": 15,
   "hu": "DEUTZ pezsgő készlet – két vintage pezsgőhűtő és 6 DEUTZ 16 cl pezsgőp",
   "en": "Deutz Champagne Set – Two Vintage Coolers and Six 16 cl Glasses",
-  "det": "8/7",
+  "det": "7/7",
   "missing_en": [],
   "has_ovr": true
  },
@@ -566,7 +566,7 @@
   "photos": 12,
   "hu": "Taittinger Nocturne pezsgős jégveder (2 db) + nyári szalmakalap",
   "en": "Taittinger Nocturne Champagne Buckets (Set of 2) with Summer Straw Hat",
-  "det": "4/4",
+  "det": "5/5",
   "missing_en": [],
   "has_ovr": true
  },
@@ -574,14 +574,14 @@
   "id": 54727,
   "kind": "item",
   "status": "sold",
-  "type": "single-bottle-coolers",
+  "type": "multi-bottle-coolers",
   "house": "louis-roederer",
   "era": null,
   "mat": [],
   "photos": 10,
   "hu": "Louis Roederer kétpalackos jégveder 6 pezsgőspohárral",
   "en": "Louis Roederer Two-Bottle Champagne Cooler with 6 Glasses",
-  "det": "7/7",
+  "det": "9/9",
   "missing_en": [],
   "has_ovr": true
  },
@@ -596,7 +596,7 @@
   "photos": 16,
   "hu": "Pol Roger pezsgő készlet – Jégveder + 6 Lehmann 30 cl pezsgő pohár",
   "en": "Pol Roger Champagne Set – Ice Bucket and 6 Lehmann 30 cl Glasses",
-  "det": "6/5",
+  "det": "7/7",
   "missing_en": [],
   "has_ovr": true
  },
@@ -658,7 +658,7 @@
   "photos": 10,
   "hu": "Armand de Brignac Brut Gold Dummy 0,75 L – Display szett",
   "en": "Armand de Brignac Brut Gold Display Bottle Set (0.75 L)",
-  "det": "1/0",
+  "det": "0/0",
   "missing_en": [],
   "has_ovr": true
  },
@@ -673,7 +673,7 @@
   "photos": 23,
   "hu": "Dom Pérignon könyv + világító bárdekoráció",
   "en": "Dom Pérignon Book and Illuminated Bar Decoration",
-  "det": "0/1",
+  "det": "3/3",
   "missing_en": [],
   "has_ovr": true
  },

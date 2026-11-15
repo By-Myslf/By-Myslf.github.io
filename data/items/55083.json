@@ -19,11 +19,32 @@
   "en": "<p>Kaukoranta spent nearly two decades exploring and tasting different Dom Pérignon vintages. He purchased his first bottle in 2004 and later focused increasingly on older vintages, including Œnothèque releases as well as the later P2 and P3 editions. The book is the result of many years of collecting, tasting and experience in Champagne.</p>\n<p>This large-format, <strong>152-page hardcover book in English</strong> provides a detailed overview of Dom Pérignon and the development of its different vintages. It contains <strong>280 tasting notes, 598 ratings and 68 large-format bottle photographs</strong>. The book measures approximately <strong>24.5 × 34 cm</strong>, making it suitable both as a reference work and as part of a Champagne collection or bar display.</p>\n<p>The book is accompanied by an <strong>illuminated bar display inspired by the iconic shield-shaped Dom Pérignon label</strong>. Its green front features the familiar white Dom Pérignon graphics and lettering. When switched on, it produces a strong green light that highlights the label design, particularly in a darker bar or display environment.</p>\n<p>The illuminated display is in <strong>brand-new condition</strong>. It has a <strong>built-in electrical system with an on/off switch</strong> and operates via a <strong>USB connection</strong>, making it simple to set up and use immediately.</p>\n<p>The book and illuminated Dom Pérignon display make a great combination for a <strong>Champagne collection, bar, restaurant, display cabinet or home bar</strong>.</p>"
  },
  "details": {
-  "hu": [],
+  "hu": [
+   [
+    "#",
+    "Világító dekoráció"
+   ],
+   [
+    "Méret",
+    "25 × 23 × 3,5 cm"
+   ],
+   [
+    "Elhelyezés",
+    "Falra akasztható vagy a mellékelt állványra helyezhető – polcra, vitrinbe vagy bárpultra"
+   ]
+  ],
   "en": [
    [
+    "#",
+    "Illuminated decoration"
+   ],
+   [
     "Size",
-    "25 × 23 × 3.5 cm. It can be hung on a wall or placed on the included stand , making it suitable for a shelf, display cabinet or bar counter"
+    "25 × 23 × 3.5 cm"
+   ],
+   [
+    "Display",
+    "Can be hung on a wall or placed on the included stand – suits a shelf, display cabinet or bar counter"
    ]
   ]
  },
@@ -405,6 +426,22 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "book: Drinking Dom Pérignon 1921 to 2013 by Edward Kaukoranta (152 pages, hardback, in English)",
+   "hu": "könyv: Drinking Dom Pérignon 1921 to 2013, Edward Kaukoranta (152 oldal, keménytáblás, angol nyelvű)"
+  },
+  {
+   "qty": 1,
+   "en": "illuminated Dom Pérignon shield-shaped bar decoration, with stand",
+   "hu": "világító, Dom Pérignon pajzs alakú bárdekoráció, állvánnyal",
+   "type": "illuminated-bar-accessories"
+  }
+ ],
+ "types": [
+  "illuminated-bar-accessories"
+ ],
  "keywords": {
   "en": "Dom Pérignon könyv + világító bárdekoráció",
   "hu": "Dom Pérignon Book and Illuminated Bar Decoration"

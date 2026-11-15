@@ -141,7 +141,8 @@
    36,
    37,
    38
-  ]
+  ],
+  "set_checked": true
  },
  "4536": {
   "title": {
@@ -213,6 +214,32 @@
    22,
    23,
    24
+  ],
+  "contents": [
+   {
+    "qty": 1,
+    "en": "Charles Heidsieck display bottle – Fillette (37.5 cl)",
+    "hu": "Charles Heidsieck demo palack – Fillette (37,5 cl)",
+    "type": "dummy-bottles"
+   },
+   {
+    "qty": 1,
+    "en": "Charles Heidsieck display bottle – Bouteille (75 cl)",
+    "hu": "Charles Heidsieck demo palack – Bouteille (75 cl)",
+    "type": "dummy-bottles"
+   },
+   {
+    "qty": 1,
+    "en": "Charles Heidsieck display bottle – Magnum (1.5 L)",
+    "hu": "Charles Heidsieck demo palack – Magnum (1,5 L)",
+    "type": "dummy-bottles"
+   },
+   {
+    "qty": 1,
+    "en": "Charles Heidsieck display bottle – Jeroboam (3 L)",
+    "hu": "Charles Heidsieck demo palack – Jeroboam (3 L)",
+    "type": "dummy-bottles"
+   }
   ]
  },
  "16423": {
@@ -237,7 +264,20 @@
  "22918": {
   "title": {
    "en": "Four Moët & Chandon Stemless Tulip Glasses on a Display Stand"
-  }
+  },
+  "contents": [
+   {
+    "qty": 4,
+    "en": "Moët & Chandon tulip-shaped glasses, removable from their red acrylic stems",
+    "hu": "Moët & Chandon tulipán alakú pezsgőspohár, a piros akril szárról levehető",
+    "type": "champagne-glasses"
+   },
+   {
+    "qty": 1,
+    "en": "thick acrylic display base engraved “Moët & Chandon, fondé en 1743”",
+    "hu": "vastag akril talapzat „Moët & Chandon, fondé en 1743” gravírozással"
+   }
+  ]
  },
  "25717": {
   "title": {
@@ -253,11 +293,29 @@
  "27656": {
   "title": {
    "en": "Louis Roederer Set of 6 Tasting Glasses (16 cl) for Cristal Champagne"
-  }
+  },
+  "set_checked": true
  },
  "27718": {
   "title": {
    "en": "Perrier-Jouët Belle Époque Glasses on a Decorative Base – Gift Set"
+  },
+  "contents": [
+   {
+    "qty": 2,
+    "en": "Perrier-Jouët Belle Époque champagne flutes with the floral design",
+    "hu": "Perrier-Jouët Belle Époque pezsgőspohár virágmintával",
+    "type": "champagne-glasses"
+   },
+   {
+    "qty": 1,
+    "en": "handmade glass and epoxy decorative base inspired by the Belle Époque era",
+    "hu": "kézzel készített, Belle Époque ihletésű üveg és epoxi dekor alátét"
+   }
+  ],
+  "details": {
+   "en": [],
+   "hu": []
   }
  },
  "31314": {
@@ -286,7 +344,8 @@
  "35263": {
   "title": {
    "en": "Billecart-Salmon Vintage Tasting Glasses (Set of 4, 15 cl)"
-  }
+  },
+  "set_checked": true
  },
  "38065": {
   "title": {
@@ -311,36 +370,421 @@
  "49492": {
   "title": {
    "en": "Veuve Clicquot “La Grande Dame” Polished Steel Champagne Cooler with Enamel Emblem"
-  }
+  },
+  "set_checked": true
  },
  "53363": {
   "title": {
    "en": "Taittinger Illuminated LED Champagne Cooler for 6–8 Bottles, with Remote Control"
-  }
+  },
+  "set_checked": true
  },
  "54545": {
   "title": {
    "en": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag with 2 Champagne Glasses"
+  },
+  "contents": [
+   {
+    "qty": 1,
+    "en": "Veuve Clicquot La Grande Dame by Riva Cruiser bag",
+    "hu": "Veuve Clicquot La Grande Dame by Riva Cruiser táska",
+    "type": "special-items"
+   },
+   {
+    "qty": 2,
+    "en": "Veuve Clicquot champagne glasses",
+    "hu": "Veuve Clicquot pezsgőspohár",
+    "type": "champagne-glasses"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "Condition",
+     "Excellent, scratch-free condition"
+    ],
+    [
+     "#",
+     "Bag"
+    ],
+    [
+     "Width",
+     "36 cm"
+    ],
+    [
+     "Height",
+     "22 cm"
+    ],
+    [
+     "Depth",
+     "24 cm"
+    ],
+    [
+     "Weight",
+     "2,882 g"
+    ]
+   ],
+   "hu": [
+    [
+     "Állapot",
+     "kitűnő, karcmentes állapot"
+    ],
+    [
+     "#",
+     "Táska"
+    ],
+    [
+     "Szélesség",
+     "36 cm"
+    ],
+    [
+     "Magasság",
+     "22 cm"
+    ],
+    [
+     "Mélység",
+     "24 cm"
+    ],
+    [
+     "Súly",
+     "2882 g"
+    ]
+   ]
   }
  },
  "54690": {
   "title": {
    "en": "Deutz Champagne Set – Two Vintage Coolers and Six 16 cl Glasses"
+  },
+  "contents": [
+   {
+    "qty": 2,
+    "en": "Deutz champagne coolers – one black with gold-coloured lettering, one silver-coloured with black lettering",
+    "hu": "DEUTZ pezsgőhűtő – egy fekete, aranyszínű felirattal, és egy ezüstszínű, fekete felirattal",
+    "type": "single-bottle-coolers"
+   },
+   {
+    "qty": 6,
+    "en": "Deutz Lehmann Glass Opale 16 cl champagne glasses",
+    "hu": "DEUTZ Lehmann Glass Opale 16 cl pezsgőspohár",
+    "type": "champagne-glasses"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "#",
+     "Glasses (each)"
+    ],
+    [
+     "Model",
+     "Lehmann Glass Opale 16"
+    ],
+    [
+     "Capacity",
+     "16 cl"
+    ],
+    [
+     "Height",
+     "19.3 cm"
+    ],
+    [
+     "Diameter",
+     "6.45 cm"
+    ],
+    [
+     "Material",
+     "Lead-free crystal glass"
+    ],
+    [
+     "Manufacturer",
+     "Lehmann Glass"
+    ]
+   ],
+   "hu": [
+    [
+     "#",
+     "Poharak (darabonként)"
+    ],
+    [
+     "Model",
+     "Lehmann Glass Opale 16"
+    ],
+    [
+     "Űrtartalom",
+     "16 cl"
+    ],
+    [
+     "Magasság",
+     "19,3 cm"
+    ],
+    [
+     "Átmérő",
+     "6,45 cm"
+    ],
+    [
+     "Anyag",
+     "Ólommentes kristályüveg"
+    ],
+    [
+     "Gyártó",
+     "Lehmann Glass"
+    ]
+   ]
   }
  },
  "54708": {
   "title": {
    "en": "Taittinger Nocturne Champagne Buckets (Set of 2) with Summer Straw Hat"
+  },
+  "contents": [
+   {
+    "qty": 2,
+    "en": "Taittinger Nocturne champagne buckets, translucent purple",
+    "hu": "Taittinger Nocturne pezsgős jégveder, átlátszó lila",
+    "type": "single-bottle-coolers"
+   },
+   {
+    "qty": 1,
+    "en": "white Taittinger summer straw hat",
+    "hu": "fehér Taittinger nyári szalmakalap",
+    "type": "gift-items"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "#",
+     "Buckets (each)"
+    ],
+    [
+     "Height",
+     "22 cm"
+    ],
+    [
+     "Width",
+     "22 cm"
+    ],
+    [
+     "Material",
+     "Plastic"
+    ],
+    [
+     "Color",
+     "Translucent purple"
+    ]
+   ],
+   "hu": [
+    [
+     "#",
+     "Jégvederek (darabonként)"
+    ],
+    [
+     "Magasság",
+     "22 cm"
+    ],
+    [
+     "Szélesség",
+     "22 cm"
+    ],
+    [
+     "Anyag",
+     "Műanyag"
+    ],
+    [
+     "Szín",
+     "Átlátszó lila"
+    ]
+   ]
   }
  },
  "54727": {
   "title": {
    "en": "Louis Roederer Two-Bottle Champagne Cooler with 6 Glasses"
+  },
+  "type": "multi-bottle-coolers",
+  "contents": [
+   {
+    "qty": 1,
+    "en": "Louis Roederer two-bottle champagne cooler, champagne gold-bronze colour",
+    "hu": "Louis Roederer kétpalackos pezsgőhűtő, pezsgő-arany/bronz színben",
+    "type": "multi-bottle-coolers"
+   },
+   {
+    "qty": 6,
+    "en": "Lehmann Premium 18 cl champagne glasses (P. Jamesse Signature Collection)",
+    "hu": "Lehmann Premium 18 cl pezsgőspohár (P. Jamesse Signature Collection)",
+    "type": "champagne-glasses"
+   },
+   {
+    "qty": 1,
+    "en": "original Lehmann box",
+    "hu": "eredeti Lehmann doboz"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "#",
+     "Cooler"
+    ],
+    [
+     "Height",
+     "22 cm"
+    ],
+    [
+     "Width",
+     "25 cm"
+    ],
+    [
+     "Depth",
+     "19 cm"
+    ],
+    [
+     "Weight",
+     "565 g"
+    ],
+    [
+     "#",
+     "Glasses (each)"
+    ],
+    [
+     "Height",
+     "19.3 cm"
+    ],
+    [
+     "Diameter",
+     "6.7 cm"
+    ],
+    [
+     "Capacity",
+     "18 cl"
+    ]
+   ],
+   "hu": [
+    [
+     "#",
+     "Pezsgőhűtő"
+    ],
+    [
+     "Magasság",
+     "22 cm"
+    ],
+    [
+     "Szélesség",
+     "25 cm"
+    ],
+    [
+     "Mélység",
+     "19 cm"
+    ],
+    [
+     "Súly",
+     "565 g"
+    ],
+    [
+     "#",
+     "Poharak (darabonként)"
+    ],
+    [
+     "Magasság",
+     "19,3 cm"
+    ],
+    [
+     "Átmérő",
+     "6,7 cm"
+    ],
+    [
+     "Űrtartalom",
+     "18 cl"
+    ]
+   ]
   }
  },
  "54739": {
   "title": {
    "en": "Pol Roger Champagne Set – Ice Bucket and 6 Lehmann 30 cl Glasses"
+  },
+  "contents": [
+   {
+    "qty": 1,
+    "en": "white Pol Roger ice bucket",
+    "hu": "fehér Pol Roger jégveder",
+    "type": "single-bottle-coolers"
+   },
+   {
+    "qty": 6,
+    "en": "Pol Roger × Lehmann 30 cl champagne glasses",
+    "hu": "Pol Roger × Lehmann 30 cl pezsgőspohár",
+    "type": "champagne-glasses"
+   },
+   {
+    "qty": 1,
+    "en": "Lehmann box for the glasses",
+    "hu": "Lehmann doboz a poharakhoz"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "#",
+     "Ice bucket"
+    ],
+    [
+     "Height",
+     "23.5 cm"
+    ],
+    [
+     "Width",
+     "19.5 cm"
+    ],
+    [
+     "#",
+     "Glasses (each)"
+    ],
+    [
+     "Capacity",
+     "30 cl"
+    ],
+    [
+     "Height",
+     "21.8 cm"
+    ],
+    [
+     "Diameter",
+     "7.4 cm"
+    ]
+   ],
+   "hu": [
+    [
+     "#",
+     "Jégveder"
+    ],
+    [
+     "Magasság",
+     "23,5 cm"
+    ],
+    [
+     "Szélesség",
+     "19,5 cm"
+    ],
+    [
+     "#",
+     "Poharak (darabonként)"
+    ],
+    [
+     "Űrtartalom",
+     "30 cl"
+    ],
+    [
+     "Magasság",
+     "21,8 cm"
+    ],
+    [
+     "Átmérő",
+     "7,4 cm"
+    ]
+   ]
   }
  },
  "54770": {
@@ -364,11 +808,72 @@
  "55002": {
   "title": {
    "en": "Armand de Brignac Brut Gold Display Bottle Set (0.75 L)"
-  }
+  },
+  "contents": [
+   {
+    "qty": 1,
+    "en": "Armand de Brignac Brut Gold display bottle (dummy), 0.75 L",
+    "hu": "Armand de Brignac Brut Gold display (dummy) palack, 0,75 L",
+    "type": "dummy-bottles"
+   },
+   {
+    "qty": 1,
+    "en": "glossy black presentation box that opens",
+    "hu": "fekete lakkozott, nyitható díszdoboz"
+   },
+   {
+    "qty": 1,
+    "en": "padded carrying case",
+    "hu": "párnázott hordozótok"
+   }
+  ]
  },
  "55083": {
   "title": {
    "en": "Dom Pérignon Book and Illuminated Bar Decoration"
+  },
+  "contents": [
+   {
+    "qty": 1,
+    "en": "book: Drinking Dom Pérignon 1921 to 2013 by Edward Kaukoranta (152 pages, hardback, in English)",
+    "hu": "könyv: Drinking Dom Pérignon 1921 to 2013, Edward Kaukoranta (152 oldal, keménytáblás, angol nyelvű)"
+   },
+   {
+    "qty": 1,
+    "en": "illuminated Dom Pérignon shield-shaped bar decoration, with stand",
+    "hu": "világító, Dom Pérignon pajzs alakú bárdekoráció, állvánnyal",
+    "type": "illuminated-bar-accessories"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "#",
+     "Illuminated decoration"
+    ],
+    [
+     "Size",
+     "25 × 23 × 3.5 cm"
+    ],
+    [
+     "Display",
+     "Can be hung on a wall or placed on the included stand – suits a shelf, display cabinet or bar counter"
+    ]
+   ],
+   "hu": [
+    [
+     "#",
+     "Világító dekoráció"
+    ],
+    [
+     "Méret",
+     "25 × 23 × 3,5 cm"
+    ],
+    [
+     "Elhelyezés",
+     "Falra akasztható vagy a mellékelt állványra helyezhető – polcra, vitrinbe vagy bárpultra"
+    ]
+   ]
   }
  },
  "55185": {
@@ -390,12 +895,26 @@
  "55435": {
   "title": {
    "en": "Perrier-Jouët Belle Époque Illuminated XL Champagne Cooler – Rechargeable"
-  }
+  },
+  "set_checked": true
  },
  "55459": {
   "title": {
    "en": "Krug Flânerie Leather Champagne Carrier with Krug Grande Cuvée 166ème Édition"
-  }
+  },
+  "contents": [
+   {
+    "qty": 1,
+    "en": "Krug Flânerie leather champagne carrier with insulated interior (2012)",
+    "hu": "KRUG Flânerie bőr champagne-hordozó szigetelt belsővel (2012)",
+    "type": "single-bottle-coolers"
+   },
+   {
+    "qty": 1,
+    "en": "bottle of Krug Grande Cuvée 166ème Édition Brut, 0.75 L",
+    "hu": "palack KRUG Grande Cuvée 166ème Édition Brut, 0,75 L"
+   }
+  ]
  },
  "55535": {
   "title": {
@@ -415,11 +934,129 @@
  "56439": {
   "title": {
    "en": "Perrier-Jouët Grand Brut Gift Set with Two Floral Glasses in Embossed Box"
-  }
+  },
+  "contents": [
+   {
+    "qty": 1,
+    "en": "bottle of Perrier-Jouët Grand Brut Champagne, 750 ml",
+    "hu": "palack Perrier-Jouët Grand Brut Champagne, 750 ml"
+   },
+   {
+    "qty": 2,
+    "en": "floral Perrier-Jouët champagne glasses",
+    "hu": "virágmintás Perrier-Jouët pezsgőspohár",
+    "type": "champagne-glasses"
+   },
+   {
+    "qty": 1,
+    "en": "white embossed gift box",
+    "hu": "fehér, dombornyomott díszdoboz"
+   }
+  ]
  },
  "56492": {
   "title": {
    "en": "Bollinger – Six Elisabeth Glasses and an Acrylic Cooler Designed by Eric Berthès"
+  },
+  "contents": [
+   {
+    "qty": 6,
+    "en": "Bollinger Elisabeth champagne glasses (Lehmann, 44 cl), in their original Bollinger box",
+    "hu": "Bollinger Elisabeth pezsgőspohár (Lehmann, 44 cl), eredeti Bollinger dobozban",
+    "type": "champagne-glasses"
+   },
+   {
+    "qty": 1,
+    "en": "transparent acrylic Bollinger champagne cooler with red panels, designed by Eric Berthès",
+    "hu": "átlátszó akril Bollinger pezsgőhűtő piros díszítőelemekkel, Eric Berthès tervezése",
+    "type": "single-bottle-coolers"
+   }
+  ],
+  "details": {
+   "en": [
+    [
+     "#",
+     "Glasses (each)"
+    ],
+    [
+     "Name",
+     "Elisabeth Champagne Glasses"
+    ],
+    [
+     "Manufacturer",
+     "Lehmann, France"
+    ],
+    [
+     "Material",
+     "Lead-free crystal glass"
+    ],
+    [
+     "Capacity",
+     "44 cl (440 ml)"
+    ],
+    [
+     "Height",
+     "23.3 cm (9.17 inches)"
+    ],
+    [
+     "Diameter",
+     "8.4 cm (3.31 inches)"
+    ],
+    [
+     "Manufacturing",
+     "Machine-made"
+    ],
+    [
+     "Care",
+     "Dishwasher-safe, according to the manufacturer’s markings"
+    ],
+    [
+     "Packaging",
+     "Original Bollinger box"
+    ]
+   ],
+   "hu": [
+    [
+     "#",
+     "Poharak (darabonként)"
+    ],
+    [
+     "Megnevezés",
+     "Elisabeth pezsgőspoharak"
+    ],
+    [
+     "Gyártó",
+     "Lehmann, Franciaország"
+    ],
+    [
+     "Anyag",
+     "Ólommentes kristályüveg"
+    ],
+    [
+     "Űrtartalom",
+     "44 cl (440 ml)"
+    ],
+    [
+     "Magasság",
+     "23,3 cm"
+    ],
+    [
+     "Átmérő",
+     "8,4 cm"
+    ],
+    [
+     "Kivitel",
+     "Gépi gyártású"
+    ],
+    [
+     "Tisztítás",
+     "Mosogatógépben tisztítható, a gyári jelölés szerint"
+    ],
+    [
+     "Csomagolás",
+     "Eredeti Bollinger doboz"
+    ]
+   ]
   }
  },
  "56558": {
@@ -442,7 +1079,8 @@
  "56738": {
   "title": {
    "en": "Dom Pérignon VHQ Day Party – Set of 6 Glasses with Gold Emblem"
-  }
+  },
+  "set_checked": true
  },
  "56758": {
   "title": {
@@ -477,6 +1115,7 @@
  "57180": {
   "title": {
    "en": "Perrier-Jouët Belle Époque – Set of 2 Lehmann Crystal Glasses in Gift Box"
-  }
+  },
+  "set_checked": true
  }
 }

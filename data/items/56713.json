@@ -433,6 +433,9 @@
  "materials": [
   "steel"
  ],
+ "types": [
+  "multi-bottle-coolers"
+ ],
  "keywords": {
   "en": "Armand de Brignac „Ace of Spades” – 8 palackos aranyszínű pezsgőhűtő jégmedence",
   "hu": "Armand de Brignac “Ace of Spades” 8-Bottle Gold Champagne Cooler"

@@ -366,6 +366,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "illuminated-bar-accessories"
+ ],
  "keywords": {
   "en": "Armand de Brignac LED világító bárdísz – prémium “Ace of Spades” fényinstalláció, gyűjtői darab",
   "hu": "Armand de Brignac “Ace of Spades” Illuminated LED Bar Display"

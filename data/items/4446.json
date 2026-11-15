@@ -554,6 +554,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "illuminated-bar-accessories"
+ ],
  "keywords": {
   "en": "Piper-Heidsieck Champagne 8 palackos világító pezsgőhűtő jégmedence",
   "hu": "Piper-Heidsieck Illuminated 8-Bottle Champagne Cooler"

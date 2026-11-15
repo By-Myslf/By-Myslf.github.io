@@ -383,6 +383,27 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "bottle of Perrier-Jouët Grand Brut Champagne, 750 ml",
+   "hu": "palack Perrier-Jouët Grand Brut Champagne, 750 ml"
+  },
+  {
+   "qty": 2,
+   "en": "floral Perrier-Jouët champagne glasses",
+   "hu": "virágmintás Perrier-Jouët pezsgőspohár",
+   "type": "champagne-glasses"
+  },
+  {
+   "qty": 1,
+   "en": "white embossed gift box",
+   "hu": "fehér, dombornyomott díszdoboz"
+  }
+ ],
+ "types": [
+  "champagne-glasses"
+ ],
  "keywords": {
   "en": "Perrier-Jouët Grand Brut Champagne – 2 virágmintás pezsgőspohárral, dombornyomott díszdobozban",
   "hu": "Perrier-Jouët Grand Brut Gift Set with Two Floral Glasses in Embossed Box"

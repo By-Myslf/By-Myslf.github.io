@@ -273,6 +273,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "multi-bottle-coolers"
+ ],
  "old_slugs": [
   "moet-chandon-magnum-xxl-hutotal-145-000-ft"
  ],

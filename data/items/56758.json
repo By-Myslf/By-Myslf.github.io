@@ -437,6 +437,9 @@
  },
  "period": "2000-today",
  "materials": [],
+ "types": [
+  "gift-items"
+ ],
  "keywords": {
   "en": "Laurent-Perrier Cuvée Rosé „Pétales” 2023 – Limitált kiadású rosé champagne, színes fém palackruhával",
   "hu": "Laurent-Perrier Cuvée Rosé “Pétales” 2023 – Limited Edition with Metal Bottle Jacket"

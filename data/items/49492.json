@@ -324,6 +324,9 @@
  "materials": [
   "steel"
  ],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "Veuve Clicquot „La Grande Dame” Polírozott Acél Pezsgőhűtő felirattal és tűzzománc VCP emblémával",
   "hu": "Veuve Clicquot “La Grande Dame” Polished Steel Champagne Cooler with Enamel Emblem"

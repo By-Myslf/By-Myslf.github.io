@@ -7,7 +7,9 @@ For each post it:
   * works out the type, champagne house, status, period and materials
   * removes shop phrases (delivery offers, slogans) that do not belong on a collectors' site
 Manual corrections and translations in data/overrides/<id>.json are applied last
-("drop_photos": [numbers] there leaves out photos that show other items).
+("drop_photos": [numbers] there leaves out photos that show other items;
+"contents": [{"qty", "en", "hu", "type"}] describes the pieces of a set;
+"set_checked": true marks a flagged item that needs no contents list, e.g. 6 identical glasses).
 
 Usage: python3 tools/normalize.py
 """
@@ -330,6 +332,36 @@ def slugify(s, n=80):
 PARTNER_PHOTO = re.compile(r"sursumvivere|fembutor|vasbutor|femszerkezet|lakasbutor|lakberendez", re.I)
 
 
+SET_ROW = re.compile(r"(quantity|mennyiség|darabszám|set (includes|contents)|includes|"
+                     r"a (készlet|szett) (tartalma|tartalmazza))$", re.I)
+SET_TITLE = re.compile(r"készlet|szett|\bset\b|gift set|\bpair\b|\+|\bés\s+(\d|két|három|négy|öt|hat)|"
+                       r"\b(and|with)\s+(an?|one|two|three|four|five|six|\d)\b|gyűjtemény|összeállítás|collection", re.I)
+PIECE_WORDS = [  # words in a title that name a kind of piece
+    ("coolers", r"hűtő|veder|vödör|jégtál|medence|cooler|bucket|ice bath|carrier|hordozó"),
+    ("glasses", r"pohár|poharak|kehely|glass|flute|coupe"),
+    ("bottles", r"dummy|demo|display bottle|kirakati|díszpalack|\bbottle of\b|grande cuvée|grand brut"),
+    ("sabres", r"szablya|sabre|saber|kard"),
+    ("cigar", r"hamutartó|ashtray|szivar|cigar"),
+    ("illuminated", r"világító|illuminated|\bled\b"),
+    ("other", r"kalap|\bhat\b|táska|\bbag\b|könyv|\bbook\b|alátét|coaster|decorative base|on a display stand|tartóállványon"),
+]
+
+
+def set_candidate(e, checked=False):
+    """Flag items that look like sets, so their contents can be checked by hand."""
+    if e["kind"] != "item":
+        return None
+    title = " ".join(t for t in (e["title"].get("hu"), e["title"].get("en")) if t)
+    rows = [r[0] for lg in ("hu", "en") for r in (e["details"].get(lg) or []) if SET_ROW.match(r[0].strip())]
+    pieces = [k for k, rx in PIECE_WORDS if re.search(rx, title, re.I)]
+    if not (SET_TITLE.search(title) or rows or len(pieces) > 1):
+        return None
+    return {"id": e["id"], "title": e["title"].get("en") or e["title"].get("hu"), "type": e.get("type"),
+            "pieces_in_title": pieces, "set_rows": rows,
+            "state": "contents" if e.get("contents") else ("checked" if checked else "to check"),
+            "types": e.get("types")}
+
+
 def keep_photos(raw):
     """Drop the partner workshop's advert photos, except on display stands it makes."""
     if raw["id"] in CUR.get("display_stands", []) or raw["role"] == "article":
@@ -351,7 +383,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for old in OUT.glob("*.json"):
         old.unlink()
-    report, used_slugs = [], set()
+    report, used_slugs, sets_report = [], set(), []
     for p in sorted(RAW.glob("[0-9]*.json"), key=lambda x: int(x.stem)):
         raw = json.loads(p.read_text())
         role = raw["role"]
@@ -415,8 +447,16 @@ def main():
             deep_merge(e, json.loads(json.dumps(OVERRIDES[str(raw["id"])])))
         # photos that show other items (listed by number in the overrides as "drop_photos")
         drop = set(e.pop("drop_photos", []))
+        set_checked = e.pop("set_checked", False)
         if drop:
             e["photos"] = [ph for ph in e["photos"] if ph["n"] not in drop]
+        # sets: "contents" lists the pieces; their types put the set in more than one category
+        if e["kind"] == "item":
+            contents = e.get("contents") or []
+            e["types"] = list(dict.fromkeys([e["type"]] + [c["type"] for c in contents if c.get("type")]))
+            if contents:  # a single "Quantity" or "Set includes" line would now be wrong or repeated
+                for lg in ("hu", "en"):
+                    e["details"][lg] = [r for r in (e["details"].get(lg) or []) if not SET_ROW.match(r[0].strip())]
         # rebuild slug and keywords after overrides
         if e["title"].get("en"):
             base = e.get("slug_en") or slugify(e["title"]["en"])
@@ -436,6 +476,9 @@ def main():
         (OUT / f"{raw['id']}.json").write_text(json.dumps(e, ensure_ascii=False, indent=1))
         missing = [k for k in ("title", "intro") if not e[k].get("en")]
         has_ovr = f.exists() or str(raw["id"]) in OVERRIDES
+        cand = set_candidate(e, set_checked)
+        if cand:
+            sets_report.append(cand)
         report.append({
             "id": raw["id"], "kind": e["kind"], "status": e.get("status"), "type": e.get("type"), "house": e.get("house"),
             "era": e.get("era", {}).get("en"), "mat": e.get("materials"), "photos": len(e["photos"]),
@@ -444,7 +487,9 @@ def main():
             "missing_en": missing, "has_ovr": has_ovr,
         })
     (ROOT / "data" / "normalize-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
-    print(f"{len(report)} entries written to data/items")
+    (ROOT / "data" / "sets-report.json").write_text(json.dumps(sets_report, ensure_ascii=False, indent=1))
+    todo = sum(1 for c in sets_report if c["state"] == "to check")
+    print(f"{len(report)} entries written to data/items; {len(sets_report)} possible sets ({todo} still to check) in data/sets-report.json")
 
 
 if __name__ == "__main__":

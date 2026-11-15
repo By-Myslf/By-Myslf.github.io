@@ -352,6 +352,35 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "Charles Heidsieck display bottle – Fillette (37.5 cl)",
+   "hu": "Charles Heidsieck demo palack – Fillette (37,5 cl)",
+   "type": "dummy-bottles"
+  },
+  {
+   "qty": 1,
+   "en": "Charles Heidsieck display bottle – Bouteille (75 cl)",
+   "hu": "Charles Heidsieck demo palack – Bouteille (75 cl)",
+   "type": "dummy-bottles"
+  },
+  {
+   "qty": 1,
+   "en": "Charles Heidsieck display bottle – Magnum (1.5 L)",
+   "hu": "Charles Heidsieck demo palack – Magnum (1,5 L)",
+   "type": "dummy-bottles"
+  },
+  {
+   "qty": 1,
+   "en": "Charles Heidsieck display bottle – Jeroboam (3 L)",
+   "hu": "Charles Heidsieck demo palack – Jeroboam (3 L)",
+   "type": "dummy-bottles"
+  }
+ ],
+ "types": [
+  "dummy-bottles"
+ ],
  "keywords": {
   "en": "Charles Heidsieck Champagne demo (üres) pezsgőspalackok gyűjteménye – Egy Fillette, egy Bouteille, egy Magnum és egy Jeroboam",
   "hu": "Charles Heidsieck Display Bottles – Fillette, Bouteille, Magnum and Jeroboam"

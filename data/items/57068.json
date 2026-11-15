@@ -323,6 +323,9 @@
  "materials": [
   "steel"
  ],
+ "types": [
+  "multi-bottle-coolers"
+ ],
  "keywords": {
   "en": "Laurent-Perrier nagyméretű pezsgőhűtő – 8 palackos",
   "hu": "Laurent-Perrier Large 8-Bottle Champagne Cooler"

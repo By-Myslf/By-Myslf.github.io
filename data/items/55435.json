@@ -301,6 +301,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "illuminated-bar-accessories"
+ ],
  "keywords": {
   "en": "Perrier-Jouët Belle Époque – Akkumulátoros, világító champagne jégmedence",
   "hu": "Perrier-Jouët Belle Époque Illuminated XL Champagne Cooler – Rechargeable"

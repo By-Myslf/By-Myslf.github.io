@@ -298,6 +298,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "gift-items"
+ ],
  "keywords": {
   "en": "Dom Pérignon – Moët & Chandon Millésime Champagne palackzáró díszdugó tervezte Martin Szekely",
   "hu": "Dom Pérignon Millésime Bottle Stopper Designed by Martin Szekely"

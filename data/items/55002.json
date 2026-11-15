@@ -19,12 +19,7 @@
   "en": "<p>Armand de Brignac, also known as <strong>Ace of Spades</strong>, is a well-known Champagne brand. Brut Gold is its best-known cuvée.</p>\n<p>Dummy bottles are produced for bars, restaurants, shops, events and promotional displays, allowing the brand and bottle to be presented without using a real bottle of Champagne.</p>\n<p>The set includes the gold-coloured display bottle, glossy black opening presentation box and padded carrying case. The bottle and box feature the raised Ace of Spades emblems.</p>\n<p>Suitable for <strong>bar or restaurant decoration, display cabinets, home bars, photography, shop displays or Champagne collections</strong>.</p>\n<p><strong>Not for consumption – the bottle contains no Champagne.</strong></p>"
  },
  "details": {
-  "hu": [
-   [
-    "A szett tartalma",
-    "aranyszínű display palack, fekete lakkozott nyitható díszdoboz és párnázott hordozótok. A dobozon és a palackon domború Ace of Spades emblémák találhatók"
-   ]
-  ],
+  "hu": [],
   "en": []
  },
  "photos": [
@@ -197,6 +192,27 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 1,
+   "en": "Armand de Brignac Brut Gold display bottle (dummy), 0.75 L",
+   "hu": "Armand de Brignac Brut Gold display (dummy) palack, 0,75 L",
+   "type": "dummy-bottles"
+  },
+  {
+   "qty": 1,
+   "en": "glossy black presentation box that opens",
+   "hu": "fekete lakkozott, nyitható díszdoboz"
+  },
+  {
+   "qty": 1,
+   "en": "padded carrying case",
+   "hu": "párnázott hordozótok"
+  }
+ ],
+ "types": [
+  "dummy-bottles"
+ ],
  "keywords": {
   "en": "Armand de Brignac Brut Gold Dummy 0,75 L – Display szett",
   "hu": "Armand de Brignac Brut Gold Display Bottle Set (0.75 L)"

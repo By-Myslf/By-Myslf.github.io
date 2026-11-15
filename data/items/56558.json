@@ -676,6 +676,9 @@
  "materials": [
   "metal"
  ],
+ "types": [
+  "single-bottle-coolers"
+ ],
  "keywords": {
   "en": "RUINART × VICTORIA WILMOTTE – 2026 – Champagne Bucket",
   "hu": "Ruinart × Victoria Wilmotte – 2026 Champagne Bucket"

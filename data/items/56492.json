@@ -21,16 +21,16 @@
  "details": {
   "hu": [
    [
+    "#",
+    "Poharak (darabonként)"
+   ],
+   [
     "Megnevezés",
     "Elisabeth pezsgőspoharak"
    ],
    [
     "Gyártó",
     "Lehmann, Franciaország"
-   ],
-   [
-    "Mennyiség",
-    "6 darab"
    ],
    [
     "Anyag",
@@ -63,16 +63,16 @@
   ],
   "en": [
    [
+    "#",
+    "Glasses (each)"
+   ],
+   [
     "Name",
     "Elisabeth Champagne Glasses"
    ],
    [
     "Manufacturer",
     "Lehmann, France"
-   ],
-   [
-    "Quantity",
-    "6 glasses"
    ],
    [
     "Material",
@@ -529,6 +529,24 @@
  "period": null,
  "materials": [
   "glass"
+ ],
+ "contents": [
+  {
+   "qty": 6,
+   "en": "Bollinger Elisabeth champagne glasses (Lehmann, 44 cl), in their original Bollinger box",
+   "hu": "Bollinger Elisabeth pezsgőspohár (Lehmann, 44 cl), eredeti Bollinger dobozban",
+   "type": "champagne-glasses"
+  },
+  {
+   "qty": 1,
+   "en": "transparent acrylic Bollinger champagne cooler with red panels, designed by Eric Berthès",
+   "hu": "átlátszó akril Bollinger pezsgőhűtő piros díszítőelemekkel, Eric Berthès tervezése",
+   "type": "single-bottle-coolers"
+  }
+ ],
+ "types": [
+  "single-bottle-coolers",
+  "champagne-glasses"
  ],
  "keywords": {
   "en": "BOLLINGER champagne – 6 ELISABETH pezsgőspohár és Eric Berthès tervezésű akril pezsgőhűtő",

@@ -432,6 +432,22 @@
  "era": {},
  "period": null,
  "materials": [],
+ "contents": [
+  {
+   "qty": 4,
+   "en": "Moët & Chandon tulip-shaped glasses, removable from their red acrylic stems",
+   "hu": "Moët & Chandon tulipán alakú pezsgőspohár, a piros akril szárról levehető",
+   "type": "champagne-glasses"
+  },
+  {
+   "qty": 1,
+   "en": "thick acrylic display base engraved “Moët & Chandon, fondé en 1743”",
+   "hu": "vastag akril talapzat „Moët & Chandon, fondé en 1743” gravírozással"
+  }
+ ],
+ "types": [
+  "champagne-glasses"
+ ],
  "keywords": {
   "en": "4x Moët & Chandon tulipán talp nélküli pezsgőspohár tartóállványon",
   "hu": "Four Moët & Chandon Stemless Tulip Glasses on a Display Stand"

@@ -311,6 +311,9 @@
  "era": {},
  "period": null,
  "materials": [],
+ "types": [
+  "gift-items"
+ ],
  "old_slugs": [
   "taittinger-champagne-pezsgozaro-dugo-6-000-ft"
  ],

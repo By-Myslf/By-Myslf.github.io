@@ -323,6 +323,9 @@
  "materials": [
   "glass"
  ],
+ "types": [
+  "gift-items"
+ ],
  "keywords": {
   "en": "Louis Roederer reklámtükör – José Simont grafikája – 1960–70-es évek – 75 × 57 cm",
   "hu": "Louis Roederer Advertising Mirror – Artwork by José Simont – 1960s–1970s"
