@@ -517,5 +517,11 @@
  "old_paths": {
   "_note": "old champagneclub.hu addresses with no automatic match: 'type:<key>' or 'house:<key>'",
   "/category/sursum-vivere/": "type:display-stands"
+ },
+ "remove_phrases": {
+  "_note": "removed from every text (user's rule); spaces in a phrase may be missing in the original",
+  "phrases": [
+   "SursumVivere Pannonia"
+  ]
  }
 }

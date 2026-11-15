@@ -89,6 +89,9 @@ BROWSE_RX = re.compile(
     r"^[—–-]?\s*(?:nézze meg|nézze át|tekintse meg|böngésszen|válogasson|check out|browse|see more|see also|take a look|"
     r"lásd még|további részletek)|>>>\s*$|champagneclub\.hu\s*(?:budapest)?\s*[.!]?\s*$|champagneclub\.hu kínálatában|"
     r"on champagneclub\.hu|from champagneclub\.hu|kínálatunk|our (?:current )?offer\b", re.I)
+# 6. phrases the user wants removed everywhere (data/site.json → remove_phrases)
+REMOVE_RX = re.compile("|".join(r"\s*".join(re.escape(w) for w in re.findall(r"[A-Z]?[a-z]+|\S", ph))
+                                for ph in SITE.get("remove_phrases", {}).get("phrases", [])) or r"(?!x)x", re.I)
 SOURCES_HEAD = re.compile(r"^(?:forrásjegyzék|források|felhasznált források|irodalom|references|sources|bibliography)\b", re.I)
 
 
@@ -254,6 +257,14 @@ def assemble(blocks, item=True, dropped=None):
         t = b["text"]
         if not item and (b["tag"].startswith("h") and SOURCES_HEAD.match(t)):
             in_sources = True  # an article's source list: kept whole, with its links
+        if REMOVE_RX.search(t):
+            rest = REMOVE_RX.sub(" ", t).strip(" .,;:–—-")
+            if not rest:
+                if dropped is not None:
+                    dropped.append({"text": t, "rule": "removed phrase"})
+                continue
+            b = dict(b, html=REMOVE_RX.sub("", b["html"]), text=re.sub(r"\s+", " ", REMOVE_RX.sub(" ", t)).strip())
+            t = b["text"]
         why = drop_reason(t, in_sources or (not item and re.match(r"^(\[\d+\]|forrás|source)", t, re.I)))
         if why:
             if dropped is not None:

@@ -317,6 +317,10 @@
      "rule": "browse-more line without a house or item"
     },
     {
+     "text": "SursumVivere Pannonia",
+     "rule": "removed phrase"
+    },
+    {
      "text": "www.sursumvivere.hu",
      "rule": "website: www.sursumvivere.hu"
     }
@@ -368,6 +372,10 @@
     {
      "text": "ChampagneClub Budapest – „A buborékok eltűnnek, a pezsgő tartozékok megmaradnak.”",
      "rule": "slogan (now in the footer)"
+    },
+    {
+     "text": "SursumVivere Pannonia",
+     "rule": "removed phrase"
     }
    ],
    "en": [
