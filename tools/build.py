@@ -1017,6 +1017,7 @@ def resolve_old_links():
         def repl(m):
             target = old_link_target(m.group(1), lang)
             return f'<a href="{target}">{m.group(2)}</a>' if target else m.group(2)
+        html = re.sub(r'<a href="cc-house:([^"]*)">', lambda m: f'<a href="{house_path(m.group(1), lang)}">', html)
         return re.sub(r'<a href="cc-old:([^"]*)">(.*?)</a>', repl, html, flags=re.S)
     for e in ENTRIES:
         for lang in ("en", "hu"):

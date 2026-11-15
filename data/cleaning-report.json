@@ -145,6 +145,12 @@
   "title": "Mini Champagne Pupitre for 18 Bottles",
   "copy_step_removed": 1,
   "dropped": {
+   "hu": [
+    {
+     "text": "Tekintse meg a Sursum Vivere Kft. további pezsgőzéshez kapcsolódó termékeit >>>",
+     "rule": "browse-more line without a house or item"
+    }
+   ],
    "en": [
     {
      "text": "www.sursumvivere.hu",
@@ -198,7 +204,17 @@
   "title": "Custom Design Freestanding Ice Bucket Stand – Yellow",
   "copy_step_removed": 1,
   "dropped": {
+   "hu": [
+    {
+     "text": "Nézze meg a Sursum Vivere Kft. többi pezsgőzéssel kapcsolatos egyedi bárfelszerelését és champagne ajándéktárgyait >>>",
+     "rule": "browse-more line without a house or item"
+    }
+   ],
    "en": [
+    {
+     "text": "Check out the rest of Sursum Vivere Ltd’s unique champagne barware and champagne souvenirs >>>",
+     "rule": "browse-more line without a house or item"
+    },
     {
      "text": "www.sursumvivere.hu",
      "rule": "website: www.sursumvivere.hu"
@@ -211,10 +227,20 @@
   "title": "Abel Lepitre Champagne Vintage Ice Bucket from the 1940s",
   "copy_step_removed": 0,
   "dropped": {
+   "hu": [
+    {
+     "text": "Nézze meg a többi vintage és antik bárfelszerelésünket és pezsgős vödrünket is",
+     "rule": "browse-more line without a house or item"
+    }
+   ],
    "en": [
     {
      "text": "GB-Wines.com",
      "rule": "website: GB-Wines.com"
+    },
+    {
+     "text": "Check out our other vintage and antique barware and champagne buckets",
+     "rule": "browse-more line without a house or item"
     },
     {
      "text": "www.sursumvivere.hu",
@@ -234,6 +260,10 @@
      "rule": "slogan (now in the footer)"
     },
     {
+     "text": "Böngésszen pezsgőkiegészítők, bárfelszerelések és pezsgős ajándéktárgyak kínálatában!",
+     "rule": "browse-more line without a house or item"
+    },
+    {
      "text": "Válogasson Piper-Heidsieck pezsgős ajándéktárgyaink közül egy privát pezsgőkóstolón",
      "rule": "tasting: privát pezsgőkóstoló"
     },
@@ -247,6 +277,10 @@
     }
    ],
    "en": [
+    {
+     "text": "Browse our range of champagne accessories, bar equipment and champagne souvenirs!",
+     "rule": "browse-more line without a house or item"
+    },
     {
      "text": "www.sursumvivere.hu",
      "rule": "website: www.sursumvivere.hu"
@@ -277,6 +311,10 @@
     {
      "text": "ChampagneClub.hu – „The bubbles vanish, the champagne accessories remain.”",
      "rule": "slogan (now in the footer)"
+    },
+    {
+     "text": "Browse our range of champagne accessories, bar equipment and champagne souvenirs!",
+     "rule": "browse-more line without a house or item"
     },
     {
      "text": "www.sursumvivere.hu",
@@ -336,6 +374,10 @@
     {
      "text": "ChampagneClub Budapest – „Bubbles Fade Accessories Stay”",
      "rule": "slogan (now in the footer)"
+    },
+    {
+     "text": "Browse our range of champagne accessories, bar equipment and champagne souvenirs!",
+     "rule": "browse-more line without a house or item"
     },
     {
      "text": "www.sursumvivere.hu",

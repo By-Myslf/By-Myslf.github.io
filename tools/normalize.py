@@ -84,6 +84,11 @@ TASTING_RX = re.compile(
     r"érdeklődés és időpont[ -]?egyeztetés|bárjában,? vagy külső helyszínen|kertjében,? vagy a teraszán", re.I)
 # 4. the slogan, which is now shown once in the footer
 SLOGAN_RX = re.compile(r"buborékok\s+(?:eltűnnek|elmúlnak|elillannak)|bubbles\s+(?:fade|vanish|disappear)", re.I)
+# 5. "browse more / see also" lines: kept only when they lead to a champagne house or a specific item
+BROWSE_RX = re.compile(
+    r"^[—–-]?\s*(?:nézze meg|nézze át|tekintse meg|böngésszen|válogasson|check out|browse|see more|see also|take a look|"
+    r"lásd még|további részletek)|>>>\s*$|champagneclub\.hu\s*(?:budapest)?\s*[.!]?\s*$|champagneclub\.hu kínálatában|"
+    r"on champagneclub\.hu|from champagneclub\.hu|kínálatunk|our (?:current )?offer\b", re.I)
 SOURCES_HEAD = re.compile(r"^(?:forrásjegyzék|források|felhasznált források|irodalom|references|sources|bibliography)\b", re.I)
 
 
@@ -108,6 +113,26 @@ def drop_reason(t, in_sources=False):
     return None
 
 
+def browse_target(t, h):
+    """For a "browse more" line: ("item", None) if it links to an old item page, ("house", key) if it names
+    a champagne house or links to its tag page, or None if it leads nowhere useful."""
+    from urllib.parse import urlparse
+    paths = [urlparse(htmllib.unescape(u)).path for u in re.findall(r'href="(https?://(?:www\.)?champagneclub\.hu[^"]*)"', h)]
+    for path in paths:
+        if re.match(r"^/(?!category/|tag/|page/|wp-|shop|kapcsolat|contact)[^/]+/?$", path):
+            return "item", None
+    for path in paths:
+        m = re.match(r"^/tag/([^/]+)/?$", path)
+        if m:
+            key = guess_house(m.group(1).replace("-", " "), [])
+            if key and key != "other":
+                return "house", key
+    key = guess_house(t, [])
+    if key and key != "other":
+        return "house", key
+    return None
+
+
 def fix_links(h, keep_external):
     """Old champagneclub.hu links become cc-old: links (pointed at the new pages at build time);
     other links are kept only in articles (their sources)."""
@@ -115,6 +140,8 @@ def fix_links(h, keep_external):
 
     def repl(m):
         url, inner = m.group(1), m.group(2)
+        if url.startswith("cc-"):  # already pointed at a new page
+            return m.group(0)
         u = urlparse(htmllib.unescape(url))
         if "champagneclub.hu" in u.netloc.lower():
             return f'<a href="cc-old:{u.path or "/"}">{inner}</a>'
@@ -232,6 +259,15 @@ def assemble(blocks, item=True, dropped=None):
             if dropped is not None:
                 dropped.append({"text": t, "rule": why})
             continue
+        if len(t) < 250 and BROWSE_RX.search(t) and not in_sources:
+            target = browse_target(t, b["html"])
+            if not target:
+                if dropped is not None:
+                    dropped.append({"text": t, "rule": "browse-more line without a house or item"})
+                continue
+            if target[0] == "house":  # the whole line links to the house page
+                inner = re.sub(r"</?a\b[^>]*>", "", b["html"])
+                b = dict(b, html=f'<a href="cc-house:{target[1]}">{inner}</a>')
         b = dict(b, html=fix_links(b["html"], keep_external=not item))
         kv = KV.match(t) if (item and len(t) < 220) else None
         if kv and b["tag"] in ("li", "p") and not t.endswith("?"):
