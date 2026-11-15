@@ -174,7 +174,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "ceramic"
+ ],
  "types": [
   "cigar-accessories"
  ],

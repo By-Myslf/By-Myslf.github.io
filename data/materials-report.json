@@ -1,0 +1,564 @@
+[
+ {
+  "id": 22,
+  "title": "Pommery Champagne Metal Ice Bucket",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "title"
+  }
+ },
+ {
+  "id": 39,
+  "title": "Bollinger Champagne Vintage Metal Ice Bucket",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "text: …made of brushed stainless steel with shiny vertical …"
+  }
+ },
+ {
+  "id": 58,
+  "title": "Moët & Chandon Champagne Ice Bucket (2020 Model)",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 84,
+  "title": "Veuve Clicquot Yellow Ice Bucket with Gold-Coloured Handle",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 90,
+  "title": "Rare Champagne (Piper-Heidsieck) Stainless Steel Ice Bucket",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "title"
+  }
+ },
+ {
+  "id": 127,
+  "title": "Tsarine Champagne Pink Portable Ice Bucket with Leather Handles",
+  "materials": [
+   "leather"
+  ],
+  "found": {
+   "leather": "title"
+  }
+ },
+ {
+  "id": 300,
+  "title": "Taittinger Champagne Bottle Stopper",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "text: …metal Champagne stopper…"
+  }
+ },
+ {
+  "id": 913,
+  "title": "G.H. Mumm XL Champagne Ice Bucket for 2–3 Magnums or 6–7 Bottles",
+  "materials": [
+   "acrylic"
+  ],
+  "found": {
+   "acrylic": "text: …made of high-strength, scratch-resistant plastic and…"
+  }
+ },
+ {
+  "id": 1094,
+  "title": "Moët & Chandon Black and Gold XL Champagne Cooler Bowl",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 2971,
+  "title": "Moët & Chandon Acrylic Ice Bucket with Grape Vine Decoration",
+  "materials": [
+   "acrylic"
+  ],
+  "found": {
+   "acrylic": "title"
+  }
+ },
+ {
+  "id": 3888,
+  "title": "Mini Champagne Pupitre for 18 Bottles",
+  "materials": [
+   "metal",
+   "wood"
+  ],
+  "found": {
+   "metal": "text: …made of pine wood and decorated with antique copper …",
+   "wood": "text: …made of pine wood and decorated with antique copper …"
+  }
+ },
+ {
+  "id": 4446,
+  "title": "Piper-Heidsieck Illuminated 8-Bottle Champagne Cooler",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 4536,
+  "title": "Piper-Heidsieck XL Champagne Cooler – Glossy Red with Gold Interior, for 6 Bottles",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "material line"
+  }
+ },
+ {
+  "id": 8730,
+  "title": "Custom Design Freestanding Ice Bucket Stand – Yellow",
+  "materials": [
+   "metal"
+  ],
+  "found": "set by hand"
+ },
+ {
+  "id": 9455,
+  "title": "Abel Lepitre Champagne Vintage Ice Bucket from the 1940s",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "text: …Crafted from stainless steel with a mirror-polished exter…"
+  }
+ },
+ {
+  "id": 12516,
+  "title": "Jaime Hayón Limited-Edition Grey and Gold Champagne Cooler for Piper-Heidsieck",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "text: …metal champagne cooler…"
+  }
+ },
+ {
+  "id": 13395,
+  "title": "Charles Heidsieck Display Bottles – Fillette, Bouteille, Magnum and Jeroboam",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "item type"
+  }
+ },
+ {
+  "id": 19367,
+  "title": "Monopole Heidsieck Pewter Ice Bucket with Bull's Head Handles and Coats of Arms (1930s)",
+  "materials": [
+   "pewter",
+   "metal"
+  ],
+  "found": {
+   "pewter": "title",
+   "metal": "text: …copper bucket…"
+  }
+ },
+ {
+  "id": 22918,
+  "title": "Four Moët & Chandon Stemless Tulip Glasses on a Display Stand",
+  "materials": [
+   "glass",
+   "acrylic"
+  ],
+  "found": {
+   "glass": "title",
+   "acrylic": "set contents"
+  }
+ },
+ {
+  "id": 25717,
+  "title": "Champagne Sabre in a Gift Box",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 25771,
+  "title": "Dom Pérignon Millésime Bottle Stopper Designed by Martin Szekely",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 27656,
+  "title": "Louis Roederer Set of 6 Tasting Glasses (16 cl) for Cristal Champagne",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 27718,
+  "title": "Perrier-Jouët Belle Époque Glasses on a Decorative Base – Gift Set",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 31314,
+  "title": "G.H. Mumm & Cie Vintage Pewter Pedestal Champagne Cooler",
+  "materials": [
+   "pewter"
+  ],
+  "found": {
+   "pewter": "title"
+  }
+ },
+ {
+  "id": 32485,
+  "title": "G.H. Mumm Large Pewter Champagne Cooler by Orfèvrerie d'Anjou (1960s)",
+  "materials": [
+   "pewter"
+  ],
+  "found": {
+   "pewter": "title"
+  }
+ },
+ {
+  "id": 34091,
+  "title": "Dom Pérignon Shield-Shaped Cigar Ashtray",
+  "materials": [
+   "ceramic"
+  ],
+  "found": {
+   "ceramic": "text: …porcelain cigar ashtray…"
+  }
+ },
+ {
+  "id": 35263,
+  "title": "Billecart-Salmon Vintage Tasting Glasses (Set of 4, 15 cl)",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 38065,
+  "title": "Charles Heidsieck Medici-Style 4-Bottle Champagne Cooler (1970s)",
+  "materials": [
+   "silver"
+  ],
+  "found": {
+   "silver": "text: …silver-plated champagne cooler…"
+  }
+ },
+ {
+  "id": 39311,
+  "title": "Canard-Duchêne Champagne Sabre in Original Case – Rare 72 cm Vintage Piece",
+  "materials": [
+   "steel",
+   "metal",
+   "wood"
+  ],
+  "found": {
+   "steel": "material line",
+   "metal": "material line",
+   "wood": "text: …mahogany advertising plaque…"
+  }
+ },
+ {
+  "id": 48659,
+  "title": "Armand de Brignac “Ace of Spades” Illuminated LED Bar Display",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 49195,
+  "title": "Abel Lepitre / Prince de Bourbon-Parme Oak Champagne Cooler by Géraud Lafitte (Reims, Early 1960s)",
+  "materials": [
+   "metal",
+   "wood"
+  ],
+  "found": {
+   "metal": "text: …constructed from solid oak staves , bound with brass bands, a…",
+   "wood": "title"
+  }
+ },
+ {
+  "id": 49492,
+  "title": "Veuve Clicquot “La Grande Dame” Polished Steel Champagne Cooler with Enamel Emblem",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "material line"
+  }
+ },
+ {
+  "id": 53363,
+  "title": "Taittinger Illuminated LED Champagne Cooler for 6–8 Bottles, with Remote Control",
+  "materials": [
+   "acrylic"
+  ],
+  "found": {
+   "acrylic": "material line"
+  }
+ },
+ {
+  "id": 54545,
+  "title": "Veuve Clicquot La Grande Dame by Riva Cruiser Bag with 2 Champagne Glasses",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 54690,
+  "title": "Deutz Champagne Set – Two Vintage Coolers and Six 16 cl Glasses",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "material line"
+  }
+ },
+ {
+  "id": 54708,
+  "title": "Taittinger Nocturne Champagne Buckets (Set of 2) with Summer Straw Hat",
+  "materials": [
+   "acrylic"
+  ],
+  "found": {
+   "acrylic": "material line"
+  }
+ },
+ {
+  "id": 54727,
+  "title": "Louis Roederer Two-Bottle Champagne Cooler with 6 Glasses",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 54739,
+  "title": "Pol Roger Champagne Set – Ice Bucket and 6 Lehmann 30 cl Glasses",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 54770,
+  "title": "Piper-Heidsieck BBQ & Champagne Cooler – Limited Edition",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "material line"
+  }
+ },
+ {
+  "id": 54941,
+  "title": "Piper-Heidsieck Vintage Picnic Case and Bottle Carrier (Early 2000s)",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 54983,
+  "title": "Moët & Chandon “Nautical Star” Champagne Carrier and Ice Bucket (2007), Unused, Boxed",
+  "materials": [
+   "leather"
+  ],
+  "found": {
+   "leather": "text: …made from strong off-white canvas with black reinforce…"
+  }
+ },
+ {
+  "id": 55002,
+  "title": "Armand de Brignac Brut Gold Display Bottle Set (0.75 L)",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "item type"
+  }
+ },
+ {
+  "id": 55083,
+  "title": "Dom Pérignon Book and Illuminated Bar Decoration",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 55213,
+  "title": "Charles Heidsieck Antique French Champagne Cooler with Bull's Head Handles – Argit Paris, 1930s–1940s",
+  "materials": [
+   "silver",
+   "pewter",
+   "metal"
+  ],
+  "found": {
+   "silver": "material line",
+   "pewter": "material line",
+   "metal": "material line"
+  }
+ },
+ {
+  "id": 55435,
+  "title": "Perrier-Jouët Belle Époque Illuminated XL Champagne Cooler – Rechargeable",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 55459,
+  "title": "Krug Flânerie Leather Champagne Carrier with Krug Grande Cuvée 166ème Édition",
+  "materials": [
+   "leather"
+  ],
+  "found": {
+   "leather": "title"
+  }
+ },
+ {
+  "id": 55535,
+  "title": "Louis Roederer Advertising Mirror – Artwork by José Simont – 1960s–1970s",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "material line"
+  }
+ },
+ {
+  "id": 56119,
+  "title": "Piper-Heidsieck Art Deco Champagne Cooler, 1920s–1930s",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "material line"
+  }
+ },
+ {
+  "id": 56439,
+  "title": "Perrier-Jouët Grand Brut Gift Set with Two Floral Glasses in Embossed Box",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "title"
+  }
+ },
+ {
+  "id": 56492,
+  "title": "Bollinger – Six Elisabeth Glasses and an Acrylic Cooler Designed by Eric Berthès",
+  "materials": [
+   "glass",
+   "acrylic"
+  ],
+  "found": {
+   "glass": "material line",
+   "acrylic": "title"
+  }
+ },
+ {
+  "id": 56558,
+  "title": "Ruinart × Victoria Wilmotte – 2026 Champagne Bucket",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "material line"
+  }
+ },
+ {
+  "id": 56713,
+  "title": "Armand de Brignac “Ace of Spades” 8-Bottle Gold Champagne Cooler",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "material line"
+  }
+ },
+ {
+  "id": 56738,
+  "title": "Dom Pérignon VHQ Day Party – Set of 6 Glasses with Gold Emblem",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "material line"
+  }
+ },
+ {
+  "id": 56758,
+  "title": "Laurent-Perrier Cuvée Rosé “Pétales” 2023 – Limited Edition with Metal Bottle Jacket",
+  "materials": [
+   "metal"
+  ],
+  "found": {
+   "metal": "title"
+  }
+ },
+ {
+  "id": 56788,
+  "title": "Pommery Vintage French Pewter Champagne Cooler with Art Nouveau Reliefs (c. 1950–60)",
+  "materials": [
+   "pewter"
+  ],
+  "found": {
+   "pewter": "material line"
+  }
+ },
+ {
+  "id": 56967,
+  "title": "Veuve Clicquot La Grande Dame 2015 × Louis Vuitton",
+  "materials": [],
+  "found": {}
+ },
+ {
+  "id": 57068,
+  "title": "Laurent-Perrier Large 8-Bottle Champagne Cooler",
+  "materials": [
+   "steel"
+  ],
+  "found": {
+   "steel": "material line"
+  }
+ },
+ {
+  "id": 57157,
+  "title": "Pol Roger Champagne – Vintage French Cigar Ashtray from the 1980s",
+  "materials": [
+   "ceramic"
+  ],
+  "found": {
+   "ceramic": "material line"
+  }
+ },
+ {
+  "id": 57180,
+  "title": "Perrier-Jouët Belle Époque – Set of 2 Lehmann Crystal Glasses in Gift Box",
+  "materials": [
+   "glass"
+  ],
+  "found": {
+   "glass": "material line"
+  }
+ }
+]

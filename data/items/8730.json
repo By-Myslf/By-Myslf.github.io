@@ -495,7 +495,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "metal"
+ ],
  "types": [
   "display-stands"
  ],

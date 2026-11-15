@@ -318,7 +318,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "leather"
+ ],
  "types": [
   "single-bottle-coolers"
  ],

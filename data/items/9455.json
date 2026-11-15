@@ -474,7 +474,9 @@
   "hu": "1940-es évek"
  },
  "period": "1900-1945",
- "materials": [],
+ "materials": [
+  "steel"
+ ],
  "types": [
   "vintage-antique-coolers"
  ],

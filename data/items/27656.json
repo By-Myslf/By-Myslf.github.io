@@ -141,7 +141,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "glass"
+ ],
  "types": [
   "champagne-glasses"
  ],

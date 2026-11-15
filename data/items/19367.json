@@ -576,7 +576,10 @@
   "hu": "1930"
  },
  "period": "1900-1945",
- "materials": [],
+ "materials": [
+  "pewter",
+  "metal"
+ ],
  "types": [
   "vintage-antique-coolers"
  ],

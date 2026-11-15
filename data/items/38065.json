@@ -370,7 +370,9 @@
   "hu": "1970-es évek"
  },
  "period": "1946-1979",
- "materials": [],
+ "materials": [
+  "silver"
+ ],
  "types": [
   "multi-bottle-coolers"
  ],

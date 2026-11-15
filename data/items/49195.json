@@ -321,7 +321,10 @@
   "hu": "1960-as évek"
  },
  "period": "1946-1979",
- "materials": [],
+ "materials": [
+  "metal",
+  "wood"
+ ],
  "types": [
   "vintage-antique-coolers"
  ],

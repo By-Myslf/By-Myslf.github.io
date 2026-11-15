@@ -272,7 +272,9 @@
   "hu": "2007"
  },
  "period": "2000-today",
- "materials": [],
+ "materials": [
+  "leather"
+ ],
  "types": [
   "single-bottle-coolers",
   "cases"

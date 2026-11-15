@@ -200,7 +200,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "pewter"
+ ],
  "types": [
   "multi-bottle-coolers"
  ],

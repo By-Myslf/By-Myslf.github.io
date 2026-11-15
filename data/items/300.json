@@ -310,7 +310,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "metal"
+ ],
  "types": [
   "bottle-stoppers"
  ],

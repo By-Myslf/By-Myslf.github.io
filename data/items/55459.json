@@ -281,7 +281,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "leather"
+ ],
  "contents": [
   {
    "qty": 1,

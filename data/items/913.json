@@ -250,7 +250,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "acrylic"
+ ],
  "types": [
   "multi-bottle-coolers"
  ],

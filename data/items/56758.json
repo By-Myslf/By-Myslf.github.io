@@ -436,7 +436,9 @@
   "hu": "2023"
  },
  "period": "2000-today",
- "materials": [],
+ "materials": [
+  "metal"
+ ],
  "types": [
   "special-items"
  ],

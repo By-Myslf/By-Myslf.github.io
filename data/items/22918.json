@@ -431,7 +431,10 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "glass",
+  "acrylic"
+ ],
  "contents": [
   {
    "qty": 4,

@@ -377,7 +377,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "acrylic"
+ ],
  "types": [
   "single-bottle-coolers"
  ],

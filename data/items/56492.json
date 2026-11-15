@@ -528,7 +528,8 @@
  "era": {},
  "period": null,
  "materials": [
-  "glass"
+  "glass",
+  "acrylic"
  ],
  "contents": [
   {

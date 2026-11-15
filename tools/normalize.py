@@ -10,6 +10,7 @@ Manual corrections and translations in data/overrides/<id>.json are applied last
 ("drop_photos": [numbers] there leaves out photos that show other items;
 "contents": [{"qty", "en", "hu", "type"}] describes the pieces of a set;
 "also_types": [keys] puts a single piece into more categories (e.g. an illuminated cooler);
+"materials": [keys] replaces the detected materials;
 "set_checked": true marks a flagged item that needs no contents list, e.g. 6 identical glasses).
 
 Usage: python3 tools/normalize.py
@@ -301,18 +302,79 @@ def period_of(y):
     return None
 
 
-def materials_of(texts):
-    blob = " " + " ".join(t.lower() for t in texts if t) + " "
-    blob = re.sub(r"ezüst\s?színű|ezüstös|silver[- ]colou?red|silver[- ]tone|silver colou?r|arany\s?színű|gold[- ]colou?red", " ", blob)
-    found = []
-    for m in SITE["materials"]:
-        if any(k in blob for k in m["match"]):
-            found.append(m["key"])
-    if "steel" in found and "metal" in found and not re.search(r"brass|réz|alumin|bronz|zinc|cink", blob):
-        found.remove("metal")
-    if "silver" in found and "metal" in found and not re.search(r"brass|réz|alumin|bronz|zinc|cink", blob):
-        found.remove("metal")
+# Material words, matched at the start of a word so that "vas" (iron) does not match "vastag" (thick).
+MAT_RX = {
+    "silver": r"silver[- ]?plat|sterling|solid silver|ezüstözött|ezüstözés|ezüstből|ezüst bevonat",
+    "pewter": r"pewter|étain|ón\b|ónöntvény|ónból|ón-",
+    "steel": r"steel|stainless|acél|inox",
+    "metal": r"brass|réz|sárgaréz|alumin|bronz|zinc|cink|iron\b|vas\b|vasból|chrom|króm|copper|nickel|nikkel",
+    "_metal": r"metal|fém",  # the plain word: used only when no more precise metal is named
+    "glass": r"crystal|kristály|glass|üveg",
+    "acrylic": r"acrylic|akril|plexi|plastic|műanyag|polycarbonat|polikarbonát|polyethylene|polietilén|hdpe",
+    "wood": r"wood|oak\b|tölgy|cedar|cédrus|fa\b|fából|mahogany|mahagóni|beech|bükk",
+    "leather": r"leather|bőr\b|bőrből|bőrrel|textile|textil|fabric|neoprene|canvas|vászon|velvet|bársony",
+    "ceramic": r"ceramic|kerámi|porcel|faience|fajansz|majolik|stoneware",
+}
+MAT_ANY = "|".join(f"(?:{rx})" for rx in MAT_RX.values())
+# colours are not materials: "silver-coloured", "gold-bronze colour", "ezüstszínű", "arany/bronz színben"
+NOT_MATERIAL = re.compile(r"[\w/-]+[- ]colou?r(ed|s)?\b|[\w/-]+[- ]tone\b|[\w/-]+\s?szín(ű|ben|é)\w*|ezüstös|"
+                          r"glass(es)? (of|for)\b", re.I)
+# phrases that say what something is made of
+MADE_OF = re.compile(r"(?:\b|hand)(made|crafted|manufactured|cast|constructed|fashioned)\b"
+                     r"[^.;:]{0,25}?\b(of|from|in)\b([^.;:]{0,45})", re.I)
+HU_MADE_OF = re.compile(r"\b((?:" + MAT_ANY + r")\w*(?:ból|ből))\s+(?:\w+\s+)?(?:készül|készít|gyárt|önt|formáz|kialakít)", re.I)
+OBJECTS_EN = r"cooler|bucket|ashtray|stopper|carrier|case|bag|tray|basin|bowl|stand|jacket|plaque|mirror|box|frame|base"
+OBJECTS_HU = r"hamutartó|pezsgőhűtő|hűtő|jégveder|veder|vödör|jégtál|tál|dugó|palackzáró|tok|táska|hordozó|állvány|talapzat|keret|doboz|fogantyú|fedél|tükör"
+ADJ_OBJECT = re.compile(r"\b((?:" + MAT_ANY + r")[\w-]*)[\s-]+(?:[\w-]+\s+){0,2}?(?:" + OBJECTS_EN + "|" + OBJECTS_HU + r")\b", re.I)
+
+
+def mats_in(text, material_line=False):
+    """Material keys named in a short text (a details value, a title, a phrase)."""
+    t = NOT_MATERIAL.sub(" ", " " + (text or "").lower() + " ")
+    found = [k for k, rx in MAT_RX.items() if re.search(r"(?<!\w)(?:" + rx + ")", t)]
+    if material_line and re.search(r"(?<!\w)(silver|ezüst)", t) and "silver" not in found:
+        found.append("silver")  # on a Material line, plain "silver" / "ezüst" does mean silver
     return found
+
+
+def tidy_materials(found):
+    found = set(found)
+    if "_metal" in found:  # plain "metal" counts only when no particular metal is named
+        found.discard("_metal")
+        if not found & {"steel", "silver", "pewter", "metal"}:
+            found.add("metal")
+    return [m["key"] for m in SITE["materials"] if m["key"] in found]
+
+
+def materials_of(texts, material_line=False):
+    return tidy_materials([k for t in texts if t for k in mats_in(t, material_line)])
+
+
+def detect_materials(e):
+    """Materials from, in order: the Material line, the title, phrases in the description, the kind of item.
+    Returns (keys, {key: where it was found}) – the second part goes into data/materials-report.json."""
+    src = {}
+    def add(keys, where):
+        for k in keys:
+            src.setdefault(k, where)
+    rows = [v for lg in ("en", "hu") for k, v in (e["details"].get(lg) or []) if k.lower() in MAT_KEYS]
+    add([k for t in rows for k in mats_in(t, True)], "material line")
+    add([k for t in (e["title"].get("en"), e["title"].get("hu")) for k in mats_in(t)], "title")
+    for c in e.get("contents") or []:
+        add([k for t in (c.get("en"), c.get("hu")) for k in mats_in(t)], "set contents")
+    for lg in ("en", "hu"):
+        text = re.sub(r"<[^>]+>", " ", (e["intro"].get(lg) or "") + " " + (e["body"].get(lg) or ""))
+        text = re.sub(r"\s+", " ", htmllib.unescape(text))
+        for m in MADE_OF.finditer(text):
+            add(mats_in(m.group(3)), f"text: …{m.group(0)[:70]}…")
+        for m in HU_MADE_OF.finditer(text):
+            add(mats_in(m.group(1)), f"text: …{m.group(0)[:70]}…")
+        for m in ADJ_OBJECT.finditer(text):
+            add(mats_in(m.group(1)), f"text: …{m.group(0)[:70]}…")
+    if {"champagne-glasses", "dummy-bottles"} & set(e.get("types") or []):
+        add(["glass"], "item type")
+    keys = tidy_materials(list(src))
+    return keys, {k: src.get(k) or src.get("_metal") for k in keys}
 
 
 def clean_title(t):
@@ -390,7 +452,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for old in OUT.glob("*.json"):
         old.unlink()
-    report, used_slugs, sets_report = [], set(), []
+    report, used_slugs, sets_report, mat_report = [], set(), [], []
     for p in sorted(RAW.glob("[0-9]*.json"), key=lambda x: int(x.stem)):
         raw = json.loads(p.read_text())
         role = raw["role"]
@@ -448,6 +510,7 @@ def main():
             title_en = None
 
         f = OVR / f"{raw['id']}.json"
+        hand = (json.loads(f.read_text()) if f.exists() else {}) | OVERRIDES.get(str(raw["id"]), {})
         if f.exists():
             deep_merge(e, json.loads(f.read_text()))
         if str(raw["id"]) in OVERRIDES:
@@ -465,6 +528,13 @@ def main():
             if contents:  # a single "Quantity" or "Set includes" line would now be wrong or repeated
                 for lg in ("hu", "en"):
                     e["details"][lg] = [r for r in (e["details"].get(lg) or []) if not SET_ROW.match(r[0].strip())]
+        # materials: from the item's own words, unless set by hand ("materials": [keys] in the overrides)
+        if e["kind"] == "item":
+            if "materials" in hand:
+                mat_report.append({"id": e["id"], "title": e["title"].get("en"), "materials": e["materials"], "found": "set by hand"})
+            else:
+                e["materials"], found = detect_materials(e)
+                mat_report.append({"id": e["id"], "title": e["title"].get("en"), "materials": e["materials"], "found": found})
         # rebuild slug and keywords after overrides
         if e["title"].get("en"):
             base = e.get("slug_en") or slugify(e["title"]["en"])
@@ -495,6 +565,7 @@ def main():
             "missing_en": missing, "has_ovr": has_ovr,
         })
     (ROOT / "data" / "normalize-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
+    (ROOT / "data" / "materials-report.json").write_text(json.dumps(mat_report, ensure_ascii=False, indent=1))
     (ROOT / "data" / "sets-report.json").write_text(json.dumps(sets_report, ensure_ascii=False, indent=1))
     todo = sum(1 for c in sets_report if c["state"] == "to check")
     print(f"{len(report)} entries written to data/items; {len(sets_report)} possible sets ({todo} still to check) in data/sets-report.json")

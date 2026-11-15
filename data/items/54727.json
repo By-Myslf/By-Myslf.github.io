@@ -265,7 +265,9 @@
  "year": null,
  "era": {},
  "period": null,
- "materials": [],
+ "materials": [
+  "glass"
+ ],
  "contents": [
   {
    "qty": 1,

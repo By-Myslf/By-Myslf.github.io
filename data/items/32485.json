@@ -227,7 +227,9 @@
   "hu": "1960-as évek"
  },
  "period": "1946-1979",
- "materials": [],
+ "materials": [
+  "pewter"
+ ],
  "types": [
   "multi-bottle-coolers"
  ],
