@@ -519,9 +519,19 @@
   "/category/sursum-vivere/": "type:display-stands"
  },
  "remove_phrases": {
-  "_note": "removed from every text (user's rule); spaces in a phrase may be missing in the original",
+  "_note": "removed from every text (user's rule). phrases: cut wherever they appear (spaces may be missing in the original); lines: a line that starts with one of these is removed whole",
   "phrases": [
    "SursumVivere Pannonia"
+  ],
+  "lines": [
+   "Budapesten egyedi lakberendezési tárgyakat és bárfelszereléseket",
+   "Főbb termékeink és szolgáltatásaink",
+   "Bárfelszerelések: egyedi",
+   "Lakberendezési tárgyak:",
+   "Minden termékünket az ügyfél",
+   "Minden darabot az ügyfél",
+   "Van konkrét elképzelés",
+   "Van már konkrét elképzelés"
   ]
  }
 }

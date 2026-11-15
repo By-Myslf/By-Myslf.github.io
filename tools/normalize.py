@@ -92,6 +92,8 @@ BROWSE_RX = re.compile(
 # 6. phrases the user wants removed everywhere (data/site.json → remove_phrases)
 REMOVE_RX = re.compile("|".join(r"\s*".join(re.escape(w) for w in re.findall(r"[A-Z]?[a-z]+|\S", ph))
                                 for ph in SITE.get("remove_phrases", {}).get("phrases", [])) or r"(?!x)x", re.I)
+REMOVE_LINE_RX = re.compile("|".join("^" + r"\s*".join(re.escape(w) for w in ln.replace(":", " : ").split())
+                                      for ln in SITE.get("remove_phrases", {}).get("lines", [])) or r"(?!x)x", re.I)
 SOURCES_HEAD = re.compile(r"^(?:forrásjegyzék|források|felhasznált források|irodalom|references|sources|bibliography)\b", re.I)
 
 
@@ -257,6 +259,10 @@ def assemble(blocks, item=True, dropped=None):
         t = b["text"]
         if not item and (b["tag"].startswith("h") and SOURCES_HEAD.match(t)):
             in_sources = True  # an article's source list: kept whole, with its links
+        if REMOVE_LINE_RX.search(t):
+            if dropped is not None:
+                dropped.append({"text": t, "rule": "removed line"})
+            continue
         if REMOVE_RX.search(t):
             rest = REMOVE_RX.sub(" ", t).strip(" .,;:–—-")
             if not rest:
