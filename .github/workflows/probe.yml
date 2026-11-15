@@ -1,0 +1,25 @@
+name: Connection test to champagneclub.hu
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/probe.yml]
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Test
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+          {
+            echo "== api"; curl -sS -m 30 -o /dev/null -w "%{http_code} %{time_total}s\n" -A "$UA" "https://champagneclub.hu/wp-json/wp/v2/posts/57180?_fields=id" || echo "api failed"
+            echo "== image"; curl -sS -m 60 -o /dev/null -w "%{http_code} %{time_total}s %{size_download}B\n" -A "$UA" "https://champagneclub.hu/wp-content/uploads/2026/11/Perrier-Jouet-Belle-Epoque-–-Set-of-2-Lehmann-Crystal-Champagne-Glasses-in-Original-Gift-Box-–-champagneclub.hu-1.png" || echo "image failed"
+            echo "== fonts"; curl -sS -m 30 -o /dev/null -w "%{http_code} %{time_total}s\n" "https://fonts.googleapis.com/css2?family=Inter" || echo "fonts failed"
+          } | tee result.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan probe-result
+          git rm -rfq . >/dev/null 2>&1 || true
+          git add result.txt && git commit -qm "probe result" && git push -f origin probe-result
