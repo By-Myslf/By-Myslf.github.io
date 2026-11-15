@@ -1,4 +1,5 @@
 name: Copy sample from champagneclub.hu
+# Copies the sample posts and photos listed in data/sample.json.
 
 on:
   workflow_dispatch:
