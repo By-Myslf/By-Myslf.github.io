@@ -6,7 +6,8 @@ For each post it:
   * picks out the details lines (maker, material, dimensions, condition, …)
   * works out the type, champagne house, status, period and materials
   * removes shop phrases (delivery offers, slogans) that do not belong on a collectors' site
-Manual corrections and translations in data/overrides/<id>.json are applied last.
+Manual corrections and translations in data/overrides/<id>.json are applied last
+("drop_photos": [numbers] there leaves out photos that show other items).
 
 Usage: python3 tools/normalize.py
 """
@@ -412,6 +413,10 @@ def main():
             deep_merge(e, json.loads(f.read_text()))
         if str(raw["id"]) in OVERRIDES:
             deep_merge(e, json.loads(json.dumps(OVERRIDES[str(raw["id"])])))
+        # photos that show other items (listed by number in the overrides as "drop_photos")
+        drop = set(e.pop("drop_photos", []))
+        if drop:
+            e["photos"] = [ph for ph in e["photos"] if ph["n"] not in drop]
         # rebuild slug and keywords after overrides
         if e["title"].get("en"):
             base = e.get("slug_en") or slugify(e["title"]["en"])
