@@ -387,6 +387,12 @@ def main():
             "photos": keep_photos(raw),
             "highlight": raw["id"] in CUR.get("highlights", []),
         }
+        if role != "item":
+            for lg in ("hu", "en"):
+                b = e["body"][lg] or ""
+                m = re.match(r"\s*<h3>(.*?)</h3>\s*", b, re.S)
+                if m:  # the article's own title repeated at the top
+                    e["body"][lg] = b[m.end():]
         if role == "page":
             e["page"] = CUR.get("pages", {}).get(str(raw["id"]), "about")
         if role == "item":

@@ -157,7 +157,7 @@ a:hover .frame img { transform: scale(1.03); }
 .callout .btn { margin-top: 30px; }
 
 /* Page title */
-.page-head { padding: clamp(40px, 6vw, 56px) 0 28px; }
+.page-head { padding-top: clamp(40px, 6vw, 56px); padding-bottom: 28px; }
 .page-head h1 { font-size: clamp(42px, 5vw, 60px); }
 .page-head .intro { max-width: 680px; color: var(--muted); font-size: 17px; margin-top: 16px; }
 .crumbs { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
